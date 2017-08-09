@@ -19,7 +19,7 @@ class MainProjectView extends Component {
                     <div className="card">
                         <div className="cardLeftImgWhite"><h1 className="projectNumCube">{project.projectsInside}</h1></div>
                         <h1 className="cardh1normal">{project.projectName}</h1>
-                        <h2 className="percenth1">{project.percentageComplete}</h2> 
+                        <h2 className="percentRegularCard">{project.percentageComplete}</h2> 
                     </div>
                 </div>
                 )}

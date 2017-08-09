@@ -42,6 +42,7 @@ body{
 .projectlink a{
   background-color: white;
 }
+/*----------------H1 TEXT----------------*/
 .cardh1bold{
 
   color: #74546B;
@@ -51,22 +52,10 @@ body{
   font-weight: 900;
   line-height: 60px;
   margin-left: 20px; 
-  font-size: 1.7em;
+  font-size: 1.3em;
   text-overflow: ellipsis;
 }
 .cardh1normal{
-
-  color: #74546B;
-  font-family: 'Open Sans';
-  display: inline-block;
-  margin-top: 0px;
-  font-weight: 600;
-  line-height: 60px;
-  margin-left: 20px; 
-  font-size: 1.7em;
-  text-overflow: ellipsis;
-}
-.cardh2normal{
 
   color: #74546B;
   font-family: 'Open Sans';
@@ -84,10 +73,35 @@ body{
   font-family: 'Open Sans';
   display: inline-block;
   margin-top: 0px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 60px;
   margin-left: 20px; 
-  font-size: 1.7em;
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+}
+/*----------------H2 TEXT----------------*/
+.cardh2normal{
+
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 700;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+}
+.cardh2light{
+
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.3em;
   text-overflow: ellipsis;
 }
 .cardLeftImgRed {
@@ -123,6 +137,17 @@ body{
   margin-left: 9.5px;
   float: left;
 }
+.backButtonIcon {
+
+  background-color: #F67E7D;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px; 
+  display: inline-block;
+  margin-top: 7.5px;
+  margin-right: 9.5px;
+  float: right;
+}
 
 /*base text for progress reports - percentage*/
 .percentRegularCard {
@@ -132,6 +157,13 @@ body{
   position: relative;
   right: 0;
   top: 0;
+  margin-top: 0;
+  color: #74546B;
+  font-family: 'Open Sans'; 
+  line-height: 60px;
+  font-weight: 700;
+  font-size: 1.3em;
+
 }
 /*text for numbers in cubes*/
 .projectNumCube {
@@ -143,7 +175,15 @@ body{
   font-size: 1.3em;
   color: #74546B;
 }
+.backButton{
 
+  width: 100px;
+  height: 60px;
+  background-color: white;
+  display: block;
+  border-radius: 0px 10px 10px 0px;
+  float: left;
+}
 /*colors: background: #FFB997
 colors: topbar:   #F67E7D
 colors: profile:  #74546B*/

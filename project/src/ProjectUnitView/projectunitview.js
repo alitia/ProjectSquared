@@ -13,28 +13,35 @@ class ProjectUnitView extends Component {
     }
     render() {
         return (
-            <div className="ProjectUnitView_List">
-                <div className="ProjectUnitView_Title">
-                    <div className="card">
-                        <div className="cardLeftImgWhite"></div>
-                        <h1 className="cardh1bold">This Projects Name</h1>
+            <div className="ProjectUnitView_Page">
+                <div className="backButton">
+                    <div className="backIcon">
+                        <div className="backButtonIcon"></div>
                     </div>
                 </div>
-                {this.state.units.map(unit =>
-                <div className="ProjectUnitView_Card" key={unit.id}>
-                    <div className="card">
-                        <h2 className="cardh2normal">{unit.projectName}</h2>
-                        <h2 className="percentRegularCard">{unit.percentageComplete}</h2> 
+                <div className="ProjectUnitView_List">
+                    <div className="ProjectUnitView_Title">
+                        <div className="card">
+                            <div className="cardLeftImgWhite"></div>
+                            <h1 className="cardh1bold">This Projects Name</h1>
+                        </div>
                     </div>
-                </div>
-                )}
-                <div className="ProjectUnitView_New">
-                    <div className="card">
-                        <div className="cardLeftImgWhite"></div>
-                        <h1 className="cardh1light">Add Unit</h1>
+                    {this.state.units.map(unit =>
+                    <div className="ProjectUnitView_Card" key={unit.id}>
+                        <div className="card">
+                            <h2 className="cardh2normal">{unit.projectName}</h2>
+                            <h2 className="percentRegularCard">{unit.percentageComplete}</h2> 
+                        </div>
                     </div>
-                </div>
-            </div>      
+                    )}
+                    <div className="ProjectUnitView_New">
+                        <div className="card">
+                            <div className="cardLeftImgWhite"></div>
+                            <h1 className="cardh2light">Add Unit</h1>
+                        </div>
+                    </div>
+                </div> 
+            </div>     
         );
     }
 }
