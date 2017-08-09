@@ -1,0 +1,149 @@
+body{
+  background: #FFB997;
+  margin: 0;
+}
+/*----------------NAV BAR----------------*/
+.topbar{
+  flex: 1;
+  height: 70px;
+  background-color: #F67E7D;
+  margin-bottom: 50px;
+}
+.logo_topbar{
+
+  font-family: 'Open Sans';
+  color: #74546B;
+  display: inline-block;
+  margin-left: 40px;
+  margin-top: -8px;
+}
+.profile_topbar{
+
+  background-color: #74546B;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px; 
+  float: right;
+  margin: 10px;
+}
+
+/*----------------CARDS----------------*/
+
+.card{
+
+  background-color: white;
+  width: 50%;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.projectlink a{
+  background-color: white;
+}
+.cardh1bold{
+
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 900;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.7em;
+  text-overflow: ellipsis;
+}
+.cardh1normal{
+
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 600;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.7em;
+  text-overflow: ellipsis;
+}
+.cardh2normal{
+
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 700;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+}
+.cardh1light{
+
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 300;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.7em;
+  text-overflow: ellipsis;
+}
+.cardLeftImgRed {
+
+  background-color: #F67E7D;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px; 
+  display: inline-block;
+  margin-top: 7.5px;
+  margin-left: 9.5px;
+  float: left;
+  line-height: 45px;
+}
+.cardLeftImgRed h1{
+
+  margin-left: 0;
+  text-align: middle;
+  color: #74546B;
+  font-size: 1.3em;
+  font-family: 'Open Sans'; 
+  font-weight: 600;
+
+}
+.cardLeftImgWhite {
+
+  background-color: #F67E7D;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px; 
+  display: inline-block;
+  margin-top: 7.5px;
+  margin-left: 9.5px;
+  float: left;
+}
+
+/*base text for progress reports - percentage*/
+.percentRegularCard {
+  
+  float: right;
+  margin-right: 15px;
+  position: relative;
+  right: 0;
+  top: 0;
+}
+/*text for numbers in cubes*/
+.projectNumCube {
+
+  line-height: 45px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  font-size: 1.3em;
+  color: #74546B;
+}
+
+/*colors: background: #FFB997
+colors: topbar:   #F67E7D
+colors: profile:  #74546B*/
