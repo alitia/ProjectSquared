@@ -16,6 +16,7 @@ class PhoneField extends Component {
                 <div className="PhoneField" key={phone.id}>
                     <div className="card">
                         <h1 className="cardh1normal">{phone.label}</h1>
+                        <div className="slash"></div>
                         <h1 className="cardh1light">{phone.fieldname}</h1>
                     </div>
                 </div>)}   

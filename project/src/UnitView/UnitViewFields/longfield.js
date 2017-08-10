@@ -16,6 +16,7 @@ class LongField extends Component {
                 <div className="LongField" key={long.id}>
                     <div className="card">
                         <h1 className="cardh1normal">{long.label}</h1>
+                        <div className="slash"></div>
                         <h1 className="cardh1light">{long.fieldname}</h1>
                     </div>
                 </div>)}   

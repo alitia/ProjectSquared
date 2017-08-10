@@ -32,12 +32,28 @@ body{
 .card{
 
   background-color: white;
-  width: 50%;
   height: 60px;
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 15px;
   overflow: hidden;
+}
+.cardCheckBox{
+
+  background-color: white;
+  min-height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.cardCheckBox{
+
+  padding-top: 15px;
+}
+.checkBoxSet h1{
+
+  line-height: 45px;
 }
 .projectlink a{
   background-color: white;
@@ -137,17 +153,7 @@ body{
   margin-left: 9.5px;
   float: left;
 }
-.backButtonIcon {
 
-  background-color: #F67E7D;
-  width: 45px;
-  height: 45px;
-  border-radius: 10px; 
-  display: inline-block;
-  margin-top: 7.5px;
-  margin-right: 9.5px;
-  float: right;
-}
 
 /*base text for progress reports - percentage*/
 .percentRegularCard {
@@ -177,12 +183,81 @@ body{
 }
 .backButton{
 
+  width: 25%; 
+  display: inline-block;  
+  float: left;
+}
+.backIcon{
   width: 100px;
+  float: left;
   height: 60px;
   background-color: white;
-  display: block;
   border-radius: 0px 10px 10px 0px;
+}
+.backButtonIcon {
+
+  background-color: #F67E7D;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px; 
+  display: inline-block;
+  margin-top: 7.5px;
+  margin-right: 9.5px;
+  float: right;
+}
+.ProjectUnitView_Page{
+  display: inline-flex;
+  margin: 0 auto;
+  width: 100%;
+}
+.ProjectUnitView_List{
+  display: block;
+  width: 50%;
+}
+.UnitView_Page{
+  display: inline-flex;
+  margin: 0 auto;
+  width: 100%;
+}
+.UnitView_List{
+  display: block;
+  width: 50%;
+}
+.MainProjectView_Page{
+  display: inline-flex;
+  margin: 0 auto;
+  width: 100%;
+}
+.MainProjectView_List{
+  display: block;
+  width: 50%;
+}
+.optionsPanel{
+  width: 25%; 
+  display: inline-block;  
+  float: right;
+  height: 60px;
+}
+.optionsPanel_Button{
+  width: 60px;
   float: left;
+  height: 60px;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 15px;
+}
+.slash{
+  content:url('./images/seperator.png');
+  display: inline-block;
+  height: 30px;
+  vertical-align: middle;
+  margin-left: 40px;
+}
+.checkField{
+  content:url('./images/check-box-empty.png');
+  height: 30px;
+  float: right;
+  margin-right: 15px;
 }
 /*colors: background: #FFB997
 colors: topbar:   #F67E7D

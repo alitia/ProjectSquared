@@ -16,6 +16,6 @@ import CheckBoxGroupField from './UnitView/UnitViewFields/checkboxgroupfield.js'
 
 ReactDOM.render(<div>
 	<NavBar />
-	<ProjectUnitView />
+	<CheckBoxGroupField />
 	</div>, document.getElementById('root'));
 registerServiceWorker();

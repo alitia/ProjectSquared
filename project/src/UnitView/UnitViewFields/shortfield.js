@@ -16,6 +16,7 @@ class ShortField extends Component {
                 <div className="ShortField" key={short.id}>
                     <div className="card">
                         <h1 className="cardh1normal">{short.label}</h1>
+                        <div className="slash"></div>
                         <h1 className="cardh1light">{short.fieldname}</h1>
                     </div>
                 </div>)}   

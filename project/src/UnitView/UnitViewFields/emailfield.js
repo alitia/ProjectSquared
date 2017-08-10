@@ -16,6 +16,7 @@ class EmailField extends Component {
                 <div className="EmailField" key={email.id}>
                     <div className="card">
                         <h1 className="cardh1normal">{email.label}</h1>
+                        <div className="slash"></div>
                         <h1 className="cardh1light">{email.fieldname}</h1>
                     </div>
                 </div>)}   
