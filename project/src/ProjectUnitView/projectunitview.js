@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {ProjectUnitViewList} from './projectunitview_list.js';
+import {ProjectUnitViewTitle} from './projectunitview_title.js';
+import {addUnit, generateId} from '../lib/projecthelpers.js';
+import {ProjectUnitViewNew} from './projectunitview_new.js'
+import {BackButton} from '../Other/backbutton.js'
 
 class ProjectUnitView extends Component {
     constructor(){
@@ -8,39 +13,35 @@ class ProjectUnitView extends Component {
                 {id: 201, projectName: 'Unit One', percentageComplete: '22%'},
                 {id: 202, projectName: 'Unit Two', percentageComplete: '33%'},
                 {id: 203, projectName: 'Unit Three', percentageComplete: '44%'}
-            ]
+            ],
+            currentUnit: ''
         }
+        this.handleClick = this.handleClick.bind(this)
+    }
+    handleClick = (evt) =>{
+        evt.preventDefault()
+        console.log('got to here - units')        
+        const newId = generateId()
+        const newUnit = {id: newId, projectName: 'Unit Four', percentageComplete: '55%'}
+        const updatedUnits = addUnit(this.state.units, newUnit)
+        this.setState({
+            units: updatedUnits
+
+        })
     }
     render() {
         return (
-            <div className="ProjectUnitView_Page">
-                <div className="backButton">
-                    <div className="backIcon">
-                        <div className="backButtonIcon"></div>
+            <div className="Page">
+                <BackButton />
+                <div className="ProjectList">
+                    <ProjectUnitViewTitle />
+                    <ProjectUnitViewList units={this.state.units}/>
+                    <div onClick={this.handleClick}>
+                        <ProjectUnitViewNew/>
                     </div>
                 </div>
-                <div className="ProjectUnitView_List">
-                    <div className="ProjectUnitView_Title">
-                        <div className="card">
-                            <div className="cardLeftImgWhite"></div>
-                            <h1 className="cardh1bold">This Projects Name</h1>
-                        </div>
-                    </div>
-                    {this.state.units.map(unit =>
-                    <div className="ProjectUnitView_Card" key={unit.id}>
-                        <div className="card">
-                            <h2 className="cardh2normal">{unit.projectName}</h2>
-                            <h2 className="percentRegularCard">{unit.percentageComplete}</h2> 
-                        </div>
-                    </div>
-                    )}
-                    <div className="ProjectUnitView_New">
-                        <div className="card">
-                            <div className="cardLeftImgWhite"></div>
-                            <h1 className="cardh2light">Add Unit</h1>
-                        </div>
-                    </div>
-                </div> 
+                
+                 
             </div>     
         );
     }

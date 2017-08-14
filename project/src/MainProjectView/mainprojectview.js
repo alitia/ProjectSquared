@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {MainProjectViewList} from './mainprojectview_list.js';
+import {addProject, generateId} from '../lib/projecthelpers.js';
+import {MainProjectViewNew} from './mainprojectview_new.js'
+import {BackButton} from '../Other/backbutton.js'
 
 class MainProjectView extends Component {
     constructor(){
@@ -8,40 +12,31 @@ class MainProjectView extends Component {
                 {id: 101, projectsInside: 10, projectName: 'Project Name One', percentageComplete: '55%'},
                 {id: 102, projectsInside: 14, projectName: 'Project Name Two', percentageComplete: '66%'},
                 {id: 103, projectsInside: 17, projectName: 'Project Name Three', percentageComplete: '77%'}
-            ]
+            ],
+            currentProject: ''
+
         }
+        this.handleClick = this.handleClick.bind(this)
+    }
+    handleClick = (evt) =>{
+        evt.preventDefault()       
+        const newId = generateId()
+        const newProject = {id: newId, projectsInside: 22, projectName: 'Project Name Four', percentageComplete: '66%'}
+        const updatedProjects = addProject(this.state.projects, newProject)
+        this.setState({
+            projects: updatedProjects
+
+        })
     }
     render() {
         return (
-            <div className="MainProjectView_Page">
-                <div className="backButton">
-                    <div className="backIcon">
-                        <div className="backButtonIcon"></div>
-                    </div>
+            <div className="Page">
+                <BackButton />
+                <div className="ProjectList" >
+                    <MainProjectViewList projects={this.state.projects}/>
+                    <div onClick={this.handleClick}><MainProjectViewNew /></div>
                 </div>
-                <div className="MainProjectView_List">
-                    {this.state.projects.map(project =>
-                    <div className="MainProjectView_Card" key={project.id}>
-                        <div className="card">
-                            <div className="cardLeftImgWhite"><h1 className="projectNumCube">{project.projectsInside}</h1></div>
-                            <h1 className="cardh1normal">{project.projectName}</h1>
-                            <h2 className="percentRegularCard">{project.percentageComplete}</h2> 
-                        </div>
-                    </div>
-                    )}
-                    <div className="MainProjectView_New">
-                        <div className="card">
-                            <div className="cardLeftImgWhite"></div>
-                            <h1 className="cardh1light">Create Project</h1>
-                        </div>
-                    </div>
-                </div>
-                <div className="optionsPanel">
-                    <div className="optionsPanel_Button">
-                        <div className="optionsPanel_Icon"></div>
-                    </div>
-                </div>
-            </div>      
+            </div>
         );
     }
 }

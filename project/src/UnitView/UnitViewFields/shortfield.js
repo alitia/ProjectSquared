@@ -8,6 +8,36 @@ class ShortField extends Component {
                 {id: 304, position: 4, label: 'Champion Name', fieldname: 'Short Text Field', fieldtype: 'text_short'}
             ]
         }
+        this.update = this.update.bind(this)
+        this.onKeyPress = this.onKeyPress.bind(this)
+    }
+    onKeyPress = (event) =>{
+        const str = event.target.innerHTML
+        if (event.charCode === 13){
+            event.preventDefault()  
+            const element = event.target
+            element.blur()
+
+        }
+        else if(str.length > 36){
+                event.preventDefault()
+        }
+
+    }
+    update(e){
+
+        const short_field = this.state.short_field
+        const str = e.target.innerHTML
+
+        if(str === ""){
+            e.target.innerHTML = "..."
+        }
+        else{
+            short_field.fieldname = str
+        }
+        
+        this.setState({short_field})
+
     }
     render() {
         return (
@@ -17,7 +47,11 @@ class ShortField extends Component {
                     <div className="card">
                         <h1 className="cardh1normal">{short.label}</h1>
                         <div className="slash"></div>
-                        <h1 className="cardh1light">{short.fieldname}</h1>
+                        <h1 className="cardh1light"
+                            contentEditable = {true}
+                            onBlur={this.update}
+                            onKeyPress={this.onKeyPress}
+                            >{short.fieldname}</h1>
                     </div>
                 </div>)}   
             </div>   

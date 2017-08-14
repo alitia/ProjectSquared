@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import {UnitViewList} from './unitview_list.js'
+import {UnitViewProgress} from './unitview_progress.js'
+import {BackButton} from '../Other/backbutton.js'
 
 class UnitView extends Component {
     constructor(){
@@ -11,28 +14,15 @@ class UnitView extends Component {
     }
     render() {
         return (
-            <div className="UnitView_Page">
-                <div className="backButton">
-                    <div className="backIcon">
-                        <div className="backButtonIcon"></div>
-                    </div>
-                </div>
-                <div className="UnitView_List">
-                    <div className="card">
-                        <h1 className="cardh1bold">Unit title</h1>
-                    </div>
-
-
-
-                    <div className="UnitView_New">
-                        <div className="card">
-                            <h1 className="cardh1normal">Progress</h1>
-                            <h1 className="percentRegularCard">65%</h1>
-                        </div>
-                    </div>
+            <div className="Page">
+                <BackButton />
+                <div className="ProjectList">
+                    <UnitViewList />
+                    <UnitViewProgress />
                 </div>
             </div>      
         );
     }
 }
+
 export default UnitView;

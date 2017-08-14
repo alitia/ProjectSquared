@@ -45,15 +45,15 @@ body{
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 15px;
-  overflow: hidden;
+  display: block;
 }
 .cardCheckBox{
 
-  padding-top: 15px;
+  padding-top: 0px;
 }
 .checkBoxSet h1{
 
-  line-height: 45px;
+  line-height: 30px;
 }
 .projectlink a{
   background-color: white;
@@ -93,7 +93,40 @@ body{
   line-height: 60px;
   margin-left: 20px; 
   font-size: 1.3em;
+  text-overflow: hidden;
+}
+.cardh1lightlongtext{
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 40px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: hidden;
+}
+.cardlong{
+
+  background-color: white;
+  min-height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: wrap;
+}
+.cardh1normallong{
+
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-left: 20px; 
+  font-size: 1.3em;
   text-overflow: ellipsis;
+  margin-top: 10px;
 }
 /*----------------H2 TEXT----------------*/
 .cardh2normal{
@@ -223,15 +256,26 @@ body{
   display: block;
   width: 50%;
 }
-.MainProjectView_Page{
-  display: inline-flex;
+.Page{
+  display: inline-flex;  
   margin: 0 auto;
   width: 100%;
 }
-.MainProjectView_List{
+.ProjectList{
   display: block;
   width: 50%;
 }
+
+
+
+
+
+
+
+
+
+
+
 .optionsPanel{
   width: 25%; 
   display: inline-block;  
@@ -257,7 +301,12 @@ body{
   content:url('./images/check-box-empty.png');
   height: 30px;
   float: right;
-  margin-right: 15px;
+  margin-right: 20px;
+
+}
+[contenteditable="true"]:focus{
+  border:none;
+  outline:none;
 }
 /*colors: background: #FFB997
 colors: topbar:   #F67E7D
