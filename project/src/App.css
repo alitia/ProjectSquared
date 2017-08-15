@@ -103,8 +103,10 @@ body{
   font-weight: 400;
   line-height: 40px;
   margin-left: 20px; 
+  margin-right: 20px;
   font-size: 1.3em;
   text-overflow: hidden;
+  word-break: break-all;
 }
 .cardlong{
 
@@ -297,12 +299,17 @@ body{
   vertical-align: middle;
   margin-left: 40px;
 }
-.checkField{
+.checkField_uncheck{
   content:url('./images/check-box-empty.png');
   height: 30px;
   float: right;
   margin-right: 20px;
-
+}
+.checkField_checked{
+  content:url('./images/check-box-checked.png');
+  height: 30px;
+  float: right;
+  margin-right: 20px;
 }
 [contenteditable="true"]:focus{
   border:none;

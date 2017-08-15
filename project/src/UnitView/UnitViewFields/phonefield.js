@@ -27,7 +27,7 @@ class PhoneField extends Component {
                 event.preventDefault()
             }            
         }
-        else if(str.length > 36){
+        else if(str.length > 17){
                 event.preventDefault()
         }
 
