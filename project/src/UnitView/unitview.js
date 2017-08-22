@@ -3,6 +3,7 @@ import {UnitViewList} from './unitview_list.js';
 import UnitViewProgress from './UnitViewFields/unitviewprogress.js';
 import {BackButton} from '../Other/backbutton.js';
 import {findById} from '../lib/projecthelpers.js';
+import {Link} from '../lib/Link.js'
 
 
 
@@ -14,13 +15,15 @@ class UnitView extends Component {
         }
     render() {
         return (
+            <Link to={`/unit/`}>
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList">
                     <UnitViewList />
                     <UnitViewProgress />
                 </div>
-            </div>      
+            </div>  
+            </Link>    
         );
     }
 }

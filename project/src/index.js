@@ -16,7 +16,9 @@ ReactDOM.render((
 		<div>
 			<NavBar />
             <Route exact path="/" component={MainProjectView}/>
-            <Route path="/project/" component={ProjectUnitView}/>
-           </div>
+            <Route path="project/101" component={UnitView}/>
+            <Route path="/unit/:id" component={UnitView}/>
+            <Route path="/unitview/:id" component={UnitView}/>
+        </div>
         </HashRouter>), document.getElementById('root'));
 registerServiceWorker();
