@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 class CheckBoxGroupField extends Component {
-    constructor(){
-        super()
-        this.state = {
+    state = {
             checkboxgroup_field: [
                 {id: 306, position: 6, label: 'Completed Steps', fieldname: 'Completed Steps', fieldtype: 'checkbox_group',
                 option1label: 'check 1', option1bool: true, 
@@ -11,10 +9,7 @@ class CheckBoxGroupField extends Component {
                 option3label: 'check 3', option3bool: false, }
             ]
         }
-        this.update = this.update.bind(this)
-        this.check = this.check.bind(this)
-    }
-    check(e){
+    check = (e) => {
 
         if(e.target.className === "cardh1light"){
 
@@ -40,7 +35,7 @@ class CheckBoxGroupField extends Component {
         
     }
     /*Needs to check the checkbox or vice versa */
-    update(e){
+    update = (e) => {
 
         if(e.target.className ==="checkField_uncheck"){
             e.target.className = "checkField_checked"

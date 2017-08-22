@@ -10,9 +10,6 @@ export const ProjectUnitViewList = (props) => {
             </div>
         )
 }
-ProjectUnitViewList.propTypes = {
-    units: React.PropTypes.array.isRequired
-}
 
 
 

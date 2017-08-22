@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
-
 class UnitViewTitle extends Component {
 	state = {
             title_field: [
-                {id: 384, position: 1, label: 'Project X Title', fieldname: 'Unit Name', fieldtype: 'text_title'}
+                {id: 384, position: 1, label: 'Project X Title', fieldname: 'UnitName', fieldtype: 'text_title'}
             ]
         }
     onKeyPress = (event) =>{
@@ -24,7 +23,7 @@ class UnitViewTitle extends Component {
         const title_field = this.state.title_field
         const str = e.target.innerHTML
 
-        if(str === ""){
+        if(str == ""){
             e.target.innerHTML = "..."
         }
         else{
@@ -42,11 +41,7 @@ class UnitViewTitle extends Component {
                 		<div className="card">
                     		<div className="cardLeftImgWhite">
                     		</div>
-                    			<h1 className="cardh1bold"
-                                    contentEditable = {true}
-                                    onBlur={this.update}
-                                    onKeyPress={this.onKeyPress}
-                                    >{title.fieldname}</h1>
+                    			<h1 className="cardh1bold">{title.fieldname}</h1>
                     	</div>
                     </div>)}
             </div>

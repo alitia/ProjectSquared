@@ -12,7 +12,3 @@ export const ProjectUnitViewCard = (props) => {
             </div>
 		)
 }
-ProjectUnitViewCard.propTypes = {
-	projectName:React.PropTypes.string.isRequired,
-	percentageComplete:React.PropTypes.string.isRequired
-}

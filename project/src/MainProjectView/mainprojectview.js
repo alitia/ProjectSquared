@@ -3,20 +3,17 @@ import {MainProjectViewList} from './mainprojectview_list.js';
 import {addProject, generateId} from '../lib/projecthelpers.js';
 import {MainProjectViewNew} from './mainprojectview_new.js'
 import {BackButton} from '../Other/backbutton.js'
+import {loadProjects} from '../lib/projectservice.js'
 
 class MainProjectView extends Component {
-    constructor(){
-        super()
-        this.state = {
-            projects: [
-                {id: 101, projectsInside: 10, projectName: 'Project Name One', percentageComplete: '55%'},
-                {id: 102, projectsInside: 14, projectName: 'Project Name Two', percentageComplete: '66%'},
-                {id: 103, projectsInside: 17, projectName: 'Project Name Three', percentageComplete: '77%'}
-            ],
+    state = {
+            projects: [],
             currentProject: ''
 
         }
-        this.handleClick = this.handleClick.bind(this)
+    componentDidMount() {
+          loadProjects()
+          .then(projects => this.setState({projects}))
     }
     handleClick = (evt) =>{
         evt.preventDefault()       

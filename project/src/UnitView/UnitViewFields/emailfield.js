@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 
 class EmailField extends Component {
-    constructor(){
-        super()
-        this.state = {
+    state = {
             email_field: [
                 {id: 303, position: 3, label: 'Email', fieldname: 'stpierre.alitia@gmail.com', fieldtype: 'text_email'}
             ]
         }
-        this.update = this.update.bind(this)
-        this.onKeyPress = this.onKeyPress.bind(this)
-    }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -24,7 +19,7 @@ class EmailField extends Component {
         }
 
     }
-    update(e){
+    update = (e) => {
 
         const email_field = this.state.email_field
         const str = e.target.innerHTML

@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 
 class LabelField extends Component {
-    constructor(){
-        super()
-        this.state = {
+    state = {
             labels_field: [
                 {id: 301, position: 1, label: 'The Labels Label', fieldname: 'The Unit Label', fieldtype: 'text_label'},
             ]
         }
-    }
     render() {
         return (
             <div className="LabelFieldContainer">

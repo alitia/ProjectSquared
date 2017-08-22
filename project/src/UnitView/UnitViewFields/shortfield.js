@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 
 class ShortField extends Component {
-    constructor(){
-        super()
-        this.state = {
+    state = {
             short_field: [
                 {id: 304, position: 4, label: 'Champion Name', fieldname: 'Short Text Field', fieldtype: 'text_short'}
             ]
         }
-        this.update = this.update.bind(this)
-        this.onKeyPress = this.onKeyPress.bind(this)
-    }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -24,7 +19,7 @@ class ShortField extends Component {
         }
 
     }
-    update(e){
+    update = (e) => {
 
         const short_field = this.state.short_field
         const str = e.target.innerHTML

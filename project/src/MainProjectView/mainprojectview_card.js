@@ -1,9 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import ProjectUnitView from '../ProjectUnitView/projectunitview.js'
+import {Link} from '../lib/Link.js'
 
 export const MainProjectViewCard = (props) => {
-
 	return(
+        <Link to={`/project/${props.id}`}>
 			<div className="MainProjectView_Card">
                 <div className="card">
                     <div className="cardLeftImgWhite">
@@ -13,10 +14,6 @@ export const MainProjectViewCard = (props) => {
                         <h2 className="percentRegularCard">{props.percentageComplete}</h2> 
                 </div>
             </div>
-		)
-}
-MainProjectViewCard.propTypes = {
-	projectsInside: React.PropTypes.number.isRequired,
-	projectName:React.PropTypes.string.isRequired,
-	percentageComplete:React.PropTypes.string.isRequired
+        </Link>
+	)
 }

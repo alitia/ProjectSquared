@@ -29,15 +29,7 @@ body{
 
 /*----------------CARDS----------------*/
 
-.card{
 
-  background-color: white;
-  height: 60px;
-  margin: 0 auto;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  overflow: hidden;
-}
 .cardCheckBox{
 
   background-color: white;
@@ -83,6 +75,7 @@ body{
   font-size: 1.3em;
   text-overflow: ellipsis;
 }
+
 .cardh1light{
 
   color: #74546B;
@@ -190,22 +183,7 @@ body{
 }
 
 
-/*base text for progress reports - percentage*/
-.percentRegularCard {
-  
-  float: right;
-  margin-right: 15px;
-  position: relative;
-  right: 0;
-  top: 0;
-  margin-top: 0;
-  color: #74546B;
-  font-family: 'Open Sans'; 
-  line-height: 60px;
-  font-weight: 700;
-  font-size: 1.3em;
 
-}
 /*text for numbers in cubes*/
 .projectNumCube {
 
@@ -314,6 +292,60 @@ body{
 [contenteditable="true"]:focus{
   border:none;
   outline:none;
+}
+.ProgBar{
+  margin-top: 5px;
+  margin-left: 5px;
+  height: 50px;
+  width: 100%;
+  background-color: #F67E7D;
+  display: block;
+  z-index: 0;
+  position: relative;
+  border-radius: 10px;
+}
+/*base text for progress reports - percentage*/
+.percentRegularCard {
+  
+  float: right;
+  margin-right: 15px;
+  position: block;
+  right: 0;
+  top: 0;
+  margin-top: 5px;
+  color: #74546B;
+  font-family: 'Open Sans'; 
+  line-height: 50px;
+  font-weight: 700;
+  font-size: 1.3em;
+  z-index: 4;
+  position: absolute;
+
+}
+.cardh1normalprog{
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: inline-block;
+  margin-top: 5px;
+  font-weight: 700;
+  line-height: 50px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+  z-index: 2;
+  position: absolute;
+}
+.card{
+
+  background-color: white;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  z-index: 0;
+  padding-right: 10px;
+  position: relative;
 }
 /*colors: background: #FFB997
 colors: topbar:   #F67E7D

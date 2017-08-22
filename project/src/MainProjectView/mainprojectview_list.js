@@ -9,6 +9,4 @@ export const MainProjectViewList = (props) => (
         </div>
 	)
 
-MainProjectViewList.propTypes = {
-	projects: React.PropTypes.array.isRequired
-}
+

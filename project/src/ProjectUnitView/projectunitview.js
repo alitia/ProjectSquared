@@ -6,9 +6,7 @@ import {ProjectUnitViewNew} from './projectunitview_new.js'
 import {BackButton} from '../Other/backbutton.js'
 
 class ProjectUnitView extends Component {
-    constructor(){
-        super()
-        this.state = {
+    state = {
             units: [
                 {id: 201, projectName: 'Unit One', percentageComplete: '22%'},
                 {id: 202, projectName: 'Unit Two', percentageComplete: '33%'},
@@ -16,8 +14,6 @@ class ProjectUnitView extends Component {
             ],
             currentUnit: ''
         }
-        this.handleClick = this.handleClick.bind(this)
-    }
     handleClick = (evt) =>{
         evt.preventDefault()
         console.log('got to here - units')        

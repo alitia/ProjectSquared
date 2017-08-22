@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 
 class PhoneField extends Component {
-    constructor(){
-        super()
-        this.state = {
+    state = {
             phone_field: [
                 {id: 302, position: 2, label: 'Phone Number', fieldname: '+64273040964', fieldtype: 'text_phone'}
             ]
         }
-        this.update = this.update.bind(this)
-        this.onKeyPress = this.onKeyPress.bind(this)
-    }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -32,7 +27,7 @@ class PhoneField extends Component {
         }
 
     }
-    update(e){
+    update = (e) => {
 
         const phone_field = this.state.phone_field
         const str = e.target.innerHTML
@@ -47,7 +42,7 @@ class PhoneField extends Component {
         this.setState({phone_field})
 
     }
-    render() {
+    render = () => {
         return (
             <div className="PhoneFieldContainer">
                 {this.state.phone_field.map(phone =>
