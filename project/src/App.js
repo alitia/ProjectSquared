@@ -2,13 +2,22 @@ import React, { Component } from 'react'
 import NavBar from './NavBar/navbar.js'
 import MainProjectView from './MainProjectView/mainprojectview.js';
 import ProjectUnitView from './ProjectUnitView/projectunitview.js';
-import UnitView from './UnitView/unitview.js';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import UnitView from './UnitView/unitview.js'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 class App extends Component {
     render() {
         return (
-          <NavBar />
+            <div>
+            <NavBar />
+        	<Router>  
+                <Switch>      		
+                <Route path="/" exact component={MainProjectView} />
+                <Route path="/project" component={ProjectUnitView} />
+                <Route path="/view" component={UnitView} />
+                </Switch>
+        	</Router>
+            </div>
         );
     }
 }

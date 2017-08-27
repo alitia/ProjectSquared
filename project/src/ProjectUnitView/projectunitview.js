@@ -4,19 +4,38 @@ import {ProjectUnitViewTitle} from './projectunitview_title.js';
 import {addUnit, generateId} from '../lib/projecthelpers.js';
 import {ProjectUnitViewNew} from './projectunitview_new.js'
 import {BackButton} from '../Other/backbutton.js'
+import {loadUnits} from '../lib/unitservice.js'
 
 class ProjectUnitView extends Component {
     state = {
-            units: [
-                {id: 201, projectName: 'Unit One', percentageComplete: '22%'},
-                {id: 202, projectName: 'Unit Two', percentageComplete: '33%'},
-                {id: 203, projectName: 'Unit Three', percentageComplete: '44%'}
-            ],
-            currentUnit: ''
+            units: [],
+            currentUnit: '',
+            title: ''
         }
+
+    //enquires on the unit data based on the current URL and sends it through
+    componentDidMount() {
+            var x = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
+            loadUnits(x)
+            .then(units => this.conditionTest(units))
+    }
+
+    //checks that the unit array is not empty and displays accordingly
+    //if the unit array is empty and it is then mapped, it throws an error in the state
+    conditionTest(title){
+        if(typeof title.units === 'undefined'){
+
+                this.setState({title: title.projectName})
+                
+        }
+        else{
+            this.setState({title: title.projectName})
+            this.setState({units: title.units})
+        }         
+            
+    }
     handleClick = (evt) =>{
-        evt.preventDefault()
-        console.log('got to here - units')        
+        evt.preventDefault()      
         const newId = generateId()
         const newUnit = {id: newId, projectName: 'Unit Four', percentageComplete: '55%'}
         const updatedUnits = addUnit(this.state.units, newUnit)
@@ -30,7 +49,7 @@ class ProjectUnitView extends Component {
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList">
-                    <ProjectUnitViewTitle />
+                    <ProjectUnitViewTitle title={this.state.title}/>
                     <ProjectUnitViewList units={this.state.units}/>
                     <div onClick={this.handleClick}>
                         <ProjectUnitViewNew/>

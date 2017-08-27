@@ -4,6 +4,10 @@ import {addProject, generateId} from '../lib/projecthelpers.js';
 import {MainProjectViewNew} from './mainprojectview_new.js'
 import {BackButton} from '../Other/backbutton.js'
 import {loadProjects} from '../lib/projectservice.js'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import ProjectUnitView from '../ProjectUnitView/projectunitview.js'
+
+
 
 class MainProjectView extends Component {
     state = {

@@ -1,6 +1,6 @@
 import React from 'react'
 import ProjectUnitView from '../ProjectUnitView/projectunitview.js'
-import {Link} from '../lib/Link.js'
+import {Link} from 'react-router-dom'
 
 export const MainProjectViewCard = (props) => {
 	return(

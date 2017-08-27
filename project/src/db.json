@@ -3,11 +3,11 @@
 		{	"id": 101, 
 			"projectsInside": 10, 
 			"projectName": "Project Name One", 
-			"percentageComplete": 11,
+			"percentageComplete": 10,
 			"units": [
 				{	"id": 1011, 
 					"projectName": "Unit One", 
-					"percentageComplete": 22,
+					"percentageComplete": 25,
 					"fields": [
 						{	"id": 10111, 
 							"type": "title", 
