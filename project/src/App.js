@@ -13,8 +13,9 @@ class App extends Component {
         	<Router>  
                 <Switch>      		
                 <Route path="/" exact component={MainProjectView} />
-                <Route path="/project" component={ProjectUnitView} />
-                <Route path="/view" component={UnitView} />
+                <Route exact path="/project/:projectId" component={ProjectUnitView} />
+
+                <Route path="/project/:projectId/unit/:unitId" component={UnitView} />
                 </Switch>
         	</Router>
             </div>

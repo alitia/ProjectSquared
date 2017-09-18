@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import EmailField from './UnitViewFields/emailfield.js'
 import CheckBoxGroupField from './UnitViewFields/checkboxgroupfield.js'
@@ -8,9 +8,19 @@ import LongField from './UnitViewFields/longfield.js'
 import PhoneField from './UnitViewFields/phonefield.js'
 import UnitViewTitle from './UnitViewFields/unitviewtitle.js'
 
-export const UnitViewList = (props) => {
+class UnitViewList extends Component {
+        state = {
+                unit_title: "",
+                unit_fields: []
+        }
+        assign(){
 
-	return(
+
+        }
+	render(){
+                return(
+                 
+
         <div>
         <UnitViewTitle />
         <LabelField />
@@ -19,6 +29,7 @@ export const UnitViewList = (props) => {
         <ShortField />
         <LongField />
         <PhoneField />
-		</div>
-		)
+		</div>)
+		}
 }
+export default UnitViewList

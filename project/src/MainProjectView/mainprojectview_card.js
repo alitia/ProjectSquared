@@ -3,8 +3,11 @@ import ProjectUnitView from '../ProjectUnitView/projectunitview.js'
 import {Link} from 'react-router-dom'
 
 export const MainProjectViewCard = (props) => {
+
+    console.log(props)
 	return(
         <Link to={`/project/${props.id}`}>
+            {this.props}
 			<div className="MainProjectView_Card">
                 <div className="card">
                     <div className="cardLeftImgWhite">

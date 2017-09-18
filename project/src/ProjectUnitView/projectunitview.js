@@ -10,15 +10,18 @@ class ProjectUnitView extends Component {
     state = {
             units: [],
             currentUnit: '',
-            title: ''
+            title: '',
+            projectId: ''
         }
 
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {
+        console.log(this.props)
             var x = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
             loadUnits(x)
             .then(units => this.conditionTest(units))
     }
+
 
     //checks that the unit array is not empty and displays accordingly
     //if the unit array is empty and it is then mapped, it throws an error in the state
@@ -31,6 +34,7 @@ class ProjectUnitView extends Component {
         else{
             this.setState({title: title.projectName})
             this.setState({units: title.units})
+            this.setState({projectId: this.props.match.params.projectId})
         }         
             
     }
@@ -50,7 +54,7 @@ class ProjectUnitView extends Component {
                 <BackButton />
                 <div className="ProjectList">
                     <ProjectUnitViewTitle title={this.state.title}/>
-                    <ProjectUnitViewList units={this.state.units}/>
+                    <ProjectUnitViewList units={this.state.units} projectId={this.state.projectId}/>
                     <div onClick={this.handleClick}>
                         <ProjectUnitViewNew/>
                     </div>

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import {UnitViewList} from './unitview_list.js';
+import UnitViewList from './unitview_list.js';
 import UnitViewProgress from './UnitViewFields/unitviewprogress.js';
 import {BackButton} from '../Other/backbutton.js';
 import {loadUnitsFields} from '../lib/unitfieldsservice.js'
 
+
 class UnitView extends Component {
+    
     state = {
             unit_fields: [],
             unit_progress: ''
@@ -19,19 +21,12 @@ class UnitView extends Component {
     //checks that the unit array is not empty and displays accordingly
     //if the unit array is empty and it is then mapped, it throws an error in the state
     conditionTest(title){
-        if(typeof title.units === 'undefined'){
-
-                //this.setState({title: title.projectName})
-                
-        }
-        else{
-            //this.setState({title: title.projectName})
-            //this.setState({units: title.units})
-        }         
+        this.setState({unit_fields: title})     
             
     }
     render() {
         return (
+
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList">
