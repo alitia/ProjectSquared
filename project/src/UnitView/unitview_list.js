@@ -9,27 +9,46 @@ import PhoneField from './UnitViewFields/phonefield.js'
 import UnitViewTitle from './UnitViewFields/unitviewtitle.js'
 
 class UnitViewList extends Component {
-        state = {
-                unit_title: "",
-                unit_fields: []
+        state = {                
+                unit_fields: [],
+                unit_title: ""
         }
-        assign(){
-
-
+        componentDidMount(){
+                this.setState({unit_fields: this.props.unit_fields})
         }
-	render(){
-                return(
-                 
+	    render(){
+        return(
+                <div>
+                    {this.props.unit_fields.map(function(field){
+                        var i = field.type
 
-        <div>
-        <UnitViewTitle />
-        <LabelField />
-        <CheckBoxGroupField />
-        <EmailField />
-        <ShortField />
-        <LongField />
-        <PhoneField />
-		</div>)
-		}
+                        if(i == 'title'){
+                            return <UnitViewTitle title_field={field} key={field.id}/>
+                        }
+                        else if(i == 'label'){
+                            return <LabelField labels_field={field} key={field.id}/>
+                        }
+                        else if(i == 'email'){
+                            return <EmailField email_field={field} key={field.id}/>
+                        }
+                        else if(i == 'phone'){
+                            return <PhoneField phone_field={field} key={field.id}/>
+                        }
+                        else if(i == 'short'){
+                            return <ShortField short_field={field} key={field.id}/>
+                        }
+                        else if(i == 'long'){
+                            return <LongField long_field={field} key={field.id}/>
+                        }
+                        else if(i == 'checkboxes'){
+                            return <CheckBoxGroupField checkboxgroup_field={field} key={field.id}/>
+                        }
+                        else{
+                            console.log('error')
+                        }
+
+                    })}
+                </div>
+        )}
 }
 export default UnitViewList

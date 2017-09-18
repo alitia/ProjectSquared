@@ -13,20 +13,20 @@ class UnitView extends Component {
         }
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {
-            var x = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
-            loadUnitsFields(x)
+            var x = this.props.match.params.unitId
+            var y = this.props.match.params.projectId
+            loadUnitsFields(x, y)
             .then(units => this.conditionTest(units))
     }
 
     //checks that the unit array is not empty and displays accordingly
     //if the unit array is empty and it is then mapped, it throws an error in the state
-    conditionTest(title){
-        this.setState({unit_fields: title})     
-            
+    conditionTest(units){
+        this.setState({unit_fields: units.fields})      
+        this.setState({unit_fields: units.percentageComplete})         
     }
     render() {
         return (
-
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList">

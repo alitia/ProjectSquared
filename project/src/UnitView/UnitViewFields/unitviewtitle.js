@@ -7,6 +7,9 @@ class UnitViewTitle extends Component {
                 {id: 384, position: 1, label: 'Project X Title', fieldname: 'Unit Name', fieldtype: 'text_title'}
             ]
         }
+    componentDidMount(){
+
+        }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode == 13){
