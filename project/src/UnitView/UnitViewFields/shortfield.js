@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
+import { saveData } from '../fieldservice.js';
+
 
 class ShortField extends Component {
     state = {
-            short_field: [
-                {id: 304, position: 4, label: 'Champion Name', fieldname: 'Short Text Field', fieldtype: 'text_short'}
-            ]
+            id: '',
+            label: '',            
+            data: '',
+            unit_id: '',
+            project_id: ''
         }
+    componentDidMount() {
+        this.setState({id: this.props.short_field.id})
+        this.setState({label: this.props.short_field.label})
+        this.setState({data: this.props.short_field.data})
+        this.setState({unit_id: this.props.short_field.unit_id})
+        this.setState({project_id: this.props.short_field.project_id})
+    }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -21,34 +32,40 @@ class ShortField extends Component {
     }
     update = (e) => {
 
-        const short_field = this.state.short_field
+        const short_field = this.state.data
         const str = e.target.innerHTML
+        const p_id = this.props.project_id
+        const u_id = this.props.unit_id
+        const f_id = this.state.id
+
+        console.log(p_id)
 
         if(str === ""){
             e.target.innerHTML = "..."
         }
         else{
-            short_field.fieldname = str
+            this.state.data = str
         }
         
-        this.setState({short_field})
+        this.setState({data: this.state.data})
+
+        saveData(p_id, u_id, f_id, str)
 
     }
     render() {
         return (
             <div className="ShortFieldContainer">
-                {this.state.short_field.map(short =>
-                <div className="ShortField" key={short.id}>
+                <div className="ShortField" key={this.state.id}>
                     <div className="card">
-                        <h1 className="cardh1normal">{short.label}</h1>
+                        <h1 className="cardh1normal">{this.state.label}</h1>
                         <div className="slash"></div>
                         <h1 className="cardh1light"
                             contentEditable = {true}
                             onBlur={this.update}
                             onKeyPress={this.onKeyPress}
-                            >{short.fieldname}</h1>
+                            >{this.state.data}</h1>
                     </div>
-                </div>)}   
+                </div>
             </div>   
         );
     }

@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 
 export const MainProjectViewCard = (props) => {
 
-    console.log(props)
 	return(
         <Link to={`/project/${props.id}`}>
             {this.props}

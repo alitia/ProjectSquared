@@ -16,7 +16,6 @@ class ProjectUnitView extends Component {
 
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {
-        console.log(this.props)
             var x = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
             loadUnits(x)
             .then(units => this.conditionTest(units))
@@ -28,7 +27,7 @@ class ProjectUnitView extends Component {
     conditionTest(title){
         if(typeof title.units === 'undefined'){
 
-                this.setState({title: title.projectName})
+            this.setState({title: title.projectName})
                 
         }
         else{

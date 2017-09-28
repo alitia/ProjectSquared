@@ -4,17 +4,19 @@ import UnitViewProgress from './UnitViewFields/unitviewprogress.js';
 import {BackButton} from '../Other/backbutton.js';
 import {loadUnitsFields} from '../lib/unitfieldsservice.js'
 
-
 class UnitView extends Component {
     
     state = {
             unit_fields: [],
-            unit_progress: ''
+            unit_progress: '',
+            project_id: '',
+            unit_id: ''
         }
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {
             var x = this.props.match.params.unitId
             var y = this.props.match.params.projectId
+            
             loadUnitsFields(x, y)
             .then(units => this.conditionTest(units))
     }
@@ -23,14 +25,15 @@ class UnitView extends Component {
     //if the unit array is empty and it is then mapped, it throws an error in the state
     conditionTest(units){
         this.setState({unit_fields: units.fields})      
-        this.setState({unit_fields: units.percentageComplete})         
+        this.setState({unit_progress: units.percentageComplete})   
+            
     }
     render() {
         return (
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList">
-                    <UnitViewList unit_fields={this.state.unit_fields}/>
+                    <UnitViewList unit_fields={this.state.unit_fields} project_id={this.props.match.params.projectId} unit_id={this.props.match.params.unitId}/>
                     <UnitViewProgress unit_progress={this.state.unit_progress}/>
                 </div>
             </div>     
