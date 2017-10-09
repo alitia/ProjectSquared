@@ -5,17 +5,14 @@ import { saveData } from '../fieldservice.js';
 class ShortField extends Component {
     state = {
             id: '',
+            type: 'short',
             label: '',            
             data: '',
-            unit_id: '',
-            project_id: ''
         }
     componentDidMount() {
         this.setState({id: this.props.short_field.id})
         this.setState({label: this.props.short_field.label})
         this.setState({data: this.props.short_field.data})
-        this.setState({unit_id: this.props.short_field.unit_id})
-        this.setState({project_id: this.props.short_field.project_id})
     }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
@@ -32,7 +29,7 @@ class ShortField extends Component {
     }
     update = (e) => {
 
-        const short_field = this.state.data
+        
         const str = e.target.innerHTML
         const p_id = this.props.project_id
         const u_id = this.props.unit_id
@@ -48,8 +45,11 @@ class ShortField extends Component {
         }
         
         this.setState({data: this.state.data})
+        const short_field = this.state
 
-        saveData(p_id, u_id, f_id, str)
+        saveData(p_id, u_id, f_id, short_field)
+
+        var x = 0
 
     }
     render() {
