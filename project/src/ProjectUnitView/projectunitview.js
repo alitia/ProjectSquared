@@ -4,7 +4,8 @@ import {ProjectUnitViewTitle} from './projectunitview_title.js';
 import {addUnit, generateId} from '../lib/projecthelpers.js';
 import {ProjectUnitViewNew} from './projectunitview_new.js'
 import {BackButton} from '../Other/backbutton.js'
-import {loadUnits} from '../lib/unitservice.js'
+import firebase from '../firebase.js'
+
 
 class ProjectUnitView extends Component {
     state = {
@@ -16,23 +17,23 @@ class ProjectUnitView extends Component {
 
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {
-            var x = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
-            loadUnits(x)
-            .then(units => this.conditionTest(units))
+            var project_val = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
+            var db = firebase.database().ref().child("projects")
+            var query = db.orderByChild("id").equalTo(101).limitToFirst(1) //need to fix 101 to a num in some way
+            query.on("child_added", result => this.conditionTest(result.val()))        
     }
-
 
     //checks that the unit array is not empty and displays accordingly
     //if the unit array is empty and it is then mapped, it throws an error in the state
-    conditionTest(title){
-        if(typeof title.units === 'undefined'){
+    conditionTest(input){
+        if(typeof input.units === 'undefined'){
 
-            this.setState({title: title.projectName})
+            this.setState({title: input.projectName})
                 
         }
         else{
-            this.setState({title: title.projectName})
-            this.setState({units: title.units})
+            this.setState({title: input.projectName})
+            this.setState({units: input.units})
             this.setState({projectId: this.props.match.params.projectId})
         }         
             

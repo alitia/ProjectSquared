@@ -1,89 +1,107 @@
 {
-	"projects": [
-		{	"id": 101, 
-			"projectsInside": 10, 
-			"projectName": "Project Name One", 
-			"percentageComplete": 10,
-			"units": [
-				{	"id": 1011, 
-					"projectName": "Unit One", 
-					"percentageComplete": 27,
-					"fields": [
-						{	"id": 10111, 
-							"type": "title", 
-							"position": 1, 
-							"data": "The Project's Title"
-						},
-						{	"id": 10112, 
-							"type": "label", 
-							"position": 2, 
-							"label": "The label goes here"
-						},
-						{	"id": 10113, 
-							"type": "email", 
-							"position": 3, 
-							"label": "Email", 
-							"data": "stpierre.alitia@gmail.com"
-						},
-						{	"id": 10114, 
-							"type": "phone", 
-							"position": 4, 
-							"label": "Champion", 
-							"data": "+64273040964"
-						},
-						{	"id": 10115, 
-							"type": "short", 
-							"position": 5, 
-							"label": "Champion Name", 
-							"data": "Alitia St Pierre"
-						},
-						{	"id": 10116, 
-							"type": "long", 
-							"position": 6, 
-							"label": "Notes", 
-							"data": "This client really likes the regular calls and frequent updates by email"
-						},
-						{	"id": 10117, 
-							"type": "checkboxes", 
-							"position": 7, 
-							"label": "Notes", 
-							"data": [
-								{
-									"id": 101171,
-									"position": 1,
-									"data": "Has the client paid",
-									"bool": true
-								},
-								{
-									"id": 101172,
-									"position": 2,
-									"data": "Has the client called",
-									"bool": false
-								},
-								{
-									"id": 101173,
-									"position": 3,
-									"data": "Has the client approved",
-									"bool": false
-								}
-							]
-						}
-
-					]},
-		        {	"id": 1012, 
-		        	"projectName": "Unit Two", 
-		        	"percentageComplete": 33},
-		        {	"id": 1013, 
-		        	"projectName": "Unit Three", 
-		        	"percentageComplete": 44}
-				]},
-		{	"id": 102, 
-			"projectsInside": 20, 
-			"projectName": "Project Name Two", 
-			"percentageComplete": 22},
-		{	"id": 103, 
-			"projectsInside": 30, 
-			"projectName": "Project Name Three", 
-			"percentageComplete": 33}
-	]
+  "projects": 
+    [{
+	  "id" : 101,
+      "projectsInside": 10,
+      "projectName": "Project Name One",
+      "percentageComplete": 10,
+      "units": [
+        {
+		"id": 1011,
+          "projectName": "Unit One",
+          "percentageComplete": 27,
+          "fields": [
+            {
+			"id": 10111,
+              "type": "title",
+              "position": 1,
+              "data": "The Project's Title"
+            },
+            {
+			"id": 10112,
+              "type": "label",
+              "position": 2,
+              "label": "The label goes here"
+            },
+            {
+			"id": 10113,
+              "type": "email",
+              "position": 3,
+              "label": "Email",
+              "data": "stpierre.alitia@gmail.com"
+            },
+            {
+			"id": 10114,
+              "type": "phone",
+              "position": 4,
+              "label": "Champion",
+              "data": "+64273040964"
+            },
+            {
+              "id": 10115,
+              "type": "short",
+              "position": 5,
+              "label": "Champion Name",
+              "data": "Alitia St Pierre"
+            },
+            {
+              "id": 10116,
+              "type": "long",
+              "position": 6,
+              "label": "Notes",
+              "data": "This client really likes the regular calls and frequent updates by email"
+            },
+            {
+              "id": 10117,
+              "type": "checkboxes",
+              "position": 7,
+              "label": "Notes",
+              "data": [
+                {
+                  "id": 101171,
+                  "position": 1,
+                  "data": "Has the client paid",
+                  "bool": true
+                },
+                {
+				"id": 101172,
+                  "position": 2,
+                  "data": "Has the client called",
+                  "bool": false
+                },
+                 {
+				 "id": 101173,
+                  "position": 3,
+                  "data": "Has the client approved",
+                  "bool": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+		"id": 1012,
+          "projectName": "Unit Two",
+          "percentageComplete": 33
+        },
+         {
+		"id": 1013,
+		 "projectName": "Unit Three",
+          "percentageComplete": 44
+        }
+      ]
+    },
+	 {
+	  "id": 102,
+      "projectsInside": 20,
+      "projectName": "Project Name Two",
+      "percentageComplete": 22
+    },
+    {
+	   "id": 103,
+      "projectsInside": 30,
+      "projectName": "Project Name Three",
+      "percentageComplete": 33
+    }
+  ]
 }

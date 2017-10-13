@@ -8,7 +8,7 @@ class UnitViewTitle extends Component {
         }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
-        if (event.charCode == 13){
+        if (event.charCode === 13){
             event.preventDefault()  
             const element = event.target
             element.blur()
@@ -23,7 +23,7 @@ class UnitViewTitle extends Component {
         const title_field = this.state.title_field
         const str = e.target.innerHTML
 
-        if(str == ""){
+        if(str === ""){
             e.target.innerHTML = "..."
         }
         else{

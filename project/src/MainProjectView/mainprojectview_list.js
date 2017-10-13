@@ -1,6 +1,5 @@
 import React from 'react';
 import {MainProjectViewCard} from './mainprojectview_card.js'
-import PropTypes from 'prop-types'
 
 export const MainProjectViewList = (props) => {
 	return(

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import UnitViewList from './unitview_list.js';
 import UnitViewProgress from './UnitViewFields/unitviewprogress.js';
 import {BackButton} from '../Other/backbutton.js';
-import {loadUnitsFields} from '../lib/unitfieldsservice.js'
+import firebase from '../firebase.js'
+
 
 class UnitView extends Component {
     
@@ -14,13 +15,22 @@ class UnitView extends Component {
         }
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {
-            var x = this.props.match.params.unitId
-            var y = this.props.match.params.projectId
             
-            loadUnitsFields(x, y)
-            .then(units => this.conditionTest(units))
+            var project_val = this.props.match.params.projectId           
+            var db = firebase.database().ref().child("projects")
+            var query = db.orderByChild("id").equalTo(101).limitToFirst(1)
+            query.on("child_added", result => this.findUnits(result.val()))
     }
+    findUnits(data){
 
+        var unit_val = this.props.match.params.unitId 
+        for(var i = 0; i < data.units.length; i++){
+            if(data.units[i].id == unit_val){
+                this.conditionTest(data.units[i])
+            }
+        } 
+
+    }
     //checks that the unit array is not empty and displays accordingly
     //if the unit array is empty and it is then mapped, it throws an error in the state
     conditionTest(units){

@@ -3,9 +3,7 @@ import {MainProjectViewList} from './mainprojectview_list.js';
 import {addProject, generateId} from '../lib/projecthelpers.js';
 import {MainProjectViewNew} from './mainprojectview_new.js'
 import {BackButton} from '../Other/backbutton.js'
-import {loadProjects} from '../lib/projectservice.js'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import ProjectUnitView from '../ProjectUnitView/projectunitview.js'
+import firebase from '../firebase.js'
 
 class MainProjectView extends Component {
     state = {
@@ -14,15 +12,9 @@ class MainProjectView extends Component {
 
         }
     componentDidMount() {
-          loadProjects()
-          .then(data => this.conditionTest(data))
-    }
-    //checks that the unit array is not empty and displays accordingly
-    //if the unit array is empty and it is then mapped, it throws an error in the state
-    conditionTest(title){
-
-        this.setState({projects: title})       
-            
+        const itemsRef = firebase.database().ref("projects")
+        itemsRef.once('value')
+        .then(result => this.setState({projects: result.val()}))
     }
     handleClick = (evt) =>{
         evt.preventDefault()       

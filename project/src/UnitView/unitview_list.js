@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
 import EmailField from './UnitViewFields/emailfield.js'
 import CheckBoxGroupField from './UnitViewFields/checkboxgroupfield.js'
 import LabelField from './UnitViewFields/labelfield.js'
@@ -23,7 +22,7 @@ class UnitViewList extends Component {
                 this.setState({project_id: x})
                 this.setState({unit_id: y})
 
-                if(this.state.unit_fields.length == 0){
+                if(this.state.unit_fields.length === 0){
                     this.setState({unit_fields: this.props.unit_fields})
                 }
         }
