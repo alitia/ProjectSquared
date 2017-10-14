@@ -6,6 +6,8 @@ import ShortField from './UnitViewFields/shortfield.js'
 import LongField from './UnitViewFields/longfield.js'
 import PhoneField from './UnitViewFields/phonefield.js'
 import UnitViewTitle from './UnitViewFields/unitviewtitle.js'
+import UnitViewProgress from './UnitViewFields/unitviewprogress.js';
+
 
 class UnitViewList extends Component {
 
@@ -13,7 +15,8 @@ class UnitViewList extends Component {
                 unit_fields: [],
                 unit_title: "",
                 project_id: '',
-                unit_id: ''
+                unit_id: '',
+                progress: ''
         }
         componentDidMount(){
                 
@@ -28,30 +31,30 @@ class UnitViewList extends Component {
         }
         assign(field){
 
-            var i = field.type
-            var x = this.state.project_id
-            var y = this.state.unit_id
+            var type = field.type
+            var p_id = this.state.project_id
+            var u_id = this.state.unit_id
             
-                        if(i === 'title'){
-                            return <UnitViewTitle title_field={field} key={field.id} />
+                        if(type === 'title'){
+                            return <UnitViewTitle title_field={field} key={field.id} project_id={p_id} unit_id={u_id}/>
                         }
-                        else if(i === 'label'){
-                            return <LabelField labels_field={field} key={field.id}/>
+                        else if(type === 'label'){
+                            return <LabelField labels_field={field} key={field.id} project_id={p_id} unit_id={u_id}/>
                         }
-                        else if(i === 'email'){
-                            return <EmailField email_field={field} key={field.id}/>
+                        else if(type === 'email'){
+                            return <EmailField email_field={field} key={field.id} project_id={p_id} unit_id={u_id}/>
                         }
-                        else if(i === 'phone'){
-                            return <PhoneField phone_field={field} key={field.id}/>
+                        else if(type === 'phone'){
+                            return <PhoneField phone_field={field} key={field.id} project_id={p_id} unit_id={u_id}/>
                         }
-                        else if(i === 'short'){
-                            return <ShortField short_field={field} key={field.id} project_id={x} unit_id={y}/>
+                        else if(type === 'short'){
+                            return <ShortField short_field={field} key={field.id} project_id={p_id} unit_id={u_id}/>
                         }
-                        else if(i === 'long'){
-                            return <LongField long_field={field} key={field.id}/>
+                        else if(type === 'long'){
+                            return <LongField long_field={field} key={field.id} project_id={p_id} unit_id={u_id}/>
                         }
-                        else if(i === 'checkboxes'){
-                            return <CheckBoxGroupField checkboxgroup_field={field} key={field.id}/>
+                        else if(type === 'checkboxes'){
+                            return <CheckBoxGroupField checkboxgroup_field={field} key={field.id} project_id={p_id} unit_id={u_id}/>
                         }
                         else{
                             console.log('error')
@@ -60,7 +63,8 @@ class UnitViewList extends Component {
 	    render(){
         return(
                 <div>
-                    {this.props.unit_fields.map(this.assign.bind(this))}
+                    {this.props.unit_fields.map(this.assign.bind(this))}                
+                <UnitViewProgress data={this.props.unit_progress}/>
                 </div>
         )}
 }

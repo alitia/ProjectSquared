@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
-
+import {saveFieldChange, saveTitleChange} from '../../lib/fieldassist.js'
 
 class UnitViewTitle extends Component {
 	state = {
-            title_field: [
-                {id: 384, position: 1, label: 'Project X Title', fieldname: 'Unit Name', fieldtype: 'text_title'}
-            ]
+            id: '',
+            type: 'title',
+            label: '',            
+            data: '',
         }
-    componentDidMount(){
-
-        }
+    componentDidMount() {
+        this.setState({id: this.props.title_field.id})
+        this.setState({data: this.props.title_field.data})
+    }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -20,38 +22,40 @@ class UnitViewTitle extends Component {
         else if(str.length > 36){
                 event.preventDefault()
         }
-
     }
     update = (e) => {
-
-        const title_field = this.state.title_field
+        
         const str = e.target.innerHTML
+        const p_id = this.props.project_id
+        const u_id = this.props.unit_id
+        const f_id = this.state.id
 
         if(str === ""){
             e.target.innerHTML = "..."
         }
         else{
-            title_field.fieldname = str
+            this.setState({data: str})
         }
         
-        this.setState({title_field})
+        this.setState({data: this.state.data})
+        saveFieldChange(p_id, u_id, f_id, str)
+        saveTitleChange(p_id, u_id, f_id, str)
 
     }
     render() {
     	return(
-			<div className="UnitView_Title">
-				{this.state.title_field.map(title =>
-					<div className="titleField" key={title.id}>
-                		<div className="card">
-                    		<div className="cardLeftImgWhite">
-                    		</div>
-                    			<h1 className="cardh1bold"
+			<div className="ShortFieldContainer">
+                <div className="titleField" key={this.state.id}>
+                    <div className="card">
+                        <div className="cardLeftImgWhite">
+                            </div>
+                                <h1 className="cardh1bold"
                                     contentEditable = {true}
                                     onBlur={this.update}
                                     onKeyPress={this.onKeyPress}
-                                    >{title.fieldname}</h1>
-                    	</div>
-                    </div>)}
+                                    >{this.state.data}</h1>
+                    </div>
+                </div>
             </div>
 		);
     }	

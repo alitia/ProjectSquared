@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import {saveFieldChange} from '../../lib/fieldassist.js'
+
 
 class EmailField extends Component {
     state = {
-            email_field: [
-                {id: 303, position: 3, label: 'Email', fieldname: 'stpierre.alitia@gmail.com', fieldtype: 'text_email'}
-            ]
-        }
+            id: '',
+            type: 'email',
+            label: '',            
+            data: '',
+    }
+    componentDidMount() {
+        this.setState({id: this.props.email_field.id})
+        this.setState({label: this.props.email_field.label})
+        this.setState({data: this.props.email_field.data})
+    }    
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -21,6 +29,10 @@ class EmailField extends Component {
     }
     update = (e) => {
 
+        const p_id = this.props.project_id
+        const u_id = this.props.unit_id
+        const f_id = this.state.id
+
         const email_field = this.state.email_field
         const str = e.target.innerHTML
 
@@ -28,27 +40,27 @@ class EmailField extends Component {
             e.target.innerHTML = "..."
         }
         else{
-            email_field.fieldname = str
+            this.setState({data: str})
         }
         
-        this.setState({email_field})
+        this.setState({data: this.state.data})
+        saveFieldChange(p_id, u_id, f_id, str)
 
     }
     render(){
         return (
             <div className="EmailFieldContainer">
-                {this.state.email_field.map(email =>
-                <div className="EmailField" key={email.id}>
+                <div className="EmailField" key={this.state.id}>
                     <div className="card">
-                        <h1 className="cardh1normal">{email.label}</h1>
+                        <h1 className="cardh1normal">{this.state.label}</h1>
                         <div className="slash"></div>
-                        <h1 className="cardh1light" 
+                        <h1 className="cardh1light"
                             contentEditable = {true}
                             onBlur={this.update}
                             onKeyPress={this.onKeyPress}
-                            >{email.fieldname}</h1>
+                            >{this.state.data}</h1>
                     </div>
-                </div>)}   
+                </div> 
             </div>   
         );
     }

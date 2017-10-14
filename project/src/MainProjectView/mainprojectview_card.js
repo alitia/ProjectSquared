@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import ProgressBar from '../UnitView/UnitViewFields/progressbar.js'
 
 export const MainProjectViewCard = (props) => {
 
@@ -10,9 +11,12 @@ export const MainProjectViewCard = (props) => {
                 <div className="card">
                     <div className="cardLeftImgWhite">
                     	<h1 className="projectNumCube">{props.projectsInside}</h1>
-                    </div>
-                        <h1 className="cardh1normal">{props.projectName}</h1>
-                        <h2 className="percentRegularCard">{props.percentageComplete}</h2> 
+                    </div>                                               
+                        <ProgressBar progress={props.percentageComplete}/>
+
+                            <h1 className="percentRegularCard">{props.percentageComplete}%</h1> 
+                            <h1 className="cardh1normalprog">Check{props.projectName}</h1> 
+
                 </div>
             </div>
         </Link>

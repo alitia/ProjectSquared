@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import firebase from '../../firebase.js'
+import {saveFieldChange} from '../../lib/fieldassist.js'
 
 class ShortField extends Component {
     state = {
             id: '',
             type: 'short',
             label: '',            
-            data: '',
+            data: ''
         }
     componentDidMount() {
         this.setState({id: this.props.short_field.id})
@@ -40,35 +40,7 @@ class ShortField extends Component {
         }
         
         this.setState({data: this.state.data})
-        const short_field = this.state
-
-        //find the location to save the data
-
-        var projectkey = ''
-        var db = firebase.database().ref().child("projects")
-        var query = db.orderByChild("id").equalTo(101).limitToFirst(1) //need to fix 101 to a num in some way
-            query.on("child_added", result =>{ projectkey = (result.val())})     
-
-        // var unitkey = ''
-        // var db = firebase.database().ref().child("projects"/projectkey/"units")
-        // var query = db.orderByChild("id").equalTo(1011).limitToFirst(1) //need to fix 101 to a num in some way
-        //     query.on("child_added", result =>{ unitkey = (result.key)})     
-        //     console.log(unitkey) 
-
-
-
-
-        //save the data here
-        var ref = firebase.database().ref("projects");
-        ref.child("102").set(projectkey, function(error){
-            if(error){
-                console.log(error)
-            }
-            else{
-                console.log("failed to save data")
-            }
-        })
-
+        saveFieldChange(p_id, u_id, f_id, str)
     }
     render() {
         return (

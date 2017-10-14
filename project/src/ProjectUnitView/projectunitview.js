@@ -18,25 +18,28 @@ class ProjectUnitView extends Component {
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {
             var project_val = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
-            var db = firebase.database().ref().child("projects")
-            var query = db.orderByChild("id").equalTo(101).limitToFirst(1) //need to fix 101 to a num in some way
-            query.on("child_added", result => this.conditionTest(result.val()))        
+            var path = "projects/" + project_val + "/"
+            var itemsRef = firebase.database().ref().child(path)
+            itemsRef.once('value')
+            .then(result => this.convertResult(result.val()))    
     }
+    //converts object array into array for mapping by MPV_List
+    convertResult(res){
+        var arr = []
+        var count = 0
 
-    //checks that the unit array is not empty and displays accordingly
-    //if the unit array is empty and it is then mapped, it throws an error in the state
-    conditionTest(input){
-        if(typeof input.units === 'undefined'){
-
-            this.setState({title: input.projectName})
-                
+        for (var item in res.units){
+            arr[count] = res.units[item]
+            count++
+        }
+        if(typeof arr === 'undefined'){
+            this.setState({title: res.projectName})                
         }
         else{
-            this.setState({title: input.projectName})
-            this.setState({units: input.units})
+            this.setState({title: res.projectName})
+            this.setState({units: arr})
             this.setState({projectId: this.props.match.params.projectId})
-        }         
-            
+        }  
     }
     handleClick = (evt) =>{
         evt.preventDefault()      

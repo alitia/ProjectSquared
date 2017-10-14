@@ -9,12 +9,22 @@ class MainProjectView extends Component {
     state = {
             projects: [],
             currentProject: ''
-
         }
     componentDidMount() {
         const itemsRef = firebase.database().ref("projects")
         itemsRef.once('value')
-        .then(result => this.setState({projects: result.val()}))
+        .then(result => this.convertResult(result.val()))
+    }
+    //converts object array into array for mapping by MPV_List
+    convertResult(res){
+        var arr = []
+        var count = 0
+
+        for (var item in res){
+            arr[count] = res[item]
+            count++
+        }
+        this.setState({projects: arr})
     }
     handleClick = (evt) =>{
         evt.preventDefault()       

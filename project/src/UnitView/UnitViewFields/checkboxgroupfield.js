@@ -1,74 +1,52 @@
 import React, { Component } from 'react';
+import CheckField from './checkfield.js'
 
 class CheckBoxGroupField extends Component {
     state = {
-            checkboxgroup_field: [
-                {id: 306, position: 6, label: 'Completed Steps', fieldname: 'Completed Steps', fieldtype: 'checkbox_group',
-                option1label: 'check 1', option1bool: true, 
-                option2label: 'check 2', option2bool: true, 
-                option3label: 'check 3', option3bool: false, }
-            ]
+            id: '',
+            type: 'checkbox_group',
+            label: '',            
+            data: [],
+        }  
+    componentDidMount() {
+        this.setState({id: this.props.checkboxgroup_field.id})
+        this.setState({label: this.props.checkboxgroup_field.label})
+        this.convertResult(this.props.checkboxgroup_field.data)
+    }  
+
+    //converts object array into array for mapping by MPV_List
+    convertResult(res){
+        var arr = []
+        var count = 0
+
+        for (var item in res){
+            arr[count] = res[item]
+            count++
         }
-    check = (e) => {
-
-        if(e.target.className === "cardh1light"){
-
-            if(e.target.nextSibling.className ==="checkField_uncheck"){
-
-                e.target.nextSibling.className = "checkField_checked"
-            }
-            else{
-                e.target.nextSibling.className = "checkField_uncheck"
-            }
-
+        if(typeof arr === 'undefined'){
+            //something is broken, we have a checkfieldgroup with no checks.
+            console.log("something is broken, we have a checkfieldgroup with no checks")               
         }
-        else if(e.target.className ==="checkBoxSet"){
-
-            if(e.target.childNodes[1].className ==="checkField_uncheck"){
-
-                e.target.childNodes[1].className = "checkField_checked"
-            }
-            else{
-                e.target.childNodes[1].className = "checkField_uncheck"
-            }
-        }
-        
+        else{
+            this.setState({data: arr})
+        }  
     }
+
     /*Needs to check the checkbox or vice versa */
     update = (e) => {
 
-        if(e.target.className ==="checkField_uncheck"){
-            e.target.className = "checkField_checked"
-        }
-        else{
-            e.target.className = "checkField_uncheck"
-        }
+       
         
     }
     render() {
         return (
             <div className="CheckBoxGroupFieldContainer">
-                {this.state.checkboxgroup_field.map(checkboxgroup =>
-                <div className="CheckBoxGroupField" key={checkboxgroup.id}>
+                <div className="CheckBoxGroupField" key={this.state.id}>
                     <div className="cardCheckBox">
-                        <h1 className="cardh1normal">{checkboxgroup.label}</h1>
-
-                        <div className="checkBoxSet" onClick={this.check}>
-                            <h1 className="cardh1light" >{checkboxgroup.option1label}</h1>
-                            <div className="checkField_uncheck" onClick={this.update}>{checkboxgroup.option1bool}</div>
-                        </div>
-                        <div className="checkBoxSet" onClick={this.check}>
-                            <h1 className="cardh1light" >{checkboxgroup.option2label}</h1>
-                            <div className="checkField_uncheck" onClick={this.update}></div>
-                        </div>
-                        <div className="checkBoxSet" onClick={this.check}>
-                            <h1 className="cardh1light" >{checkboxgroup.option3label}</h1>
-                            <div className="checkField_uncheck" onClick={this.update}></div>
-                        </div>
-
-                        
+                        <h1 className="cardh1normal">{this.state.label}</h1>
+                            {this.state.data.map(check => <CheckField key={check.id} {...check} projectId = {this.props.project_id} unitId = {this.props.unit_id} fieldId = {this.props.checkboxgroup_field.id}/>)}
                     </div>
-                </div>)}   
+                </div>
             </div>   
         );
     }

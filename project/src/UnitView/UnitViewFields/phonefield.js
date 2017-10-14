@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
+import {saveFieldChange} from '../../lib/fieldassist.js'
 
 class PhoneField extends Component {
     state = {
-            phone_field: [
-                {id: 302, position: 2, label: 'Phone Number', fieldname: '+64273040964', fieldtype: 'text_phone'}
-            ]
-        }
+            id: '',
+            type: 'phone',
+            label: '',            
+            data: '',
+    }
+    componentDidMount() {
+        this.setState({id: this.props.phone_field.id})
+        this.setState({label: this.props.phone_field.label})
+        this.setState({data: this.props.phone_field.data})
+    }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
             event.preventDefault()  
             const element = event.target
             element.blur()
-
         }
         else if(!(event.key >= 0) && !(event.key <= 9)){
             if(event.key === '+' || event.key==="(" || event.key===")"){
@@ -29,34 +35,39 @@ class PhoneField extends Component {
     }
     update = (e) => {
 
-        const phone_field = this.state.phone_field
         const str = e.target.innerHTML
+        const p_id = this.props.project_id
+        const u_id = this.props.unit_id
+        const f_id = this.state.id
+
+        const phone_field = this.state.data
 
         if(str === ""){
             e.target.innerHTML = "..."
         }
         else{
-            phone_field.fieldname = str
+            this.setState({data: str})
         }
         
-        this.setState({phone_field})
+        this.setState({data: this.state.data})
+        saveFieldChange(p_id, u_id, f_id, str)
+
 
     }
     render = () => {
         return (
             <div className="PhoneFieldContainer">
-                {this.state.phone_field.map(phone =>
-                <div className="PhoneField" key={phone.id}>
+                <div className="PhoneField" key={this.state.id}>
                     <div className="card">
-                        <h1 className="cardh1normal">{phone.label}</h1>
+                        <h1 className="cardh1normal">{this.state.label}</h1>
                         <div className="slash"></div>
                         <h1 className="cardh1light"
                             contentEditable = {true}
                             onBlur={this.update}
                             onKeyPress={this.onKeyPress}
-                            >{phone.fieldname}</h1>
+                            >{this.state.data}</h1>
                     </div>
-                </div>)}   
+                </div>   
             </div>   
         );
     }

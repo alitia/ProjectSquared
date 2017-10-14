@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
+import {saveFieldChange} from '../../lib/fieldassist.js'
+
 
 class LongField extends Component {
     state = {
-            long_field: [
-                {id: 305, position: 5, label: 'Customer Notes', fieldname: 'Long Text Field', fieldtype: 'text_long'}
-            ]
-        }
+            id: '',
+            type: 'long',
+            label: '',            
+            data: '',
+    }
+    componentDidMount() {
+        this.setState({id: this.props.long_field.id})
+        this.setState({label: this.props.long_field.label})
+        this.setState({data: this.props.long_field.data})
+    }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -20,34 +28,39 @@ class LongField extends Component {
     }
     update = (e) => {
 
-        const long_field = this.state.long_field
+        const p_id = this.props.project_id
+        const u_id = this.props.unit_id
+        const f_id = this.state.id
+
+        const long_field = this.state.data
         const str = e.target.innerHTML
 
         if(str === ""){
             e.target.innerHTML = "..."
         }
         else{
-            long_field.fieldname = str
+            this.setState({data: str})
         }
         
-        this.setState({long_field})
+        this.setState({data: this.state.data})
+        saveFieldChange(p_id, u_id, f_id, str)
+
 
     }
     render() {
         return (
             <div className="LongFieldContainer">
-                {this.state.long_field.map(long =>
-                <div className="LongField" key={long.id}>
+                <div className="LongField" key={this.state.id}>
                     <div className="cardlong">
-                        <h1 className="cardh1normallong">{long.label}</h1>
+                        <h1 className="cardh1normallong">{this.state.label}</h1>
                         <div className="slash"></div>
                         <h1 className="cardh1lightlongtext"
                             contentEditable = {true}
                             onBlur={this.update}
                             onKeyPress={this.onKeyPress}
-                            >{long.fieldname}</h1>
+                            >{this.state.data}</h1>
                     </div>
-                </div>)}   
+                </div>
             </div>   
         );
     }
