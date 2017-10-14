@@ -5,7 +5,7 @@ export const ProjectUnitViewTitle = (props) => {
 	return(
 			<div className="ProjectUnitView_Title">
                 <div className="card">
-                    <div className="cardLeftImgWhite"></div>
+                    <div className="cardLeftImgRed"></div>
                     	<h1 className="cardh1bold">{props.title}</h1>
                     </div>
             </div>

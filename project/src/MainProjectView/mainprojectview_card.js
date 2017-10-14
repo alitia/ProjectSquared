@@ -13,10 +13,8 @@ export const MainProjectViewCard = (props) => {
                     	<h1 className="projectNumCube">{props.projectsInside}</h1>
                     </div>                                               
                         <ProgressBar progress={props.percentageComplete}/>
-
                             <h1 className="percentRegularCard">{props.percentageComplete}%</h1> 
-                            <h1 className="cardh1normalprog">Check{props.projectName}</h1> 
-
+                            <h1 className="cardh1normalprogwithcount">Check{props.projectName}</h1> 
                 </div>
             </div>
         </Link>

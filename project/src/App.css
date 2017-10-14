@@ -154,11 +154,13 @@ body{
   width: 45px;
   height: 45px;
   border-radius: 10px; 
-  display: inline-block;
+  display: block;
   margin-top: 7.5px;
-  margin-left: 9.5px;
+  margin-left: 7.5px;
+  margin-right: 10px;
   float: left;
-  line-height: 45px;
+  z-index: 4;
+  position: relative;
 }
 .cardLeftImgRed h1{
 
@@ -172,14 +174,17 @@ body{
 }
 .cardLeftImgWhite {
 
-  background-color: #F67E7D;
+  background-color: #FFFFFF;
   width: 45px;
   height: 45px;
   border-radius: 10px; 
-  display: inline-block;
+  display: block;
   margin-top: 7.5px;
-  margin-left: 9.5px;
+  margin-left: 7.5px;
+  margin-right: 10px;
   float: left;
+  z-index: 4;
+  position: relative;
 }
 
 
@@ -193,6 +198,7 @@ body{
   width: 100%;
   font-size: 1.3em;
   color: #74546B;
+  font-family: 'Open Sans';
 }
 .backButton{
 
@@ -301,7 +307,7 @@ body{
   background-color: #F67E7D;
   display: block;
   z-index: 3;
-  position: relative;
+  position: absolute;
   border-radius: 10px;
 }
 /*base text for progress reports - percentage*/
@@ -322,19 +328,33 @@ body{
   position: absolute;
 
 }
+.cardh1normalprogwithcount{
+  color: #74546B;
+  font-family: 'Open Sans';
+  display: block;
+  margin-top: 5px;
+  font-weight: 700;
+  line-height: 50px;
+  margin-left: 70px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+  z-index: 4;
+  position: absolute;
+}
 .cardh1normalprog{
   color: #74546B;
   font-family: 'Open Sans';
-  display: inline-block;
+  display: block;
   margin-top: 5px;
   font-weight: 700;
   line-height: 50px;
   margin-left: 20px; 
   font-size: 1.3em;
   text-overflow: ellipsis;
-  z-index: 5;
+  z-index: 4;
   position: absolute;
 }
+
 .card{
 
   background-color: white;

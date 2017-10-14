@@ -47,7 +47,7 @@ class UnitViewTitle extends Component {
 			<div className="ShortFieldContainer">
                 <div className="titleField" key={this.state.id}>
                     <div className="card">
-                        <div className="cardLeftImgWhite">
+                        <div className="cardLeftImgRed">
                             </div>
                                 <h1 className="cardh1bold"
                                     contentEditable = {true}

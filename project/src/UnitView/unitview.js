@@ -14,8 +14,10 @@ class UnitView extends Component {
         }
     //enquires on the unit data based on the current URL and sends it through
     componentDidMount() {            
-            var project_val = this.props.match.params.projectId           
-            var db = firebase.database().ref().child("projects/101/units/1011")
+            var project_val = this.props.match.params.projectId 
+            var unit_val = this.props.match.params.unitId
+            var path = "projects/" + project_val + "/units/" + unit_val + "/"          
+            var db = firebase.database().ref().child(path)
             db.once("value")
             .then(result => this.convertResult(result.val()))
     }

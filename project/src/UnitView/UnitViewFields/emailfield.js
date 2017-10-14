@@ -32,8 +32,6 @@ class EmailField extends Component {
         const p_id = this.props.project_id
         const u_id = this.props.unit_id
         const f_id = this.state.id
-
-        const email_field = this.state.email_field
         const str = e.target.innerHTML
 
         if(str === ""){

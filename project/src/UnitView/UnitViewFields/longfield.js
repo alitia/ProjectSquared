@@ -31,8 +31,6 @@ class LongField extends Component {
         const p_id = this.props.project_id
         const u_id = this.props.unit_id
         const f_id = this.state.id
-
-        const long_field = this.state.data
         const str = e.target.innerHTML
 
         if(str === ""){

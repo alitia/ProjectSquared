@@ -40,8 +40,6 @@ class PhoneField extends Component {
         const u_id = this.props.unit_id
         const f_id = this.state.id
 
-        const phone_field = this.state.data
-
         if(str === ""){
             e.target.innerHTML = "..."
         }

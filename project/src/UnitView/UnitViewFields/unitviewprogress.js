@@ -18,7 +18,7 @@ class UnitViewProgress extends Component {
 				<div className="UnitView_Progress" >
 					<div className="card" onClick={this.drawProgress} key={this.state.id}>            			
                 		<h1 className="percentRegularCard" >{this.props.data}%</h1>
-            			<h1 className="cardh1normalprog">Progress{this.state.label}</h1>
+            			<h2 className="cardh1normalprog">Progress{this.state.label}</h2>
             			<ProgressBar progress={this.props.data}/>
             		</div>
         		</div>
