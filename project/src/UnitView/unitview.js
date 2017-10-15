@@ -5,7 +5,11 @@ import firebase from '../firebase.js'
 
 
 class UnitView extends Component {
-    
+    constructor(){
+        super()
+        this.reloadComponent = this.reloadComponent.bind(this)  
+
+    }
     state = {
             unit_fields: [],
             unit_progress: '',
@@ -21,6 +25,7 @@ class UnitView extends Component {
             db.once("value")
             .then(result => this.convertResult(result.val()))
     }
+    
     //converts object array into array for mapping by UV_List
     convertResult(res){
         var arr = []
@@ -32,14 +37,17 @@ class UnitView extends Component {
         }
         this.setState({unit_progress: res.percentageComplete}) 
         this.setState({unit_fields: arr})      
-        
+    }
+    reloadComponent(progress){
+        console.log("component reload")
+        this.setState({unit_progress: progress})
     }
     render() {
         return (
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList">
-                    <UnitViewList unit_fields={this.state.unit_fields} project_id={this.props.match.params.projectId} unit_id={this.props.match.params.unitId} unit_progress={this.state.unit_progress}/>
+                    <UnitViewList unit_fields={this.state.unit_fields} action={this.reloadComponent} project_id={this.props.match.params.projectId} unit_id={this.props.match.params.unitId} unit_progress={this.state.unit_progress}/>
                 </div>
             </div>     
         );

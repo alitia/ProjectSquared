@@ -302,6 +302,7 @@ body{
 .ProgBar{
   margin-top: 5px;
   margin-left: 5px;
+  margin-right: 15px;
   min-height: 50px;
   width: 0%;
   background-color: #F67E7D;
@@ -335,7 +336,7 @@ body{
   margin-top: 5px;
   font-weight: 700;
   line-height: 50px;
-  margin-left: 70px; 
+  margin-left: 85px; 
   font-size: 1.3em;
   text-overflow: ellipsis;
   z-index: 4;

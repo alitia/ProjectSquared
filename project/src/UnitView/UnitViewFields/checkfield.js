@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {saveCheckChange} from '../../lib/fieldassist.js'
+import {saveCheckChange, calcProgress} from '../../lib/fieldassist.js'
 
 class CheckField extends Component {
     state = {
@@ -12,12 +12,6 @@ class CheckField extends Component {
         this.setState({id: this.props.id})
         this.setState({data: this.props.data})
         this.setState({bool: this.props.bool})
-    }   
-    initialDraw(){
-
-        if(this.state.bool === "true"){
-
-        }
     } 
     //visually checks and unchecks the boxes       
     check = (e) => {
@@ -48,6 +42,7 @@ class CheckField extends Component {
         const f_id = this.props.fieldId
         const b_id = this.state.id
 
+
         if(e.target.className ==="checkField_uncheck"){
             e.target.className = "checkField_checked"
             str = "true"
@@ -58,6 +53,8 @@ class CheckField extends Component {
         }
 
     saveCheckChange(p_id, u_id, f_id, b_id, str)
+    calcProgress(p_id, u_id)
+
     }
     render() {
         if(this.state.bool === "true"){

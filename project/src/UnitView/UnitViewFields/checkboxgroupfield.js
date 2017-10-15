@@ -44,7 +44,7 @@ class CheckBoxGroupField extends Component {
                 <div className="CheckBoxGroupField" key={this.state.id}>
                     <div className="cardCheckBox">
                         <h1 className="cardh1normal">{this.state.label}</h1>
-                            {this.state.data.map(check => <CheckField key={check.id} {...check} projectId = {this.props.project_id} unitId = {this.props.unit_id} fieldId = {this.props.checkboxgroup_field.id}/>)}
+                            {this.state.data.map(check => <CheckField key={check.id} {...check} projectId = {this.props.project_id} unitId = {this.props.unit_id} action={this.props.action} fieldId={this.props.checkboxgroup_field.id}/>)}
                     </div>
                 </div>
             </div>   

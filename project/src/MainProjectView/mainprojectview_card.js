@@ -14,7 +14,7 @@ export const MainProjectViewCard = (props) => {
                     </div>                                               
                         <ProgressBar progress={props.percentageComplete}/>
                             <h1 className="percentRegularCard">{props.percentageComplete}%</h1> 
-                            <h1 className="cardh1normalprogwithcount">Check{props.projectName}</h1> 
+                            <h1 className="cardh1normalprogwithcount">{props.projectName}</h1> 
                 </div>
             </div>
         </Link>
