@@ -26,23 +26,15 @@ class MainProjectView extends Component {
         }
         this.setState({projects: arr})
     }
-    handleClick = (evt) =>{
-        evt.preventDefault()       
-        const newId = generateId()
-        const newProject = {id: newId, projectsInside: 22, projectName: 'Project Name Four', percentageComplete: '66%'}
-        const updatedProjects = addProject(this.state.projects, newProject)
-        this.setState({
-            projects: updatedProjects
-
-        })
-    }
     render() {
         return (
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList" >
                     <MainProjectViewList projects={this.state.projects}/>
-                    <div onClick={this.handleClick}><MainProjectViewNew /></div>
+                    <div onClick={this.handleClick}>
+                        <MainProjectViewNew />
+                    </div>
                 </div>
             </div>
         );

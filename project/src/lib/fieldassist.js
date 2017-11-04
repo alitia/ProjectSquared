@@ -2,20 +2,24 @@ import firebase from '../firebase.js'
 
 export const saveFieldChange = (p_id, u_id, f_id, data) => {
 
+    if(data === ""){
+        return
+    }
 	var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/" 
         var ref = firebase.database().ref().child(path)
-        ref.child("data").set(data, function(error){
+        ref.child("data").set(data.toString(), function(error){
             if(error){
                 console.log("FieldData Change: " + error)
             }
         })
 }
+//----isnt working unless the browser is refreshed right now
 //update the title changed in the field to apply to the whole unit
 export const saveTitleChange = (p_id, u_id, f_id, data) => {
 
 	var path = "projects/" + p_id + "/units/" + u_id + "/" 
         var ref = firebase.database().ref().child(path)
-        ref.child("projectName").set(data, function(error){
+        ref.child("projectName").set(data.toString(), function(error){
             if(error){
                 console.log("ProjectName Change: " + error)
             }
@@ -25,13 +29,9 @@ export const saveTitleChange = (p_id, u_id, f_id, data) => {
 //update the title changed in the field to apply to the whole unit
 export const saveCheckChange = (p_id, u_id, f_id, b_id, data) => {
 
-	var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/"
+	var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "bool"
         var ref = firebase.database().ref().child(path)
-        ref.child("bool").set(data, function(error){
-            if(error){
-                console.log("CheckBox Change: " + error)
-            }
-        })
+        ref.set(data)
 }
 //count all progress in the current unit and recalculate the progress
 export const calcProgress = (p_id,u_id) => {
@@ -65,7 +65,6 @@ export const calcProgress = (p_id,u_id) => {
             
             console.log(Math.floor((truefields / checkfields).toFixed(2) * 100) + "%")
             var percentChange = Math.floor((truefields / checkfields).toFixed(2) * 100) 
-
 
             var path = "projects/" + p_id + "/units/" + u_id + "/" 
             var ref = firebase.database().ref().child(path)

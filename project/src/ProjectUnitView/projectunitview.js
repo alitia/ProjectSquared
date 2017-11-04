@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {ProjectUnitViewList} from './projectunitview_list.js';
 import {ProjectUnitViewTitle} from './projectunitview_title.js';
 import {addUnit, generateId} from '../lib/projecthelpers.js';
+import {generateNewUnit} from '../lib/newunit.js';
 import {ProjectUnitViewNew} from './projectunitview_new.js'
 import {BackButton} from '../Other/backbutton.js'
 import firebase from '../firebase.js'
-
 
 class ProjectUnitView extends Component {
     state = {
@@ -42,14 +42,15 @@ class ProjectUnitView extends Component {
         }  
     }
     handleClick = (evt) =>{
-        evt.preventDefault()      
-        const newId = generateId()
-        const newUnit = {id: newId, projectName: 'Unit Four', percentageComplete: '55%'}
-        const updatedUnits = addUnit(this.state.units, newUnit)
-        this.setState({
-            units: updatedUnits
 
-        })
+        var project_val = this.props.location.pathname.substr(this.props.location.pathname.lastIndexOf('/') + 1)
+        evt.preventDefault()      
+        generateNewUnit(project_val)
+
+        var path = "projects/" + project_val + "/"
+            var itemsRef = firebase.database().ref().child(path)
+            itemsRef.once('value')
+            .then(result => this.convertResult(result.val()))   
     }
     render() {
         return (

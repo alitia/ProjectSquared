@@ -8,7 +8,6 @@ class UnitView extends Component {
     constructor(){
         super()
         this.reloadComponent = this.reloadComponent.bind(this)  
-
     }
     state = {
             unit_fields: [],
@@ -39,7 +38,7 @@ class UnitView extends Component {
         this.setState({unit_fields: arr})      
     }
     reloadComponent(progress){
-        console.log("component reload")
+        //console.log("UnitView Progress Bar Component Reloaded")
         this.setState({unit_progress: progress})
     }
     render() {

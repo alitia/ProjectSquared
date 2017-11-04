@@ -9,13 +9,10 @@ import UnitViewTitle from './UnitViewFields/unitviewtitle.js'
 import UnitViewProgress from './UnitViewFields/unitviewprogress.js';
 import firebase from '../firebase.js'
 
-
-
 class UnitViewList extends Component {
         constructor(){
             super()
             this.reloadComponent = this.reloadComponent.bind(this)  
-
         }
         state = {                
                 unit_fields: [],
@@ -48,7 +45,6 @@ class UnitViewList extends Component {
         }
     //converts object array into array for mapping by UV_List
     convertResult(res){
-        var arr = []
 
         this.setState({progress: res.percentageComplete})     
     }
