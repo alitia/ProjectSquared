@@ -1,6 +1,7 @@
 import firebase from '../firebase.js'
 import {addUnit} from './projecthelpers.js'
 
+
 export const createProject = (p_id) => {
 
     var path = "projects/" + p_id + "/"
@@ -28,18 +29,14 @@ export const createTitleField = (p_id, u_id, f_id) => {
 		ref.child("position").set(0)
 		ref.child("type").set("title")	
 }
-export const createShortField = (p_id, u_id, f_id) => {
+export const createEditField = (p_id, u_id, f_id) => {
 
-	//create another field id
-	var f_id = f_id + 1
-
-	//create a short text field for the next field
-	//perhaps this should be checkfields in the future
+	//create a edit field for the next field
 	var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id +"/"
 	var ref = firebase.database().ref().child(path)
 		ref.child("data").set("First field")
 		ref.child("id").set(f_id)
 		ref.child("position").set(0)
-		ref.child("type").set("short")
+		ref.child("type").set("edit")
 		ref.child("label").set("Give me a name")
 }

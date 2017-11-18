@@ -369,3 +369,86 @@ body{
 /*colors: background: #FFB997
 colors: topbar:   #F67E7D
 colors: profile:  #74546B*/
+div.dropdown-container-show {
+  float: left;
+  width: 250px;
+  padding: 7.5px;
+  height: 105px;
+  z-index: 10;
+}
+div.dropdown-display-clicked {
+  float: left;
+  width: 100%;
+  background-color: #74546B;
+  height: 320px;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 4;
+}
+div.dropdown-container {
+  float: left;
+  display: block;
+  width: 250px;
+  padding: 7.5px;
+}
+div.dropdown-display {
+  float: left;
+  width: 100%;
+  background-color: #74546B;
+  height: 45px;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border-radius: 10px;
+}
+.ddboxoption{
+  color: white;
+  font-family: 'Open Sans';
+  font-weight: 300;
+  line-height: 45px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+}
+.dropdown-list {
+  color: white;
+  font-family: 'Open Sans';
+  font-weight: 300;
+  line-height: 45px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+}
+.dropdown-list-hidden {
+  display: none;
+}
+.caret-pointup{
+  content:url('./images/caret-arrow-up.png');
+  height: 15px;
+  float: right;
+  margin-right: 20px;
+
+  margin-top: 15px;
+  display: inline-flex;
+
+}
+.caret-pointdown{
+  content:url('./images/caret-down.png');
+  height: 15px;
+  float: right;
+  margin-right: 20px;
+  margin-top: 15px;
+  display: inline-flex;  
+}
+.card-overflowallow{
+
+  background-color: white;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: visible;
+  z-index: 0;
+  padding-right: 10px;
+  position: relative;
+}

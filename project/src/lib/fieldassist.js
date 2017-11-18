@@ -84,3 +84,35 @@ export const calcProgress = (p_id,u_id) => {
 
     //update percentage complete for project base on unit percentages complete
 }
+//update the field type in the edit changes
+export const saveFieldTypeChange = (p_id, u_id, f_id, type) => {
+
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/" 
+        var ref = firebase.database().ref().child(path)
+        ref.child("type").set(type, function(error){
+            if(error){
+                console.log("Field type Change: " + error)
+            }
+        })
+}
+//update the label in the edit changes
+export const saveFieldLabelChange = (p_id, u_id, f_id, label, type) => {
+
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/" 
+        var ref = firebase.database().ref().child(path)
+        ref.child("label").set(label, function(error){
+            if(error){
+                console.log("Field label Change: in unit title" + error)
+            }
+        })
+        if(type === "title"){
+            var path = "projects/" + p_id + "/"
+            var ref = firebase.database().ref().child(path)
+            ref.child("projectName").set(label, function(error){
+                if(error){
+                    console.log("Field label Change in Project Name: " + error)
+                }
+            })
+        }
+    
+}
