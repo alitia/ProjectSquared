@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
+import {generateId} from '../lib/projecthelpers.js';
+import MainProjectViewNew from './mainprojectview_new.js'
 import {MainProjectViewList} from './mainprojectview_list.js';
-import {addProject, generateId} from '../lib/projecthelpers.js';
-import {MainProjectViewNew} from './mainprojectview_new.js'
 import {BackButton} from '../Other/backbutton.js'
 import firebase from '../firebase.js'
 
+//CORE: Shows the LIST and NEW once user SIGNIN
 class MainProjectView extends Component {
     state = {
+            //projects to be displayed for the user
             projects: [],
-            currentProject: ''
+            //the project id to be used if the user makes a new project
+            projectId: ''
         }
+    //ACTION: Gets project list from DB. Processes it into list of projects to display.
+    //firebase: Asks for the list of projects. 
+    //convertResult: Converts the result to project list.
+    //generateId: Generates a project ID for a new project that may be created.
+    //TODO: Write test for DB call, Generated ID. Make Generate ID iteratively increase instead of random.
     componentDidMount() {
-        const itemsRef = firebase.database().ref("projects")
-        itemsRef.once('value')
+        const ref = firebase.database().ref("projects")
+        ref.once('value')
         .then(result => this.convertResult(result.val()))
+
+        var project_val = generateId()
+        this.setState({projectId: project_val})
     }
-    //converts object array into array for mapping by MPV_List
+    //ACTION: converts result from db into project list. Sets the list to the state.
+    //TODO: Write test for array conversion
     convertResult(res){
         var arr = []
         var count = 0
@@ -26,15 +38,17 @@ class MainProjectView extends Component {
         }
         this.setState({projects: arr})
     }
+    //ACTION:
+    //Render: Back button (Left Top)
+    //Render: Project List (Middle Top)
+    //Render: New Project (Middle Bottom)
     render() {
         return (
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList" >
                     <MainProjectViewList projects={this.state.projects}/>
-                    <div onClick={this.handleClick}>
-                        <MainProjectViewNew />
-                    </div>
+                    <MainProjectViewNew projectId={this.state.projectId}/>
                 </div>
             </div>
         );

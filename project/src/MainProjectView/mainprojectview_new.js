@@ -1,15 +1,24 @@
-import React from 'react';
 import {Link} from 'react-router-dom'
+import React, { Component } from 'react';
 
-export const MainProjectViewNew = (props) => {
+//SECONDARY: Draws the project NEW card.
+//These have a white card
+//(Left) Icon in a rounded square
+//(Left) Light text with 'Create Project'
+//PROPS: Receives a project node from CORE
+//LINK: Links to new page using the new project id if clicked
+//TODO: Add image for edit symbol
 
-	return(
-			<Link to={`/create_project`}>
-	                <div className="card">
-	                    <div className="cardLeftImgRed">
-	                    </div>
-	                    <h1 className="cardh1light">Create Project</h1>
-	                </div>
-            </Link>
+class MainProjectViewNew extends Component {
+    render() {
+		return(
+			<Link to={`/create_project/${this.props.projectId}`}>
+		        <div className="card">
+		            <div className="cardLeftImgRed"></div>
+		            <h1 className="cardh1light">Create Project</h1>
+		        </div>
+	        </Link>
 		)
+	}
 }
+export default MainProjectViewNew;

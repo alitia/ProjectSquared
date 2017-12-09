@@ -3,6 +3,10 @@ import {saveFieldTypeChange, saveFieldLabelChange} from '../../lib/fieldassist.j
 
 
 class EditField extends Component {
+    constructor(){
+        super()
+        this.updateLabel = this.updateLabel.bind(this)
+    }
     state = {
             label: 'Enter the label title',
             project_id: '',
@@ -11,7 +15,7 @@ class EditField extends Component {
             type: '',
             position: '',
             listVisible: false,
-            selected: {name: 'Select field type'},
+            selected: '',
             fields: [{
             name: "Short Text Box"
             }, {
@@ -28,13 +32,20 @@ class EditField extends Component {
         }
     componentDidMount() {
 
+        this.setState({label: this.props.label})
+        this.setState({type: this.props.type})
+        this.setState({field_id: this.props.id})
+        this.setState({project_id: this.props.projectId})
+        this.setState({unit_id: this.props.unitId})
+        this.setState({selected: this.props.selected})
+        this.setState({title: this.props.title})
     }
-    updateLabel = (e, values) => {
+    updateLabel = (e) => {
 
         var str = e.target.innerHTML
-        var p_id = this.props.project_id
-        var u_id = this.props.unit_id
-        var f_id = this.props.field_id 
+        var p_id = this.props.projectId
+        var u_id = this.props.unitId
+        var f_id = this.props.fieldId 
         var type = this.state.selected      
 
         if(str === ""){
@@ -63,29 +74,29 @@ class EditField extends Component {
     renderField = () =>{
         var field = []
         var type = ""
-        if(this.state.selected.name === "Label"){
+        if(this.state.selected === "Label"){
             field = this.renderlabelfield()
-            type = "label"
+            type = "Label"
         }
-        else if(this.state.selected.name === "Phone Field"){
+        else if(this.state.selected === "Phone Field"){
             field = this.renderphonefield()
-            type = "phone"
+            type = "Phone Field"
         }
-        else if(this.state.selected.name === "Email Field"){
+        else if(this.state.selected === "Email Field"){
             field = this.renderemailfield()
-            type = "email"
+            type = "Email Field"
         }
-        else if(this.state.selected.name === "Long Text Box"){
+        else if(this.state.selected === "Long Text Box"){
             field = this.renderlongfield()
-            type = "long"
+            type = "Long Text Box"
         }
-        else if(this.state.selected.name === "Checkfields"){
+        else if(this.state.selected === "Checkfields"){
             field = this.rendercheckfield()
-            type = "checkboxes"
+            type = "Checkfields"
         }
-        else if(this.state.selected.name === "Short Text Box"){
+        else if(this.state.selected === "Short Text Box"){
             field = this.rendershortfield()
-            type = "short"
+            type = "Short Text Box"
         }
         if(type === ""){
         }
@@ -100,7 +111,7 @@ class EditField extends Component {
                             contentEditable = {true}
                             onBlur={this.updateLabel}
                             onKeyPress={this.onKeyPress}
-                            >Enter the label</h1>)
+                            >{this.state.label}</h1>)
             return label        
     }
     rendershortfield = () => {
@@ -109,7 +120,7 @@ class EditField extends Component {
                             contentEditable = {true}
                             onBlur={this.updateLabel}
                             onKeyPress={this.onKeyPress}
-                            >Enter the field title</h1>)
+                            >{this.state.label}</h1>)
             return label        
     }
     renderphonefield = () => {
@@ -118,7 +129,7 @@ class EditField extends Component {
                             contentEditable = {true}
                             onBlur={this.updateLabel}
                             onKeyPress={this.onKeyPress}
-                            >Enter the field title</h1>)
+                            >{this.state.label}</h1>)
             return label        
     }
     renderemailfield = () => {
@@ -127,7 +138,7 @@ class EditField extends Component {
                             contentEditable = {true}
                             onBlur={this.updateLabel}
                             onKeyPress={this.onKeyPress}
-                            >Enter the field title</h1>)
+                            >{this.state.label}</h1>)
             return label        
     }
     renderlongfield = () => {
@@ -136,24 +147,23 @@ class EditField extends Component {
                             contentEditable = {true}
                             onBlur={this.updateLabel}
                             onKeyPress={this.onKeyPress}
-                            >Enter the field title</h1>)
+                            >{this.state.label}</h1>)
             return label        
     }
     rendercheckfield = () => {
         var label = []
             label.push(<h1 className="cardh1light"
                             contentEditable = {true}
-                            onBlur={this.updateLabel(event.target, this.props)}
+                            onBlur={this.updateLabel}
                             onKeyPress={this.onKeyPress}
-                            >Enter the field title</h1>)
+                            >{this.state.label}</h1>)
             return label        
     }
     select = (item) => {
         console.log("item selected: " + item.name)
-        this.state.selected.name = item.name;
+        this.state.selected = item.name;
     }
     show = () => {
-        console.log("got to show")
         this.setState({ listVisible: true });
         document.addEventListener("click", this.hide);
     }
@@ -179,7 +189,7 @@ render() {
                 <div className={"dropdown-container" + (this.state.listVisible ? "-show" : "")}>
                     <div className={"dropdown-display" + (this.state.listVisible ? "-clicked": "")} onClick={this.show}>
                         <div className={"caret" + (this.state.listVisible ? "-pointup" : "-pointdown")}></div>                 
-                        <span className="ddboxoption">{this.state.selected.name}</span>
+                        <span className="ddboxoption">{this.state.selected}</span>
                             <i className="fa fa-angle-down"></i>
                             <div className={"dropdown-list"+ (this.state.listVisible ? "" : "-hidden")}>
                                     {this.renderListItems()}                                

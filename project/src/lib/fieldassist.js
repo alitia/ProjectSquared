@@ -41,7 +41,7 @@ export const calcProgress = (p_id,u_id) => {
     //find all fields in the current unit that are check fields.
     var path = "projects/" + p_id + "/units/" + u_id + "/fields/"
         var ref = firebase.database().ref().child(path)
-        ref.orderByChild("type").equalTo("checkboxes").on("child_added", function(result){
+        ref.orderByChild("fields").on("child_added", function(result){
             console.log(result.val())
 
             var arr = []

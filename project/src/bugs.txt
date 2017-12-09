@@ -7,7 +7,6 @@
 
 
 
-Next steps:
-whenever add field is pressed, a new edit field is added to the list
-whenever add field is added, it is saved to firebase
-all changes to fields are saved to firebase
+
+Currently when a new project is being created, if the page is refreshed the project is recreated
+instead of recongising that the project already exists

@@ -8,8 +8,8 @@ class ProjectUnitViewTitle extends Component{
             data: '',
         }
     componentDidMount() {
-        this.setState({id: this.props.title_field.id})
-        this.setState({data: this.props.title_field.data})
+        this.setState({id: this.props.titleId})
+        this.setState({data: this.props.title})
     }
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
@@ -53,3 +53,4 @@ class ProjectUnitViewTitle extends Component{
     }
 	
 }
+export default ProjectUnitViewTitle;

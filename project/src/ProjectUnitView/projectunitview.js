@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {ProjectUnitViewList} from './projectunitview_list.js';
-import {ProjectUnitViewTitle} from './projectunitview_title.js';
+import ProjectUnitViewTitle from './projectunitview_title.js';
 import {addUnit, generateId} from '../lib/projecthelpers.js';
 import {generateNewUnit} from '../lib/newunit.js';
 import {ProjectUnitViewNew} from './projectunitview_new.js'
@@ -12,7 +12,8 @@ class ProjectUnitView extends Component {
             units: [],
             currentUnit: '',
             title: '',
-            projectId: ''
+            projectId: '',
+            titleId: ''
         }
 
     //enquires on the unit data based on the current URL and sends it through
@@ -33,10 +34,12 @@ class ProjectUnitView extends Component {
             count++
         }
         if(typeof arr === 'undefined'){
-            this.setState({title: res.projectName})                
+            this.setState({title: res.projectName})   
+            //set the title id             
         }
         else{
             this.setState({title: res.projectName})
+            //set the title id
             this.setState({units: arr})
             this.setState({projectId: this.props.match.params.projectId})
         }  
@@ -57,7 +60,7 @@ class ProjectUnitView extends Component {
             <div className="Page">
                 <BackButton />
                 <div className="ProjectList">
-                    <ProjectUnitViewTitle title={this.state.title}/>
+                    <ProjectUnitViewTitle title={this.state.title} titleId={this.state.titleId}/>
                     <ProjectUnitViewList units={this.state.units} projectId={this.state.projectId}/>
                     <div onClick={this.handleClick}>
                         <ProjectUnitViewNew/>

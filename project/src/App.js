@@ -15,7 +15,7 @@ class App extends Component {
                 <Switch>      		
                 <Route path="/" exact component={MainProjectView} />
                 <Route exact path="/project/:projectId" component={ProjectUnitView} />
-                <Route exact path="/create_project" component={CreateProjectView} />
+                <Route exact path="/create_project/:projectId" component={CreateProjectView} />
                 <Route path="/project/:projectId/unit/:unitId" component={UnitView} />
                 </Switch>
         	</Router>

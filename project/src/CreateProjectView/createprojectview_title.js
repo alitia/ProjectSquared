@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { saveFieldLabelChange } from '../lib/fieldassist.js'
 
 class CreateProjectViewTitle extends Component {
+    constructor(){
+        super()
+        this.update = this.update.bind(this)
+    }
 	state = {
             id: '',
             type: 'title',
@@ -26,9 +30,9 @@ class CreateProjectViewTitle extends Component {
     }
     update = (e) => {        
         const str = e.target.innerHTML
-        const p_id = this.props.project_id
-        const u_id = this.props.unit_id
-        const f_id = this.props.title_id
+        const p_id = this.props.projectId
+        const u_id = this.props.unitId
+        const f_id = this.props.titleId
         var type = "title"
 
         if(str === ""){
