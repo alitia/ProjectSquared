@@ -10,7 +10,6 @@ import ProgressBar from '../UnitView/UnitViewFields/progressbar.js'
 //PROPS: Receives a project node from LIST
 //LINK: Links to the selected projects page if clicked
 //TODO: Test if line 17 can be deleted
-
 export const MainProjectViewCard = (props) => {
 	return(
         <Link to={`/project/${props.id}`}>        

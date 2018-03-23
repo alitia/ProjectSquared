@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { saveFieldLabelChange } from '../lib/fieldassist.js'
+import React, { Component } from 'react';
+import {pcv_savefieldlabelchange} from '../db/db_createprojectview.js';
 
 class CreateProjectViewTitle extends Component {
     constructor(){
@@ -17,6 +17,10 @@ class CreateProjectViewTitle extends Component {
             title_id: '',
             title: ''
         }
+
+    //ABOUT: handles the event of the user typing in the project title field
+    //NOTE: if enter is pressed, focus is lost on the field
+    //field supports a maximum of 36 characters   
     onKeyPress = (event) =>{
         const str = event.target.innerHTML
         if (event.charCode === 13){
@@ -28,6 +32,12 @@ class CreateProjectViewTitle extends Component {
                 event.preventDefault()
         }
     }
+
+    //ACTION: calls updates to the db once focus is off the title field 
+    //gets text in the title field
+    //gets project id, unit id, and field id from STATE
+    //if text in title field is empty, make it '...'
+    //pcv_savefieldlabelchange: Save the changes to the title field
     update = (e) => {        
         const str = e.target.innerHTML
         const p_id = this.props.projectId
@@ -42,8 +52,13 @@ class CreateProjectViewTitle extends Component {
             this.setState({data: str})
         }        
         this.setState({data: this.state.data})
-        saveFieldLabelChange(p_id, u_id, f_id, str, type)
+        pcv_savefieldlabelchange(p_id, u_id, f_id, str, type)
     }
+
+    //ACTION:
+    //Render: Title Field
+    //Icon in box (Left)
+    //Title text in bold (Left)
 	render(){
 		return(
 			<div className="CreateProjectView_Title">
@@ -59,5 +74,4 @@ class CreateProjectViewTitle extends Component {
 		)
 	}	
 }
-
 export default CreateProjectViewTitle

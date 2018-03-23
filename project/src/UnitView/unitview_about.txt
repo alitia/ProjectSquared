@@ -1,0 +1,43 @@
+Unit View shows the list of fields within the unit, and the summary of the progress of that unit.
+There are 6 possible fields at the moment:
+
+TITLE: Sits at the top of the unit and displays the name of the unit. 
+	if enter is pressed, focus is lost on the field
+	field supports a maximum of 36 characters
+
+SHORT: Has a short label, a divider, and then the text input
+	if enter is pressed, focus is lost on the field
+	field supports a maximum of 36 characters
+
+LONG: Has a short label, a divider, and then the text input
+	if enter is pressed, focus is lost on the field
+	field supports a maximum of 250 characters
+
+PHONE: Has a short label, a divider, and then the number input
+    if enter is pressed, focus is lost on the field
+    field supports a maximum of 17 characters
+    field only supports numbers, + and ( )
+
+EMAIL: Has a short label, a divider, and then the text input
+	if enter is pressed, focus is lost on the field
+	field supports a maximum of 36 characters
+	Currently does not check if the field is an email address
+
+LABEL: Similar to title, except can sit anywhere in the units
+	if enter is pressed, focus is lost on the field
+	field supports a maximum of 36 characters
+
+CHECKBOX GROUP: Is comprised of two components, CheckBoxGroupField and CheckField.
+	You can have multiple checkgroups per unit
+	The unit totals up the total checked boxes out of the whole unit, and displays the progress that way.
+CHECKBOX: On click of the box or the box label, the graphic is updated and progress of the unit
+	recaulcuated.
+
+COMMENT STATUS: Done
+TEST_STATUS: Can't get Firebase related tests working
+DB: External file created
+TODO:   
+Error handling to the user for invalid inputs
+Better testing to make sure long field doesn't break
+
+

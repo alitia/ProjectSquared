@@ -1,53 +1,19 @@
 import React, { Component } from 'react'
 
+//SECONDARY: Draws the PROJECT TITLE card.
+//These have a white card
+//(Left) Icon in a rounded square
+//(Left) Bold text with Title of the PROJECT
+//TODO: Add image for add symbol
+//ACTION: The user cannot edit any details of the project without clicking the 'Edit' button
 class ProjectUnitViewTitle extends Component{
-	state = {
-            id: '',
-            type: 'title',
-            label: '',            
-            data: '',
-        }
-    componentDidMount() {
-        this.setState({id: this.props.titleId})
-        this.setState({data: this.props.title})
-    }
-    onKeyPress = (event) =>{
-        const str = event.target.innerHTML
-        if (event.charCode === 13){
-            event.preventDefault()  
-            const element = event.target
-            element.blur()
-        }
-        else if(str.length > 36){
-                event.preventDefault()
-        }
-    }
-    update = (e) => {
-        
-        const str = e.target.innerHTML
-        const p_id = this.props.project_id
-        const u_id = this.props.unit_id
-        const f_id = this.state.id
-
-        if(str === ""){
-            e.target.innerHTML = "..."
-        }
-        else{
-            this.setState({data: str})
-        }
-        
-        this.setState({data: this.state.data})
-        //saveFieldChange(p_id, u_id, f_id, str)
-        //saveTitleChange(p_id, u_id, f_id, str)
-
-    }
     render(){
     	return(
 			<div className="ProjectUnitView_Title">
                 <div className="card">
-                    <div className="cardLeftImgRed"></div>
-                    	<h1 className="cardh1bold">{this.props.title}</h1>
-                    </div>
+                    <div className="cardLeftImgRed"><div className="projectSymbol"></div></div>
+                    <h1 className="cardh1bold">{this.props.title}</h1>
+                </div>
             </div>
 		)
     }

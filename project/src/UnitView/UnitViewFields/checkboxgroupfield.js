@@ -1,43 +1,52 @@
 import React, { Component } from 'react';
-import CheckField from './checkfield.js'
+import CheckField from './checkfield.js';
+import {uv_convertchecklist} from '../../db/db_unitview.js';
 
+//SECONDARY: Draws the list of CHECKBOXs.
+//These have a white card that is longer than usual with a bold label and light text labels
+//for each of the checkfields.
+//ACTION: The unit titles up the total number of checks in the unit, and progress is calculated by that
+//You can have multiple checkgroups per unit
+//(Left) The label of the checkbox group field in bold text (Not editable here)
+//(Left) The label in light text for each checkfield
+//(Right) The checkfield icon which can be true or false
+//PROPS: Receives checkfielgroup id, label and data from LIST
 class CheckBoxGroupField extends Component {
     state = {
             id: '',
             type: 'checkbox_group',
             label: '',            
             data: [],
-        }  
+    }
+
+    //ABOUT: Assigns the PROPS to the current STATE 
+    //get the current checkfields list from PROPS 
     componentDidMount() {
         this.setState({id: this.props.checkboxgroup_field.id})
         this.setState({label: this.props.checkboxgroup_field.label})
-        this.convertResult(this.props.checkboxgroup_field.data)
+        this.convert(this.props.checkboxgroup_field.data)
     }  
 
-    //converts object array into array for mapping by MPV_List
-    convertResult(res){
-        var arr = []
-        var count = 0
+    //ACTION:
+    //converts the checkfields list from PROPS into an array
+    //puv_convertunitslist: converts the checkfields list into an array of checkfields
+    convert(result){
 
-        for (var item in res){
-            arr[count] = res[item]
-            count++
-        }
-        if(typeof arr === 'undefined'){
-            //something is broken, we have a checkfieldgroup with no checks.
-            console.log("something is broken, we have a checkfieldgroup with no checks")               
+        var check_list = []
+        check_list = uv_convertchecklist(result)
+        
+        if(typeof check_list === 'undefined'){
+            //console.log("SERIOUS ERROR: A checkfield group can not have 0 check fields")               
         }
         else{
-            this.setState({data: arr})
+            this.setState({data: check_list})
         }  
     }
 
-    /*Needs to check the checkbox or vice versa */
-    update = (e) => {
-
-       
-        
-    }
+    //ACTION:
+    //Render: CheckBoxGroup Field
+    //Render: Bold label
+    //Render: Light text label for each check field, and it's check icon
     render() {
         return (
             <div className="CheckBoxGroupFieldContainer">
@@ -51,5 +60,4 @@ class CheckBoxGroupField extends Component {
         );
     }
 }
-
 export default CheckBoxGroupField;

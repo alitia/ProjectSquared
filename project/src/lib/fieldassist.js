@@ -5,7 +5,7 @@ export const saveFieldChange = (p_id, u_id, f_id, data) => {
     if(data === ""){
         return
     }
-	var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/" 
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/" 
         var ref = firebase.database().ref().child(path)
         ref.child("data").set(data.toString(), function(error){
             if(error){
@@ -17,7 +17,7 @@ export const saveFieldChange = (p_id, u_id, f_id, data) => {
 //update the title changed in the field to apply to the whole unit
 export const saveTitleChange = (p_id, u_id, f_id, data) => {
 
-	var path = "projects/" + p_id + "/units/" + u_id + "/" 
+    var path = "projects/" + p_id + "/units/" + u_id + "/" 
         var ref = firebase.database().ref().child(path)
         ref.child("projectName").set(data.toString(), function(error){
             if(error){

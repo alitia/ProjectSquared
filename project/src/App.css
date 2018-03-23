@@ -174,7 +174,7 @@ body{
 }
 .cardLeftImgWhite {
 
-  background-color: #FFFFFF;
+  background-color: #FFB997;
   width: 45px;
   height: 45px;
   border-radius: 10px; 
@@ -277,11 +277,12 @@ body{
   margin-left: 15px;
 }
 .slash{
-  content:url('./images/seperator.png');
+  content:url('./images/minus-symbol.png');
   display: inline-block;
   height: 30px;
   vertical-align: middle;
-  margin-left: 40px;
+  margin-left: 10px;
+  padding-bottom: 5px;
 }
 .checkField_uncheck{
   content:url('./images/check-box-empty.png');
@@ -294,6 +295,24 @@ body{
   height: 30px;
   float: right;
   margin-right: 20px;
+}
+.addSymbol{
+  content:url('./images/plus-symbol-in-a-rounded-black-square.png');
+  height: 30px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+}
+.projectSymbol{
+  content:url('./images/certificate-shape.png');
+  height: 30px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+}
+.unitSymbol{
+  content:url('./images/star.png');
+  height: 30px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
 }
 [contenteditable="true"]:focus{
   border:none;
@@ -374,7 +393,6 @@ div.dropdown-container-show {
   width: 250px;
   padding: 7.5px;
   height: 105px;
-  z-index: 10;
 }
 div.dropdown-display-clicked {
   float: left;
@@ -385,7 +403,6 @@ div.dropdown-display-clicked {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   border-radius: 10px;
-  z-index: 4;
 }
 div.dropdown-container {
   float: left;
@@ -441,6 +458,18 @@ div.dropdown-display {
   display: inline-flex;  
 }
 .card-overflowallow{
+
+  background-color: white;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: visible;
+  z-index: 0;
+  padding-right: 10px;
+  position: relative;
+}
+.cardlong-overflowallow{
 
   background-color: white;
   height: 60px;
