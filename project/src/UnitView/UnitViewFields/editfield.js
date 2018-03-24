@@ -207,7 +207,18 @@ class EditField extends Component {
                             >{this.state.label}</h1>)
             return label        
     }
-
+    //ACTION: prevent the user from adding too many letters or illegal keys
+    onKeyPress = (event) =>{
+        const str = event.target.innerHTML
+        if (event.charCode === 13){
+            event.preventDefault()  
+            const element = event.target
+            element.blur()
+        }
+        else if(str.length > 36){
+            event.preventDefault()
+        }
+    }
     //ACTION: update the appearance on the card based on the selection from the dropdown
     updateCard = (card) => {
 
@@ -218,7 +229,7 @@ class EditField extends Component {
         if(str === "Long Text Box"){
             //change the div to cardlong
             
-            str.target.className === "cardlong"
+            //str.target.className === "cardlong"
         }
         else if(str === "Short Text Box"||str === "Phone Number"|| str === "Email"){
             //change the div to card
