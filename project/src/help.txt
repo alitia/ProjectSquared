@@ -1,0 +1,4 @@
+npm start
+
+Under Documents/Project/project/src run this
+$ json-server -p 8080 --watch db.json

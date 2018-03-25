@@ -1,0 +1,12 @@
+1) Fixed? Project Title does not display at the same time as the progress bar
+2) Progress calc has not been designed for multiple checkbox groups, only one so far
+3) Fixed? New data does not save if the unit has not been refreshed 
+4) Unit ID generator is not very good as it only tries twice - this really needs to be iterating on the last used value
+5) Huge list of content editable errors
+
+
+
+
+
+Currently when a new project is being created, if the page is refreshed the project is recreated
+instead of recongising that the project already exists

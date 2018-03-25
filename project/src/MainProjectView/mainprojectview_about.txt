@@ -1,0 +1,13 @@
+Main project view is the first page a signed in user will see organically.
+It displays the list of projects visible to the user.
+Below this list, it also displays the button to add a new project.
+
+COMMENT_STATUS: Done
+TEST_STATUS: Can't get Firebase related tests working
+DB: External file created
+TODO:     
+
+Make Generate ID iteratively increase instead of random.
+DONE = Add image into new icon field.
+DONE = Externalize db calls and processing from here.
+

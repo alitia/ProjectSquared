@@ -1,0 +1,14 @@
+Project unit view displays all units within a particular project.
+A user can click on any unit to see details of that particular unit.
+Below this list, it also displays the button to add a new unit.
+
+COMMENT_STATUS: Done
+TEST_STATUS: Can't get Firebase related tests working
+DB: External file created
+
+TODO:
+Make Generate ID iteratively increase instead of random
+DONE = Externalize db calls and processing from here
+DONE = Add image for add symbol in NEW
+DONE =Add image for add symbol in TITLE
+DONE = Also need a method for increasing the unit count on the project card by 1

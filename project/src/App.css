@@ -11,7 +11,7 @@ body{
 }
 .logo_topbar{
 
-  font-family: 'Open Sans';
+  font-family: 'Helvetica', Arial;
   color: #74546B;
   display: inline-block;
   margin-left: 40px;
@@ -29,47 +29,44 @@ body{
 
 /*----------------CARDS----------------*/
 
-.card{
+
+.cardCheckBox{
 
   background-color: white;
-  width: 50%;
-  height: 60px;
+  min-height: 60px;
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 15px;
-  overflow: hidden;
+  display: block;
+}
+.cardCheckBox{
+
+  padding-top: 0px;
+}
+.checkBoxSet h1{
+
+  line-height: 30px;
 }
 .projectlink a{
   background-color: white;
 }
+/*----------------H1 TEXT----------------*/
 .cardh1bold{
 
   color: #74546B;
-  font-family: 'Open Sans';
+  font-family: 'Helvetica';
   display: inline-block;
   margin-top: 0px;
   font-weight: 900;
   line-height: 60px;
   margin-left: 20px; 
-  font-size: 1.7em;
+  font-size: 1.3em;
   text-overflow: ellipsis;
 }
 .cardh1normal{
 
   color: #74546B;
-  font-family: 'Open Sans';
-  display: inline-block;
-  margin-top: 0px;
-  font-weight: 600;
-  line-height: 60px;
-  margin-left: 20px; 
-  font-size: 1.7em;
-  text-overflow: ellipsis;
-}
-.cardh2normal{
-
-  color: #74546B;
-  font-family: 'Open Sans';
+  font-family: 'Helvetica';
   display: inline-block;
   margin-top: 0px;
   font-weight: 700;
@@ -78,17 +75,81 @@ body{
   font-size: 1.3em;
   text-overflow: ellipsis;
 }
+
 .cardh1light{
 
   color: #74546B;
-  font-family: 'Open Sans';
+  font-family: 'Helvetica';
   display: inline-block;
   margin-top: 0px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 60px;
   margin-left: 20px; 
-  font-size: 1.7em;
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+}
+.cardh1lightlongtext{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 40px;
+  margin-left: 20px; 
+  margin-right: 20px;
+  font-size: 1.3em;
+  text-overflow: hidden;
+  word-break: break-all;
+}
+.cardlong{
+
+  background-color: white;
+  min-height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: wrap;
+}
+.cardh1normallong{
+
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-left: 20px; 
+  font-size: 1.3em;
   text-overflow: ellipsis;
+  margin-top: 10px;
+}
+/*----------------H2 TEXT----------------*/
+.cardh2normal{
+
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 700;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+}
+.cardh2light{
+
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+  float: left;
+
 }
 .cardLeftImgRed {
 
@@ -96,11 +157,14 @@ body{
   width: 45px;
   height: 45px;
   border-radius: 10px; 
-  display: inline-block;
+  display: block;
   margin-top: 7.5px;
-  margin-left: 9.5px;
+  margin-left: 7.5px;
+  margin-right: 10px;
   float: left;
-  line-height: 45px;
+  z-index: 4;
+  position: relative;
+  clear: left;
 }
 .cardLeftImgRed h1{
 
@@ -108,31 +172,28 @@ body{
   text-align: middle;
   color: #74546B;
   font-size: 1.3em;
-  font-family: 'Open Sans'; 
+  font-family: 'Helvetica'; 
   font-weight: 600;
 
 }
 .cardLeftImgWhite {
 
-  background-color: #F67E7D;
+  background-color: #FFB997;
   width: 45px;
   height: 45px;
   border-radius: 10px; 
-  display: inline-block;
+  display: block;
   margin-top: 7.5px;
-  margin-left: 9.5px;
+  margin-left: 7.5px;
+  margin-right: 10px;
   float: left;
+  z-index: 4;
+  position: relative;
+  clear: left;
 }
 
-/*base text for progress reports - percentage*/
-.percentRegularCard {
-  
-  float: right;
-  margin-right: 15px;
-  position: relative;
-  right: 0;
-  top: 0;
-}
+
+
 /*text for numbers in cubes*/
 .projectNumCube {
 
@@ -142,8 +203,287 @@ body{
   width: 100%;
   font-size: 1.3em;
   color: #74546B;
+  font-family: 'Helvetica';
+}
+.backButton{
+
+  width: 25%; 
+  display: inline-block;  
+  float: left;
+}
+.backIcon{
+  width: 100px;
+  float: left;
+  height: 60px;
+  background-color: white;
+  border-radius: 0px 10px 10px 0px;
+}
+.backButtonIcon {
+
+  background-color: #F67E7D;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px; 
+  display: inline-block;
+  margin-top: 7.5px;
+  margin-right: 9.5px;
+  float: right;
+}
+.ProjectUnitView_Page{
+  display: inline-flex;
+  margin: 0 auto;
+  width: 100%;
+}
+.ProjectUnitView_List{
+  display: block;
+  width: 50%;
+}
+.UnitView_Page{
+  display: inline-flex;
+  margin: 0 auto;
+  width: 100%;
+}
+.UnitView_List{
+  display: block;
+  width: 50%;
+}
+.Page{
+  display: inline-flex;  
+  margin: 0 auto;
+  width: 100%;
+}
+.ProjectList{
+  display: block;
+  width: 50%;
 }
 
+
+
+
+
+
+
+
+
+
+
+.optionsPanel{
+  width: 25%; 
+  display: inline-block;  
+  float: right;
+  height: 60px;
+}
+.optionsPanel_Button{
+  width: 60px;
+  float: left;
+  height: 60px;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 15px;
+}
+.slash{
+  content:url('./images/minus-symbol.png');
+  display: inline-block;
+  height: 30px;
+  vertical-align: middle;
+  margin-left: 10px;
+  padding-bottom: 5px;
+}
+.checkField_uncheck{
+  content:url('./images/check-box-empty.png');
+  height: 30px;
+  float: right;
+  margin-right: 20px;
+}
+.checkField_checked{
+  content:url('./images/check-box-checked.png');
+  height: 30px;
+  float: right;
+  margin-right: 20px;
+}
+.addSymbol{
+  content:url('./images/plus-symbol-in-a-rounded-black-square.png');
+  height: 30px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+}
+.projectSymbol{
+  content:url('./images/certificate-shape.png');
+  height: 30px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+}
+.unitSymbol{
+  content:url('./images/star.png');
+  height: 30px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+}
+[contenteditable="true"]:focus{
+  border:none;
+  outline:none;
+}
+.ProgBar{
+  min-height: 60px;
+  width: 0%;
+  background-color: #F67E7D;
+  display: block;
+  z-index: 3;
+  border-radius: 10px;
+}
+/*base text for progress reports - percentage*/
+.percentRegularCard {
+  
+  float: right;
+  margin-right: 15px;
+  position: block;
+  right: 0;
+  top: 0;
+  margin-top: 5px;
+  color: #74546B;
+  font-family: 'Helvetica'; 
+  line-height: 50px;
+  font-weight: 700;
+  font-size: 1.3em;
+  z-index: 4;
+  position: absolute;
+
+}
+.cardh1normalprogwithcount{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: block;
+  margin-top: 17.5px;
+  font-weight: 700;
+  margin-left: 85px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+  z-index: 4;
+  position: absolute;
+}
+.cardh1normalprog{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: block;
+  margin-top: 17.5px;
+  font-weight: 700;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+  z-index: 4;
+  position: absolute;
+}
+
+.card{
+
+  background-color: white;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  z-index: 0;
+  padding-right: 10px;
+  position: relative;
+  min-width: 500px;
+}
 /*colors: background: #FFB997
 colors: topbar:   #F67E7D
 colors: profile:  #74546B*/
+div.dropdown-container-show {
+  float: left;
+  width: 250px;
+  padding: 7.5px;
+  height: 105px;
+}
+div.dropdown-display-clicked {
+  float: left;
+  width: 100%;
+  background-color: #74546B;
+  height: 320px;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border-radius: 10px;
+}
+div.dropdown-container {
+  float: left;
+  clear:left;
+  display: block;
+  width: 250px;
+  padding: 7.5px;
+}
+div.dropdown-display {
+  float: left;
+  width: 100%;
+  background-color: #74546B;
+  height: 45px;
+  cursor: pointer;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border-radius: 10px;
+}
+.ddboxoption{
+  color: white;
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 45px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+}
+.dropdown-list {
+  color: white;
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 45px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+}
+.dropdown-list-hidden {
+  display: none;
+}
+.caret-pointup{
+  content:url('./images/caret-arrow-up.png');
+  height: 15px;
+  float: right;
+  margin-right: 20px;
+  margin-top: 15px;
+  display: inline-flex;
+
+}
+.caret-pointdown{
+  content:url('./images/caret-down.png');
+  height: 15px;
+  float: right;
+  margin-right: 20px;
+  margin-top: 15px;
+  display: inline-flex;  
+}
+.card-overflowallow{
+
+  background-color: white;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: visible;
+  z-index: 2;
+  padding-right: 10px;
+  position: relative;
+  min-width: 500px;
+}
+.cardlong-overflowallow{
+
+  background-color: white;
+  height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: visible;
+  z-index: 2;
+  padding-right: 10px;
+  position: relative;
+  min-width: 500px;
+}
+.CreateProjectView_New{
+  height: 60px;
+}
