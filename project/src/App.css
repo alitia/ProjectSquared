@@ -86,9 +86,7 @@ body{
   line-height: 60px;
   margin-left: 20px; 
   font-size: 1.3em;
-  white-space: nowrap; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-x: hidden;
   position: absolute;
 }
 .cardh1lightlongtext{
@@ -326,9 +324,7 @@ body{
   outline:none;
 }
 .ProgBar{
-  margin-top: 5px;
-  margin-left: 5px;
-  min-height: 50px;
+  min-height: 60px;
   width: 0%;
   background-color: #F67E7D;
   display: block;
