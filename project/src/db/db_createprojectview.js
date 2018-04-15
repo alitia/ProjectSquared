@@ -45,6 +45,31 @@ export const pcv_savefieldlabelchange = (p_id, u_id, f_id, label, type) => {
     }   
 }
 
+//ACTION: update the checkfield label in the db
+export const pcv_savecheckfieldlabelchange = (p_id, u_id, f_id, b_id, label, type) => {
+
+    if(type === "checkfield"){
+        var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "data"
+        var ref = firebase.database().ref().child(path)
+        //need to find the box id
+        ref.child("data").set(label, function(error){
+            if(error){
+                //console.log("Checkfield Label Change: in checkfield title" + error)
+            }
+        })
+    }  
+}
+
+
+
+ // var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "bool"
+ //    var ref = firebase.database().ref().child(path)
+ //        ref.set(data)
+
+
+
+
+
 //ACTION: check if a project already exists on the data base in the same ID
 export const pcv_checkifprojectexistsalready = (p_id) => {
 

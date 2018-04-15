@@ -72,7 +72,7 @@ class EmailField extends Component {
                     <div className="card">
                         <h1 className="cardh1normal">{this.state.label}</h1>
                         <div className="slash"></div>
-                        <h1 className="cardh1light"
+                        <h1 className="cardh1lightview"
                             contentEditable = {true}
                             onBlur={this.update}
                             onKeyPress={this.onKeyPress}

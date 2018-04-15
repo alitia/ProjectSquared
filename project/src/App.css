@@ -37,11 +37,25 @@ body{
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 15px;
-  display: block;
+  display: inline-block;
+  padding-bottom: 7.5px;
+  min-width: 500px;
+  width: 100%;
+  z-index: 2;
 }
-.cardCheckBox{
+.cardCheckBox-overflowallow{
 
-  padding-top: 0px;
+  background-color: white;
+  min-height: 60px;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  z-index: 2;
+  position: relative;
+  min-width: 500px;
+  width: 100%;
+  display: inline-block;
+
 }
 .checkBoxSet h1{
 
@@ -62,6 +76,7 @@ body{
   margin-left: 20px; 
   font-size: 1.3em;
   text-overflow: ellipsis;
+  position: absolute;
 }
 .cardh1normal{
 
@@ -88,6 +103,40 @@ body{
   font-size: 1.3em;
   overflow-x: hidden;
   position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+  margin-right: 10px;
+}
+.cardh1lightview{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+  margin-right: 10px;
+  max-width: 400px;
+  min-width: 200px;
+}
+.cardh1lightcheckbox{
+
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 60px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: hidden;
 }
 .cardh1lightlongtext{
   color: #74546B;
@@ -110,7 +159,11 @@ body{
   border-radius: 10px;
   margin-bottom: 15px;
   overflow: wrap;
+  z-index: 0;
+  position: relative;
+  min-width: 500px;
 }
+
 .cardh1normallong{
 
   color: #74546B;
@@ -382,7 +435,6 @@ body{
   border-radius: 10px;
   margin-bottom: 15px;
   z-index: 0;
-  padding-right: 10px;
   position: relative;
   min-width: 500px;
 }
@@ -465,7 +517,6 @@ div.dropdown-display {
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 15px;
-  overflow: visible;
   z-index: 2;
   padding-right: 10px;
   position: relative;
@@ -478,12 +529,59 @@ div.dropdown-display {
   margin: 0 auto;
   border-radius: 10px;
   margin-bottom: 15px;
-  overflow: visible;
-  z-index: 2;
+  z-index: 0;
   padding-right: 10px;
   position: relative;
   min-width: 500px;
 }
 .CreateProjectView_New{
   height: 60px;
+}
+.checkBoxAdd_Button {
+  width: 63%;
+  background-color: #F67E7D;
+  height: 45px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: 7.5px;
+  margin-top: 7.5px;
+
+}
+.checkBoxAdd_ButtonText{
+  color: white;
+  font-family: 'Helvetica';
+  margin-top: 0px;
+  font-weight: 900;
+  line-height: 45px;
+  font-size: 1.3em;
+  text-overflow: ellipsis;
+  position: relative;
+  text-align: center;
+}
+.checkFieldContainer{
+  float: left;
+  width: 98%;
+  height: 45px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+}
+.checkFieldContainer div{
+  margin-top: 7.5px;
+}
+.checkField_EditText{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 45px;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  text-overflow: hidden; 
+}
+.checkbox_condition_container{
+  display: inline-flex;
+
 }

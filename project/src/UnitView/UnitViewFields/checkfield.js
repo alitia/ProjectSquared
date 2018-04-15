@@ -28,7 +28,7 @@ class CheckField extends Component {
     check = (event) => {
 
         //on click of a label
-        if(event.target.className === "cardh1light"){
+        if(event.target.className === "cardh1lightcheckbox"){
             if(event.target.nextSibling.className ==="checkField_uncheck"){
                 event.target.nextSibling.className = "checkField_checked"
             }
@@ -81,7 +81,7 @@ class CheckField extends Component {
         if(this.state.bool === "true"){
             return (
             <div className="checkBoxSet" key={this.state.id} onClick={this.check}>
-                <h1 className="cardh1light" >{this.state.data}</h1>
+                <h1 className="cardh1lightcheckbox" >{this.state.data}</h1>
                 <div className="checkField_checked" onClick={this.update}>{this.state.bool}</div>
             </div> 
             );
@@ -89,7 +89,7 @@ class CheckField extends Component {
         else{
             return (
             <div className="checkBoxSet" key={this.state.id} onClick={this.check}>
-                <h1 className="cardh1light" >{this.state.data}</h1>
+                <h1 className="cardh1lightcheckbox" >{this.state.data}</h1>
                 <div className="checkField_uncheck" onClick={this.update}>{this.state.bool}</div>
             </div> 
             );

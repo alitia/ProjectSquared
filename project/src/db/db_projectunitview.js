@@ -35,7 +35,7 @@ export const puv_createnewunit = (project_id) => {
                 var new_unit_id = Math.floor(Math.random()*1000)
 
                 //keep generating ids until one that is not a key already is chosen
-                var outcome = approveId(new_unit_id)
+                var outcome = approveId(project_id, new_unit_id)
 
                 //if the generated id already exists, generate another
                 if (outcome === true){
@@ -87,7 +87,7 @@ export const approveId = (project_id, new_unit_id) => {
 
     var idExists = ''
     //check if the key already exists on the user account hasChild
-    var path = "projects" + project_id + "/units"
+    var path = "projects/" + project_id + "/units"
     var ref = firebase.database().ref(path);
     ref.once("value")
     .then(function(snapshot) {
