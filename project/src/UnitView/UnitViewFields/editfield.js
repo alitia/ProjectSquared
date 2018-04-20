@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import {pcv_savefieldtypechange, pcv_savefieldlabelchange} from '../../db/db_createprojectview.js'
+import {pcv_savefieldtypechange, 
+    pcv_savefieldlabelchange, 
+    pcv_savecheckfieldtypechange,
+} from '../../db/db_createprojectview.js'
 import CheckBoxContainer from './EditFields/CheckBoxContainer.js'
+import EditFieldDropDownBox from './editfielddropdownbox.js'
 
 //SECONDARY: Draws the edit FIELD.
 //These are used in CREATEPROJECT VIEW
@@ -12,9 +16,10 @@ class EditField extends Component {
         super()
         this.updateLabel = this.updateLabel.bind(this)
         this.onKeyPress = this.onKeyPress.bind(this)
+        this.renderField = this.renderField.bind(this)
     }
     state = {
-            label: '',
+            label: 'Enter a title for the field',
             project_id: '',
             unit_id: '',
             field_id: '',
@@ -41,7 +46,6 @@ class EditField extends Component {
     componentDidMount() {
 
         //Did this so when the page is reloaded, the selected type of edit field
-        //looks good
         if(this.props.selected === "short"){
             this.setState({selected: "Short Text Box"})
         }
@@ -69,6 +73,19 @@ class EditField extends Component {
         this.setState({title: this.props.title})
     }
 
+    //ACTION: stops the component from updating if it is a checkbox
+    //prevents an infinite loop
+    shouldComponentUpdate = (nextProps, nextState) => {
+    
+        if(this.state.checkBoxCard === "CheckBox" && nextState.type === "checkboxes"){
+            this.setState({checkBoxCard: ""})
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     //ACTION: when the user loses focus on the field, save their input.
     //If empty, set label to 'Enter a label'
     //pcv_savefieldlabelchange: saves the label text to the field in the db
@@ -81,8 +98,8 @@ class EditField extends Component {
         var type = this.state.selected      
 
         if(str === ""){
-            event.target.innerHTML = "Enter a label"
-            str = event.target.innerHTML = "Enter a label"
+            event.target.innerHTML = "Enter a title for the field"
+            str = event.target.innerHTML = "Enter a title for the field"
         }
 
         if(p_id === void(0)){
@@ -94,7 +111,8 @@ class EditField extends Component {
     }
 
     //ACTION: Gets the project, unit and field ID from props and saves the type to the db
-    //pcv_savefieldtypechange: saves the new field type to the db
+    //pcv_savefieldtypechange: saves the new field type to the db and wipes any existing checkbox data if it existed
+    //pcv_savecheckfieldtypechange: save the new checkfield type to the db with a first label
     saveFieldType = (field_type) => {
         var p_id = this.props.projectId
         var u_id = this.props.unitId
@@ -103,112 +121,52 @@ class EditField extends Component {
         if(p_id === void(0)){
 
         }
-        else{
+        else if(!(field_type == "checkboxes")){
+
             pcv_savefieldtypechange(p_id, u_id, f_id, field_type)
+        }
+        else{
+            var b_id = "" + this.props.fieldId + 1
+            pcv_savecheckfieldtypechange(p_id, u_id, f_id, b_id, field_type)
         }        
     }
 
     //ACTION: calls the render related to the field type
     //saveFieldType: Saves the field type to the db for the field id
-    renderField = () =>{
-        var field = []
+    renderField = (data) =>{
+
         var type = ""
-        if(this.state.selected === "Label"){
-            field = this.renderlabelfield()
+        this.setState({selected: data})
+        
+        if(data === "Label"){
             type = "label"
         }
-        else if(this.state.selected === "Phone Number"){
-            field = this.renderphonefield()
+        else if(data === "Phone Number"){
             type = "phone"
         }
-        else if(this.state.selected === "Email"){
-            field = this.renderemailfield()
+        else if(data === "Email"){
             type = "email"
         }
-        else if(this.state.selected === "Long Text Box"){
-            field = this.renderlongfield()
+        else if(data === "Long Text Box"){
             type = "long"
         }
-        else if(this.state.selected === "Check Boxes"){
-            field = this.rendercheckfield()
+        else if(data === "Check Boxes"){
             type = "checkboxes"
         }
-        else if(this.state.selected === "Short Text Box"){
-            field = this.rendershortfield()
+        else if(data === "Short Text Box"){
             type = "short"
         }
-        if(type === ""){
+        if(!type == ""){
+        
+            if(type === "checkboxes"){
+                this.saveFieldType(type)
+            }
+            else{
+                this.saveFieldType(type)
+            }            
         }
-        else{
-            this.saveFieldType(type)
-        }
-        return field
-    }
 
-    //ACTION: render a label field
-    renderlabelfield = () => {
-        var label = []
-            label.push(<h1 className="cardh1light"
-                            contentEditable = {true}
-                            onBlur={this.updateLabel}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.label}</h1>)
-            return label        
-    }
-
-    //ACTION: render a short field
-    rendershortfield = () => {
-        var label = []
-            label.push(<h1 className="cardh1light"
-                            contentEditable = {true}
-                            onBlur={this.updateLabel}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.label}</h1>)
-            return label        
-    }
-
-    //ACTION: render a phone field
-    renderphonefield = () => {
-        var label = []
-            label.push(<h1 className="cardh1light"
-                            contentEditable = {true}
-                            onBlur={this.updateLabel}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.label}</h1>)
-            return label        
-    }
-
-    //ACTION: render an email field
-    renderemailfield = () => {
-        var label = []
-            label.push(<h1 className="cardh1light"
-                            contentEditable = {true}
-                            onBlur={this.updateLabel}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.label}</h1>)
-            return label        
-    }
-
-    //ACTION: render a long field
-    renderlongfield = () => {
-        var label = []
-            label.push(<h1 className="cardh1light"
-                            contentEditable = {true}
-                            onBlur={this.updateLabel}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.label}</h1>)
-            return label        
-    }
-
-    //ACTION: render a check field
-    rendercheckfield = () => {
-        var label = []
-            label.push(<h1 className="cardh1light"
-                            contentEditable = {true}
-                            onBlur={this.updateLabel}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.label}</h1>)
-            return label        
+        this.setState({type: type})
     }
 
     //ACTION: prevent the user from adding too many letters or illegal keys
@@ -219,104 +177,50 @@ class EditField extends Component {
             const element = event.target
             element.blur()
         }
-        else if(str.length > 24){
+        else if(str.length > 60){
             event.preventDefault()
         }
     }
 
-    //ACTION: prevent the user from adding too many letters or illegal keys
-    // onCheckKeyPress = (event) =>{
-    //     const str = event.target.innerHTML
-    //     if (event.charCode === 13){
-    //         event.preventDefault()  
-    //         const element = event.target
-    //         element.blur()
-    //     }
-    //     else if(str.length > 60){
-    //         event.preventDefault()
-    //     }
-    // }
+    //ACTION: update the appearance on the card based on the current state
+    updateCard = (type) => {
 
-    //ACTION: update the appearance on the card based on the selection from the dropdown
-    updateCard = (card) => {
-
-        var str = card.target.innerHTML
-        //call back up the chain and get the card class
-        this.check_checkBox("false")
+        var str = ""
         
-        if(str === "Long Text Box"){
-            //change the div to cardlong
-            
-            //str.target.className === "cardlong"
+        if(!type === ""){
+            str = type
         }
-        else if(str === "Short Text Box"||str === "Phone Number"|| str === "Email"){
-            //change the div to card
+        else{
+            str = this.state.selected
+        }
+
+        //return a header appropriate for normal fields
+        if(str === "Short Text Box"||str === "Phone Number"|| str === "Email" || str === "Long Text Box"){
+            
+            var label = []
+            label.push(<h1 className="cardh1light"
+                            contentEditable = {true}
+                            onBlur={this.updateLabel}
+                            onKeyPress={this.onKeyPress}
+                            >{this.state.label}</h1>)
+            return label 
         }
         else if(str === "Check Boxes"){
 
             //if the number of containers is 0
             var p_id = this.props.projectId
             var u_id = this.props.unitId
-            var f_id = this.props.fieldId
+            var f_id = this.props.fieldId            
             var b_id = "" + this.props.fieldId + 1
-            console.log(b_id)
-            //draw the container
 
+            this.setState({checkBoxCard: "CheckBox"})
 
-
-            //Draw a container
-            //assign the container an id
-            //save it to the database
-            //then
-            //if button is pressed
-            //draw another container, assign it an id and save it to the database
-
-
-            //get the field id, then set the box id as the field id + 1
-            //after the first one has been created add one to the field if of the previous checkbox
-
-            //holds the field name and checkbox in a container
-            var checkFieldContainer = document.createElement('div');
-            checkFieldContainer.className = "checkFieldContainer";
-
-            //create the first check box for the box
-            var checkBox = document.createElement('div');
-            checkBox.className = "checkField_checked";
-            checkFieldContainer.appendChild(checkBox);
-
-            //create the label for the checkbox element
-            var label = document.createElement('h1');
-            var label_text = document.createTextNode("Checkfield label");
-            label.contentEditable = "true";
-            label.addEventListener("blur", this.updateLabel)
-            label.addEventListener("keypress", this.onCheckKeyPress)
-            label.className = "checkField_EditText";
-            label.appendChild(label_text);
-            checkFieldContainer.appendChild(label);
-
-            //creates the button to click when user wants to add more checkfields
-
-                //creates the text to go in the button
-                var checkBoxAddButtonText = document.createElement('h1');
-                var text = document.createTextNode("Add Checkfield");   
-                checkBoxAddButtonText.className = "checkBoxAdd_ButtonText";
-                checkBoxAddButtonText.appendChild(text); 
-
-                //adds the text to the button
-                var checkBoxAddButton = document.createElement('div');
-                checkBoxAddButton.className = "checkBoxAdd_Button";
-                checkBoxAddButton.appendChild(checkBoxAddButtonText);
-
-            //insert the button
-            card.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[0].appendChild(checkBoxAddButton)
-            card.target.parentNode.parentNode.parentNode.parentNode.parentNode.style.width = "100%";
-            card.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(checkFieldContainer)
-
-            //make the card longer to accomodate the new buttons
-            this.check_checkBox("true")
-
-            //hide the label of the card as it isn't needed for checkfields
-            card.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.children[1].style.display = "none";
+            return <CheckBoxContainer 
+                data={str} 
+                key={f_id} 
+                project_id={p_id} 
+                unit_id={u_id}
+                box_id={b_id} />
         }
     }
 
@@ -330,64 +234,19 @@ class EditField extends Component {
         else{
             this.setState({checkBoxCard: ''})
         }
-
     }
-    //ACTION: sets the state to the selected item in the drop down
-    select = (item) => {
-
-        this.setState({selected: item.name})
-        //Changes to the appearance of the card based on the type selected should happen here
-        //CheckBoxGroupFieldContainer
-        //CheckBoxGroupField
-    }
-
-    //ACTION: set the drop down box to be visibly open
-    show = () => {
-        this.setState({ listVisible: true });
-        document.addEventListener("click", this.hide);
-    }
-
-    //ACTION: set the drop down box to be visibly closed
-    hide = () => {
-        this.setState({ listVisible: false });
-        document.removeEventListener("click", this.hide);
-    }
-
-    //ACTION: go through the list of possible fields and render the drop down options list
-    //select: bind a select function to the item in the drop down list
-    dd_renderListItems = () => {
-        var items = [];
-        for (var i = 0; i < this.state.fields.length; i++) {
-            var item = this.state.fields[i];
-            items.push(
-                <div onClick={this.select.bind(null, item)}>
-                            <span>{item.name}</span>
-                        </div>
-            );
-        } 
-        return items;
-    }   
 
     //ACTION:
     //Render: Drop Down Box with a list of field types
     //Render: A label with light text
+    //ACTION: renderField(): sets the state of the editfield as selected by the checkbox
+    //ACTION: updatecard(): draw the content within the card
     render() {
         return (
             <div className="test">
                 <div className={"card" + (this.state.checkBoxCard) + (this.state.listVisible ? "-overflowallow" : "")}>
-                    <div className={"checkbox_condition_container"}>
-                        <div className={"dropdown-container" + (this.state.listVisible ? "-show" : "")}>
-                            <div className={"dropdown-display" + (this.state.listVisible ? "-clicked": "")} onClick={this.show}>
-                                <div className={"caret" + (this.state.listVisible ? "-pointup" : "-pointdown")}></div>                 
-                                <span className="ddboxoption">{this.state.selected}</span>
-                                    <i className="fa fa-angle-down"></i>
-                                    <div className={"dropdown-list"+ (this.state.listVisible ? "" : "-hidden")} onClick={this.updateCard}>
-                                            {this.dd_renderListItems()}                                
-                                    </div>
-                            </div>   
-                        </div> 
-                    </div>
-                    {this.renderField()}
+                    <EditFieldDropDownBox selectField={this.renderField}/>
+                        {this.updateCard()}                                 
                 </div> 
             </div> 
         );
@@ -395,7 +254,36 @@ class EditField extends Component {
 }
 export default EditField;
 
+//NEXT: create a list component that displays the correct items based on the drop down box selection
+
 ///maybe we need to change the way the render field is constructed by making it so the card contains the drop down box
 //as a component. The component has a condition that causes the checkbox add button to become visible if selected
 //then there is a second component underneath, the checkfield container, that appears if checkboxes are slected or 
 //added
+
+//the dropdownbox is passed a method that tells the edit field how to look
+
+
+// If the value of the input fields is important (which they apparently are), and if they can change (which the obviously can), then React should be aware of them, typically in state.
+// The 'standard' (on only) react way to maintain the contents of the input fields is:
+
+// put the content of the input fields in state as well,
+// include something like value={this.state.foo} and onChange={this._onChange()} to the render of each input field
+// include the _onChange() function to the form to handle input changes
+// That way, whenever the form is re-rendered (after each setState()), the input values are also preserved.
+
+// PS: The question title "stop reactjs component from rerender on state change" does not really cover the question from text: you are asking for a partial re-render: do re-render the show/hide extra fields based on checkbox, but do not re-render input fields.
+
+
+    //ACTION: prevent the user from adding too many letters or illegal keys
+    // onCheckKeyPress = (event) =>{
+    //     const str = event.target.innerHTML
+    //     if (event.charCode === 13){
+    //         event.preventDefault()  
+    //         const element = event.target
+    //         element.blur()
+    //     }
+    //     else if(str.length > 60){
+    //         event.preventDefault()
+    //     }
+    // }

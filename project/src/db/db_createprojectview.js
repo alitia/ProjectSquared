@@ -1,7 +1,7 @@
 import firebase from '../firebase.js'
 
-//ACTION: update the field type in db
-export const pcv_savefieldtypechange = (p_id, u_id, f_id, type) => {
+//ACTION: update the field type in db if it isnt a checkbox
+export const pcv_savefieldtypechange = (p_id, u_id, f_id, type) => {    
 
     if(p_id === "" || u_id === "" || f_id === "" || type === ""){
 
@@ -13,6 +13,48 @@ export const pcv_savefieldtypechange = (p_id, u_id, f_id, type) => {
         ref.child("type").set(type, function(error){
             if(error){
                 //console.log("Field type Change: " + error)
+            }
+        })
+        ref.child("data").set("", function(error){
+            if(error){
+                //console.log("Field type Change: " + error)
+            }
+        })
+}
+
+//ACTION: change an edit field type to check box and add an initial box id and label
+export const pcv_savecheckfieldtypechange = (p_id, u_id, f_id, b_id, type) => {
+
+    var str = "Enter the check option label"
+    if(p_id === "" || u_id === "" || f_id === "" || type === "" || b_id ===""){
+
+        console.log("unable to write data without directory path")
+        return
+    }
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "data"
+    var ref = firebase.database().ref().child(path)
+        ref.child("data").set(str, function(error){
+            if(error){
+                //console.log("Check field data Change: " + error)
+            }
+        })
+        var ref = firebase.database().ref().child(path)
+        ref.child("id").set(b_id, function(error){
+            if(error){
+                //console.log("Check field box id Change: " + error)
+            }
+        })
+        var ref = firebase.database().ref().child(path)
+        ref.child("bool").set(false, function(error){
+            if(error){
+                //console.log("Check field bool Change: " + error)
+            }
+        })
+    var path_2 = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/"
+    var ref = firebase.database().ref().child(path_2)
+        ref.child("type").set(type, function(error){
+            if(error){
+                //console.log("Check field type Change: " + error)
             }
         })
 }
@@ -59,16 +101,6 @@ export const pcv_savecheckfieldlabelchange = (p_id, u_id, f_id, b_id, label, typ
         })
     }  
 }
-
-
-
- // var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "bool"
- //    var ref = firebase.database().ref().child(path)
- //        ref.set(data)
-
-
-
-
 
 //ACTION: check if a project already exists on the data base in the same ID
 export const pcv_checkifprojectexistsalready = (p_id) => {
