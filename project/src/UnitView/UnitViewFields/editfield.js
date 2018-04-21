@@ -236,6 +236,10 @@ class EditField extends Component {
         }
     }
 
+    //ACTION: If the user has refreshed the page, remeber the drop down box type
+    check_type = () =>{
+
+    }
     //ACTION:
     //Render: Drop Down Box with a list of field types
     //Render: A label with light text
@@ -245,7 +249,7 @@ class EditField extends Component {
         return (
             <div className="test">
                 <div className={"card" + (this.state.checkBoxCard) + (this.state.listVisible ? "-overflowallow" : "")}>
-                    <EditFieldDropDownBox selectField={this.renderField}/>
+                    <EditFieldDropDownBox selectField={this.renderField} dd_label={this.props.selected}/>
                         {this.updateCard()}                                 
                 </div> 
             </div> 

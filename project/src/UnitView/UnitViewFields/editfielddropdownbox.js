@@ -34,14 +34,33 @@ class EditFieldDropDownBox extends Component {
     //ABOUT: Assigns the PROPS to the current STATE
     componentDidMount() {
 
-        this.setState({dd_label: this.props.label})
-        this.setState({type: this.props.type})
-        this.setState({field_id: this.props.id})
-        this.setState({project_id: this.props.projectId})
-        this.setState({unit_id: this.props.unitId})
-        this.setState({title: this.props.title})
+        this.setState({dd_label: this.props.dd_label})
     }
 
+    renderLabel() {
+        
+        if(this.state.dd_label === "label"){
+            return "Label"
+        }
+        else if(this.state.dd_label === "phone"){
+            return "Phone Number"
+        }
+        else if(this.state.dd_label === "email"){
+            return "Email"
+        }
+        else if(this.state.dd_label === "long"){
+            return "Long Text Box"
+        }
+        else if(this.state.dd_label === "checkboxes"){
+            return "Check Boxes"
+        }
+        else if(this.state.dd_label === "short"){
+            return "Short Text Box"
+        }
+        else{
+            return this.state.selected
+        }
+    }
     //ACTION: sets the state to the selected item in the drop down
     select = (item) => {
 
@@ -87,7 +106,7 @@ class EditFieldDropDownBox extends Component {
                     <div className={"dropdown-container" + (this.state.listVisible ? "-show" : "")}>
                         <div className={"dropdown-display" + (this.state.listVisible ? "-clicked": "")} onClick={this.show}>
                             <div className={"caret" + (this.state.listVisible ? "-pointup" : "-pointdown")}></div>                 
-                                <span className="ddboxoption">{this.state.selected}</span>
+                                <span className="ddboxoption">{this.renderLabel()}</span>
                                     <i className="fa fa-angle-down"></i>
                                     <div className={"dropdown-list"+ (this.state.listVisible ? "" : "-hidden")}>
                                             {this.dd_renderListItems()}                                
