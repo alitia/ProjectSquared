@@ -5,9 +5,8 @@ import LabelField from './UnitViewFields/labelfield.js'
 import ShortField from './UnitViewFields/shortfield.js'
 import LongField from './UnitViewFields/longfield.js'
 import PhoneField from './UnitViewFields/phonefield.js'
-import UnitViewTitle from './UnitViewFields/unitviewtitle.js'
 import UnitViewProgress from './UnitViewFields/unitviewprogress.js';
-import {uv_getfieldslist, uv_convertfieldslist} from '../db/db_unitview.js';
+import {uv_getfieldslist} from '../db/db_unitview.js';
 
 //SECONDARY: Draws the unit FIELDS.
 //These have a white card but each has a different appearance

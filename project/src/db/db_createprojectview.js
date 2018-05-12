@@ -31,27 +31,27 @@ export const pcv_savecheckfieldtypechange = (p_id, u_id, f_id, b_id, type) => {
         console.log("unable to write data without directory path")
         return
     }
-    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "data"
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/data"
     var ref = firebase.database().ref().child(path)
         ref.child("data").set(str, function(error){
             if(error){
                 //console.log("Check field data Change: " + error)
             }
         })
-        var ref = firebase.database().ref().child(path)
+        ref = firebase.database().ref().child(path)
         ref.child("id").set(b_id, function(error){
             if(error){
                 //console.log("Check field box id Change: " + error)
             }
         })
-        var ref = firebase.database().ref().child(path)
+        ref = firebase.database().ref().child(path)
         ref.child("bool").set(false, function(error){
             if(error){
                 //console.log("Check field bool Change: " + error)
             }
         })
     var path_2 = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/"
-    var ref = firebase.database().ref().child(path_2)
+    ref = firebase.database().ref().child(path_2)
         ref.child("type").set(type, function(error){
             if(error){
                 //console.log("Check field type Change: " + error)
@@ -87,19 +87,17 @@ export const pcv_savefieldlabelchange = (p_id, u_id, f_id, label, type) => {
     }   
 }
 
-//ACTION: update the checkfield label in the db
+//ACTION: update the checkfield box label in the db
 export const pcv_savecheckfieldlabelchange = (p_id, u_id, f_id, b_id, label, type) => {
 
-    if(type === "checkfield"){
-        var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "data"
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/data"
         var ref = firebase.database().ref().child(path)
         //need to find the box id
         ref.child("data").set(label, function(error){
             if(error){
                 //console.log("Checkfield Label Change: in checkfield title" + error)
             }
-        })
-    }  
+        })  
 }
 
 //ACTION: check if a project already exists on the data base in the same ID

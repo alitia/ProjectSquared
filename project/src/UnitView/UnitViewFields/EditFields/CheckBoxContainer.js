@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {pcv_savefieldtypechange, pcv_savecheckfieldlabelchange} from '../../../db/db_createprojectview.js'
+import {pcv_savecheckfieldlabelchange} from '../../../db/db_createprojectview.js'
 
 //SECONDARY: Draws the checkbox label and checkbox box FIELD.
 //This is a light label and a checkbox next to it
@@ -10,15 +10,22 @@ class CheckBoxContainer extends Component {
     state = {
             id: '',
             type: 'checkbox_container',
-            label: '',            
+            box_label: '',            
             data: '',
+            project_id: '',
+            unit_id: '',
+            field_id: '',
+            box_id: ''
     }
 
     //ABOUT: Assigns the PROPS to the current STATE
     componentDidMount() {
-    //     this.setState({id: this.props.email_field.id})
-    //     this.setState({label: this.props.email_field.label})
-    //     this.setState({data: this.props.email_field.data})
+         this.setState({data: this.props.data})
+         this.setState({project_id: this.props.project_id})
+         this.setState({unit_d: this.props.unit_id})
+         this.setState({field_id: this.props.field_id})
+         this.setState({box_id: this.props.box_id})
+         this.setState({box_label: this.props.box_label})
     } 
 
     //ABOUT: handles the event of the user typing in the checkbox container label field
@@ -44,9 +51,10 @@ class CheckBoxContainer extends Component {
     //pcv_savecheckfieldlabelchange: Save the changes to the email field
     update = (event) => {
 
-        const p_id = this.props.project_id
+        const p_id = this.state.project_id
         const u_id = this.props.unit_id
-        const f_id = this.state.id
+        const f_id = this.state.field_id
+        const b_id = this.state.box_id
         const str = event.target.innerHTML
 
         if(str === ""){
@@ -57,7 +65,7 @@ class CheckBoxContainer extends Component {
         }
         
         this.setState({data: this.state.data})
-        //pcv_savecheckfieldlabelchange(p_id, u_id, f_id, b_id, str)
+        pcv_savecheckfieldlabelchange(p_id, u_id, f_id, b_id, str)
     }
 
     //ACTION:
@@ -72,7 +80,7 @@ class CheckBoxContainer extends Component {
                         contentEditable = {true}
                         onBlur={this.update}
                         onKeyPress={this.onKeyPress}
-                        >{this.state.data}</h1>
+                        >{this.props.box_label}</h1>
                         <div className="checkField_checked"></div>
                 </div> 
             </div>   

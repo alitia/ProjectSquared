@@ -64,7 +64,7 @@ export const uv_convertchecklist = (res) => {
 //ACTION: save the adjusted bool to the db
 export const uv_savecheckchange = (p_id, u_id, f_id, b_id, data) => {
 
-    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/" + "bool"
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/bool"
     var ref = firebase.database().ref().child(path)
         ref.set(data)
 }

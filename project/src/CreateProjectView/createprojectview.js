@@ -7,12 +7,17 @@ import {puv_getunitslist,
 from '../db/db_projectunitview.js';
 import { pcv_createeditfield } from '../db/db_createprojectview.js';
 import { generateId } from '../lib/projecthelpers.js';
-import { CreateProjectViewList } from './createprojectview_list.js';
+import CreateProjectViewList from './createprojectview_list.js';
 import  CreateProjectViewTitle  from './createprojectview_title.js';
 import { CreateProjectViewNew } from './createprojectview_new.js';
 
 //CORE: Shows the LIST and NEW of the new PROJECT
 class CreateProjectView extends Component {
+    constructor(){
+        super()
+        //this is bound so it can be called in an event
+        this.reloadAfterDelete = this.reloadAfterDelete.bind(this)  
+    }
     state = {
             fields: [],
             currentUnit: '',
@@ -57,7 +62,7 @@ class CreateProjectView extends Component {
     //ACTION:
     //get the only value in the object array and convert it
     //uv_convertfieldslist: converts the result from the database into a list of fields
-    convert(data, unit_val){
+    convert(data){
         var fields_list = ''
         for (var item in data){
             fields_list = uv_convertfieldslist(data[item])
@@ -68,10 +73,20 @@ class CreateProjectView extends Component {
     //ACTION:
     //get the only value in the object array and convert it once a new item is added
     //uv_convertfieldslist: converts the result from the database into a list of fields
-    convert_2(data, unit_val){
+    convert_2(data){
         var fields_list = ''
         fields_list = uv_convertfieldslist(data)
         this.setState({fields: fields_list})       
+    }
+
+    //ACTION: Update component once item in the list of child components is deleted via edit field delete
+    reloadAfterDelete(p_id, u_id){
+        
+        var project_val = p_id
+        var unit_val = u_id
+
+        uv_getfieldslist(project_val, unit_val)
+        .then(result => this.convert_2(result.val()))  
     }
 
     //ACTION: create an edit field in the new project
@@ -93,11 +108,11 @@ class CreateProjectView extends Component {
                 <BackButton />
                 <div className="ProjectList">
                     <CreateProjectViewTitle title={this.state.title} projectId={this.state.projectId} unitId={this.state.unitId} titleId={this.state.titleId}/>
-                    <CreateProjectViewList fields={this.state.fields} projectId={this.state.projectId} unitId={this.state.unitId}/>
+                    <CreateProjectViewList fields={this.state.fields} projectId={this.state.projectId} unitId={this.state.unitId} action={this.reloadAfterDelete}/>
                     <div onClick={this.handleClick}>
                         <CreateProjectViewNew />
                     </div>
-                </div>                 
+                </div>            
             </div>     
         );
     }

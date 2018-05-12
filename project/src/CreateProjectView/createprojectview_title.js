@@ -69,7 +69,7 @@ class CreateProjectViewTitle extends Component {
                         	onBlur={this.update}
                            	onKeyPress={this.onKeyPress}
                            	>{this.props.title}</h1>
-                    </div>
+                </div>
             </div>
 		)
 	}	

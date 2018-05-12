@@ -73,7 +73,7 @@ class UnitView extends Component {
                 <div className="ProjectList">
                 <UnitViewTitle title={this.state.title}/>
                     <UnitViewList unit_fields={this.state.unit_fields} action={this.reloadComponent} project_id={this.props.match.params.projectId} unit_id={this.props.match.params.unitId} unit_progress={this.state.unit_progress}/>
-                </div>
+                </div>                   
             </div>     
         );
     }

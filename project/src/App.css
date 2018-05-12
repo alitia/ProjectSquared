@@ -375,6 +375,30 @@ body{
   border:none;
   outline:none;
 }
+/*Delete Options stuff*/
+
+.deleteOKIcon{
+  content:url('./images/ok.png');
+  height: 22px;
+  float: right;
+  margin-right: 10px;
+  border-radius: 6px;
+  margin-top: 7.5px;
+}
+.deleteCancelIcon{
+  content:url('./images/cancel.png');
+  height: 22px;
+  float: right;
+  margin-right: 10px;
+  border-radius: 6px;
+  margin-top: 2px;
+
+}
+.deleteSet{
+  float: right;
+  width: 30px;
+}
+/*--------------------*/
 .ProgBar{
   min-height: 60px;
   width: 0%;
@@ -538,15 +562,16 @@ div.dropdown-display {
   height: 60px;
 }
 .checkBoxAdd_Button {
-  width: 63%;
+  max-width: 63%;
   background-color: #F67E7D;
   height: 45px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   border-radius: 10px;
-  margin-left: auto;
+  margin-left: 7.5px;
   margin-right: 7.5px;
   margin-top: 7.5px;
+  display: flow-root;
 
 }
 .checkBoxAdd_ButtonText{
@@ -581,7 +606,45 @@ div.dropdown-display {
   font-size: 1.3em;
   text-overflow: hidden; 
 }
-.checkbox_condition_container{
+.deleteButton{
+  width: 25%; 
+  display: inline-block; 
+  overflow: hidden;
+}
+.deleteIcon{
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 10px 10px 10px 10px;
+  margin-left: 10px;
+  display: inline-block;
+}
+.deleteButtonIcon {
 
-
+  background-color: #F67E7D;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px; 
+  display: inline-block;
+  margin-top: 7.5px;
+  margin-left: 7.5px;
+}
+.binSymbol {
+  content:url('./images/waste-bin.png');
+  height: 30px;
+  margin-left: 7.5px;
+  margin-top: 7.5px;
+}
+.deletebar{
+  width: 90%;
+  display: inline-block;
+  white-space: nowrap;
+}
+.test{
+  float:left;
+  display: block;
+  width: 110%;
+}
+.deleteSet{
+  margin-left: 7.5px;
 }

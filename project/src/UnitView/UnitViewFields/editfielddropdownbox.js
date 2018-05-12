@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {pcv_savefieldtypechange, pcv_savefieldlabelchange} from '../../db/db_createprojectview.js'
-import CheckBoxContainer from './EditFields/CheckBoxContainer.js'
 
 //SECONDARY: Draws the edit FIELD.
 //These are used in CREATEPROJECT VIEW
@@ -37,6 +35,14 @@ class EditFieldDropDownBox extends Component {
         this.setState({dd_label: this.props.dd_label})
     }
 
+    //ABOUT: Ensures the drop down box redraws when it is passed a different selected value
+    //especially if the page is refreshed
+    componentWillReceiveProps(nextProps) {
+        this.setState({ dd_label: nextProps.dd_label }) 
+    }
+
+    //ACTION: If the user refereshes the page, this will tell the drop down box what label it had selected before
+    //otherwise it just returns the current selected label
     renderLabel() {
         
         if(this.state.dd_label === "label"){
@@ -58,7 +64,7 @@ class EditFieldDropDownBox extends Component {
             return "Short Text Box"
         }
         else{
-            return this.state.selected
+            return this.state.dd_label
         }
     }
     //ACTION: sets the state to the selected item in the drop down
