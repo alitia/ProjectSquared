@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {pcv_savecheckfieldlabelchange} from '../../../db/db_createprojectview.js'
+import {pcv_savecheckfieldlabelchange, pcv_deletecheckbox} from '../../../db/db_createprojectview.js'
 
 //SECONDARY: Draws the checkbox label and checkbox box FIELD.
 //This is a light label and a checkbox next to it
@@ -68,6 +68,16 @@ class CheckBoxContainer extends Component {
         pcv_savecheckfieldlabelchange(p_id, u_id, f_id, b_id, str)
     }
 
+    //ACTION: delete the selected checkbox container field
+    deleteCheck = () =>{
+        const p_id = this.state.project_id
+        const u_id = this.props.unit_id
+        const f_id = this.state.field_id
+        const b_id = this.state.box_id
+
+        pcv_deletecheckbox(p_id, u_id, f_id, b_id)
+    }
+
     //ACTION:
     //Render: CheckBox Container Field
     //Render: Light label
@@ -81,7 +91,9 @@ class CheckBoxContainer extends Component {
                         onBlur={this.update}
                         onKeyPress={this.onKeyPress}
                         >{this.props.box_label}</h1>
-                        <div className="checkField_checked"></div>
+                    <div className="checkField_delete" onClick={this.deleteCheck}></div>
+                    <div className="checkField_checked"></div>
+
                 </div> 
             </div>   
         );

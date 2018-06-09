@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BackButton } from '../Other/backbutton.js';
+import BackButton from '../Other/backbutton.js';
 import {uv_getfieldslist, 
         uv_convertfieldslist} from '../db/db_unitview.js';
 import {puv_getunitslist, 

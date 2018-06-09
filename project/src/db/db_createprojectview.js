@@ -1,4 +1,5 @@
 import firebase from '../firebase.js'
+import {randomizeColour} from './db_universal.js'
 
 //ACTION: update the field type in db if it isnt a checkbox
 export const pcv_savefieldtypechange = (p_id, u_id, f_id, type) => {    
@@ -125,6 +126,7 @@ export const pcv_createproject = (p_id) => {
         ref.child("percentageComplete").set(0)
         ref.child("projectName").set('Project ' + p_id)
         ref.child("projectsInside").set(1)
+        ref.child("colour").set(randomizeColour())
 }
 
 //ACTION: create a new unit in the db and set the id, 
@@ -136,6 +138,7 @@ export const pcv_createunit = (p_id, u_id) => {
         ref.child("id").set(u_id)
         ref.child("percentageComplete").set(0)
         ref.child("projectName").set("Project " + p_id + " Unit")
+        ref.child("colour").set(randomizeColour())
 }
 
 //ACTION: create an edit field for the new project in the db
@@ -148,4 +151,60 @@ export const pcv_createeditfield = (p_id, u_id, f_id) => {
         ref.child("position").set(0)
         ref.child("type").set("Select the field type")
         ref.child("label").set("Add the title of this field")
+}
+//ACTION: delete a checkfield from a create project unit view
+export const pcv_deletecheckbox = (p_id, u_id, f_id, b_id) => {
+
+    if(p_id === "" || u_id === "" || f_id === "" || b_id === ""){
+
+        console.log("unable to write data without directory path")
+        return
+    }
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id 
+    var ref = firebase.database().ref().child(path)
+        ref.remove()
+}
+
+//ACTION: add an additional checkfield box container and label
+export const pcv_getnextboxid = (p_id, u_id, f_id) => {
+
+    if(p_id === "" || u_id === "" || f_id === ""){
+
+        console.log("unable to write data without directory path")
+        return
+    }
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/"
+    var ref = firebase.database().ref().child(path).orderByKey().limitToLast(1)
+    return ref.once('value')
+}
+
+//ACTION: add an additional checkfield box container and label
+export const pcv_addcheckbox = (p_id, u_id, f_id, b_id) => {
+
+    var str = "Enter the check option label"
+    if(p_id === "" || u_id === "" || f_id === "" || b_id ===""){
+
+        console.log("unable to write data without directory path")
+        return
+    }
+   
+    var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/data/" + b_id + "/data"
+    var ref = firebase.database().ref().child(path)
+        ref.child("data").set(str, function(error){
+            if(error){
+                //console.log("Check field data Change: " + error)
+            }
+        })
+        ref = firebase.database().ref().child(path)
+        ref.child("id").set(b_id, function(error){
+            if(error){
+                //console.log("Check field box id Change: " + error)
+            }
+        })
+        ref = firebase.database().ref().child(path)
+        ref.child("bool").set(false, function(error){
+            if(error){
+                //console.log("Check field bool Change: " + error)
+            }
+        })
 }

@@ -96,6 +96,7 @@ class EditField extends Component {
 
     //ABOUT: Ensures the checkbox draws the data that has just been passed to it when it is created
     componentWillReceiveProps(nextProps) {
+
         this.setState({ dd_label: nextProps.dd_label }) 
     }
 
@@ -238,15 +239,12 @@ class EditField extends Component {
                 project_id={p_id} 
                 field_id={f_id}
                 unit_id={u_id}
-                box_id={id_val + "" + "1"}
+                box_id={f_id + "1"}
                 box_label={"Enter the check option label"} />)
             }
             else{
 
-                //for each key in data
-                //get the array and process it
                 for (var item in ref){
-                    //the next iteration will only ever be through data
                     for (var item2 in ref[item]){
                             var a = ref[item][item2]
                             arr[count] = a                                      
@@ -260,7 +258,7 @@ class EditField extends Component {
                     
                     label.push(<CheckBoxContainer 
                     data={str} 
-                    key={f_id} 
+                    key={id_val} 
                     project_id={p_id} 
                     field_id={f_id}
                     unit_id={u_id}
@@ -269,7 +267,13 @@ class EditField extends Component {
                 }
             }            
             
-            label.push(<CheckBoxAddButton label={data_val} id={id_val} />)
+            label.push(<CheckBoxAddButton 
+                    label={data_val} 
+                    id={id_val} 
+                    project_id={p_id} 
+                    field_id={f_id}
+                    unit_id={u_id}
+                    action={this.reloadFields()}/>)
             this.setState({checkBoxCard: "CheckBox"})
             return label
         }
@@ -316,6 +320,7 @@ class EditField extends Component {
             card.target.parentNode.parentNode.parentNode.parentNode.children[0].children[0].appendChild(deleteset)
         }
     }
+    
     //ACTION: delete the field then reload the page
     deleteProceed = (event) => {
 
@@ -324,21 +329,30 @@ class EditField extends Component {
         var p_id = this.props.projectId
         
         uni_deletefield(p_id, u_id, f_id)
-        this.props.action(p_id, u_id)
+        this.reloadFields()
+        
+    }
+    //ACTION: Use the callback to redraw the fields
+    reloadFields = () => {
+
+        var u_id = this.props.unitId
+        var p_id = this.props.projectId
+        //this.props.action(p_id, u_id)
     }
 
     //ACTION: restore the label of the card and hide the delete options
     deleteCancel = (card) => {
 
         var label = this.state.saved_label
+        var set = ""
         this.setState({label: label})
         //if card isnt a checkbox card
         if(this.state.type === "checkboxes"){
-            var set = card.target.parentNode.parentNode
+            set = card.target.parentNode.parentNode
             set.removeChild(set.children[1])
         }
         else{
-            var set = card.target.parentNode.parentNode
+            set = card.target.parentNode.parentNode
             set.removeChild(set.children[2])
         }
     }
@@ -367,7 +381,6 @@ class EditField extends Component {
                             {this.updateCard()} 
                         </div>                              
                     </div>                    
-                
                 <div onClick={this.deletecheck}><DeleteButton /></div>
             </div>
             
@@ -379,11 +392,10 @@ export default EditField;
 //Two issues to solve:
 //When the page is refreshed, the current selected type is not shown in the drop down - DONE
 //Second, the page does not support multiple checkboxes at once (fine after refresh) - DONE
-//Next, get the delete button working - DONE - except need to make the delete options appear properly for checkfields
+//Next, get the delete button working - DONE - except need to make the delete options appear properly for checkfields - DONE
 //After that get the checkbox add button working
-//Finally, add a small delete button next to the check icon so indivudual check boxes can be deleted
-//Oh, and the card jumps in size when the drop down is opened again
-
+//Finally, add a small delete button next to the check icon so indivudual check boxes can be deleted - DONE
+//Oh, and the card jumps in size when the drop down is opened again - DONE
 
 // If the value of the input fields is important (which they apparently are), and if they can change (which the obviously can), then React should be aware of them, typically in state.
 // The 'standard' (on only) react way to maintain the contents of the input fields is:

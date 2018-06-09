@@ -257,6 +257,11 @@ body{
   color: #74546B;
   font-family: 'Helvetica';
 }
+.leftMargin{
+  width: 25%; 
+  display: inline-block;  
+  float: left;
+}
 .backButton{
 
   width: 25%; 
@@ -279,7 +284,13 @@ body{
   display: inline-block;
   margin-top: 7.5px;
   margin-right: 9.5px;
-  float: right;
+  float: right; 
+}
+.back{
+  content:url('./images/caret-symbol.png');
+  height: 30px;
+  margin-top: 7.5px;
+  margin-left: 5px;
 }
 .ProjectUnitView_Page{
   display: inline-flex;
@@ -353,6 +364,17 @@ body{
   float: right;
   margin-right: 20px;
 }
+.checkField_delete{
+  content:url('./images/waste-bin-white.png');
+  height: 30px;
+  float: right; 
+  background-color: #74546B;
+  border-radius: 7px;
+  margin-right: 5px;
+}
+.checkField_delete img{
+  height: 10px;
+}
 .addSymbol{
   content:url('./images/plus-symbol-in-a-rounded-black-square.png');
   height: 30px;
@@ -384,6 +406,7 @@ body{
   margin-right: 10px;
   border-radius: 6px;
   margin-top: 7.5px;
+  z-index: 5;
 }
 .deleteCancelIcon{
   content:url('./images/cancel.png');
@@ -392,37 +415,41 @@ body{
   margin-right: 10px;
   border-radius: 6px;
   margin-top: 2px;
+  z-index: 5;
 
 }
 .deleteSet{
-  float: right;
   width: 30px;
+  display: block;
+  margin-left: 10px;
+  float: right;
+  z-index: 10;
+  position: relative;
 }
 /*--------------------*/
 .ProgBar{
   min-height: 60px;
   width: 0%;
   background-color: #F67E7D;
-  display: block;
-  z-index: 3;
   border-radius: 10px;
+  position: absolute;
 }
 /*base text for progress reports - percentage*/
 .percentRegularCard {
   
   float: right;
   margin-right: 15px;
-  position: block;
-  right: 0;
-  top: 0;
+  position: relative;
+  /*right: 0;
+  top: 0;*/
   margin-top: 5px;
   color: #74546B;
   font-family: 'Helvetica'; 
   line-height: 50px;
   font-weight: 700;
   font-size: 1.3em;
-  z-index: 4;
-  position: absolute;
+  /*z-index: 4;
+  position: absolute;*/
 
 }
 .cardh1normalprogwithcount{
@@ -468,7 +495,7 @@ div.dropdown-container-show {
   float: left;
   width: 250px;
   padding: 7.5px;
-  height: 105px;
+  height: 45px;
 }
 div.dropdown-display-clicked {
   float: left;
@@ -643,8 +670,5 @@ div.dropdown-display {
 .test{
   float:left;
   display: block;
-  width: 110%;
-}
-.deleteSet{
-  margin-left: 7.5px;
-}
+  min-width: 111%;
+  }

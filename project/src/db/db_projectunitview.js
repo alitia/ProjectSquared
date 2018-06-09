@@ -1,4 +1,6 @@
 import firebase from '../firebase.js'
+import {randomizeColour} from './db_universal.js'
+
 
 //ACTION: gets the list of projects from the db for that user
 export const puv_getunitslist = (project_id) => {
@@ -78,7 +80,40 @@ export const updateId = (project_id, new_unit_id) => {
     resetPercentage(project_id, new_unit_id)
     clearFields = wipeFields(project_id, new_unit_id)
     resetFields(clearFields, project_id, new_unit_id)
-    resetUnitName(project_id, new_unit_id) 
+    resetUnitName(project_id, new_unit_id)
+    resetColour((project_id, new_unit_id))
+}
+
+//ACTION: updates the db colour of the new unit to a new random colour
+export const resetColour = (project_id, new_unit_id) => {
+
+    var colourCode = randomizeColour
+
+    var path = "projects/" + project_id + "/units/" + new_unit_id + "/"
+    var ref = firebase.database().ref().child(path)
+    ref.child("colour").set(randomizeColour(), function(error){
+        if(error){
+            console.log("Project Colour Change Declined: " + error)
+        }
+        else{
+            console.log("Project Colour Change Accepted")
+        }
+    })
+}
+
+//ACTION: updates the db percentageComplete of the new unit to 0
+export const resetPercentage = (project_id, new_unit_id) => {
+
+    var path = "projects/" + project_id + "/units/" + new_unit_id + "/"
+    var ref = firebase.database().ref().child(path)
+    ref.child("percentageComplete").set("0", function(error){
+        if(error){
+            console.log("Project Percentage Change Declined: " + error)
+        }
+        else{
+            console.log("Project Percentage Change Accepted")
+        }
+    })
 }
 
 //ACTION: Check if the unit id already exists
@@ -108,21 +143,6 @@ export const setUnitId = (new_unit_id, project_id) => {
         }
         else{
             //console.log("Unit ID Change Accepted")
-        }
-    })
-}
-
-//ACTION: updates the db percentageComplete of the new unit to 0
-export const resetPercentage = (project_id, new_unit_id) => {
-
-    var path = "projects/" + project_id + "/units/" + new_unit_id + "/"
-    var ref = firebase.database().ref().child(path)
-    ref.child("percentageComplete").set("0", function(error){
-        if(error){
-            console.log("Project Percentage Change Declined: " + error)
-        }
-        else{
-            console.log("Project Percentage Change Accepted")
         }
     })
 }

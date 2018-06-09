@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EditField from '../UnitView/UnitViewFields/editfield.js';
-import {uv_getfieldslist} from '../db/db_unitview.js';
 
 
 //SECONDARY: Generates the list of NEW PROJECT CARDS

@@ -1,5 +1,5 @@
 import React from 'react'
-import {ProjectUnitViewCard} from './projectunitview_card.js'
+import ProjectUnitViewCard from './projectunitview_card.js'
 
 //SECONDARY: Generates the list of UNIT CARDS
 //PROPS: Receives the list of units from CORE

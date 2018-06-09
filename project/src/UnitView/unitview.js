@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {uv_getfieldslist, uv_convertfieldslist, uv_getunittitle} from '../db/db_unitview.js';
 import UnitViewList from './unitview_list.js';
 import UnitViewTitle from './UnitViewFields/unitviewtitle.js';
-import {BackButton} from '../Other/backbutton.js';
+import BackButton from '../Other/backbutton.js';
 
 //CORE: Shows the LIST of fields in the UNIT
 class UnitView extends Component {
@@ -56,6 +56,7 @@ class UnitView extends Component {
        
         this.setState({unit_progress: progress})
     }
+    
 
     //ACTION:
     //Render: Back button (Left Top)

@@ -7,7 +7,6 @@ import { pcv_createproject,
         from '../db/db_createprojectview.js';
 import MainProjectViewNew from './mainprojectview_new.js';
 import {MainProjectViewList} from './mainprojectview_list.js';
-import {BackButton} from '../Other/backbutton.js';
 
 //CORE: Shows the LIST and NEW once user SIGNIN
 //Creates a new project if the NEW is pressed
@@ -66,7 +65,7 @@ class MainProjectView extends Component {
     render() {
         return (
             <div className="Page">
-                <BackButton />
+                <div className="leftMargin"></div>
                 <div className="ProjectList" >
                     <MainProjectViewList projects={this.state.projects}/>
                     <div onClick={this.handleClick}>

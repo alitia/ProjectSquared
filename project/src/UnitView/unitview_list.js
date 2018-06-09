@@ -131,7 +131,7 @@ class UnitViewList extends Component {
         return(
             <div>
                 {this.props.unit_fields.map(this.assign.bind(this))}                
-                <UnitViewProgress data={this.state.progress}/>
+                <UnitViewProgress data={this.state.progress} colour={this.props.colour}/>
             </div>
         )
     }

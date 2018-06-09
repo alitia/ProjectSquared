@@ -1,12 +1,12 @@
-1) Fixed? Project Title does not display at the same time as the progress bar
-2) Progress calc has not been designed for multiple checkbox groups, only one so far
-3) Fixed? New data does not save if the unit has not been refreshed 
-4) Unit ID generator is not very good as it only tries twice - this really needs to be iterating on the last used value
-5) Huge list of content editable errors
+Next steps:
 
-
-
-
-
-Currently when a new project is being created, if the page is refreshed the project is recreated
-instead of recongising that the project already exists
+1) Fix up the contentEditable issue affecting all documents
+2) Ensure that create project view reloads automatically if a unit is deleted or a checkfield is added to a list
+3) Ensure the count is accurate on main project view of how many units are in the project, and the progress of those projects - COUNT WORKS, check progress
+4) Make the back button work - DONE
+5) Edit the project
+6) Make the cards moveable and save a particular order
+7) Make projects and units random colours - DONE?
+8) Create the login function
+9) Mount to web
+10) Establish limits, check browser compatibility, tests etc

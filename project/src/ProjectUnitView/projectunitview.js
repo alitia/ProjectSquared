@@ -9,7 +9,7 @@ from '../db/db_projectunitview.js';
 import {ProjectUnitViewList} from './projectunitview_list.js';
 import ProjectUnitViewTitle from './projectunitview_title.js';
 import {ProjectUnitViewNew} from './projectunitview_new.js'
-import {BackButton} from '../Other/backbutton.js'
+import BackButton from '../Other/backbutton.js'
 
 //CORE: Shows the TITLE and LIST of units then the NEW button
 class ProjectUnitView extends Component {
