@@ -11,7 +11,6 @@ class App extends Component {
         return (
             <div>
             <NavBar />
-            
         	<Router>  
                 <Switch>      		
                 <Route path="/" exact component={MainProjectView} />

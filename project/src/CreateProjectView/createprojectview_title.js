@@ -4,7 +4,7 @@ import {pcv_savefieldlabelchange} from '../db/db_createprojectview.js';
 class CreateProjectViewTitle extends Component {
     constructor(){
         super()
-        this.update = this.update.bind(this)
+        this.updateLabel = this.updateLabel.bind(this)
     }
 	state = {
             id: '',
@@ -18,19 +18,19 @@ class CreateProjectViewTitle extends Component {
             title: ''
         }
 
+    componentDidMount(){
+        this.setState({data: this.props.title})
+    }
+    componentWillReceiveProps(){
+        this.setState({data: this.props.title})
+    }
+
     //ABOUT: handles the event of the user typing in the project title field
     //NOTE: if enter is pressed, focus is lost on the field
     //field supports a maximum of 36 characters   
-    onKeyPress = (event) =>{
-        const str = event.target.innerHTML
-        if (event.charCode === 13){
-            event.preventDefault()  
-            const element = event.target
-            element.blur()
-        }
-        else if(str.length > 36){
-                event.preventDefault()
-        }
+    onKeyPress = (event) => {
+
+        this.setState({data: event.target.value})
     }
 
     //ACTION: calls updates to the db once focus is off the title field 
@@ -38,15 +38,15 @@ class CreateProjectViewTitle extends Component {
     //gets project id, unit id, and field id from STATE
     //if text in title field is empty, make it '...'
     //pcv_savefieldlabelchange: Save the changes to the title field
-    update = (e) => {        
-        const str = e.target.innerHTML
+    updateLabel = (e) => {        
+        const str = e.target.value
         const p_id = this.props.projectId
         const u_id = this.props.unitId
-        const f_id = this.props.titleId
+        const f_id = 0
         var type = "title"
 
         if(str === ""){
-            e.target.innerHTML = "..."
+            e.target.value = "..."
         }
         else{
             this.setState({data: str})
@@ -64,11 +64,15 @@ class CreateProjectViewTitle extends Component {
 			<div className="CreateProjectView_Title">
                 <div className="card">
                     <div className="cardLeftImgRed"></div>
-                    	<h1 className="cardh1bold"
-                    		contentEditable = {true}
-                        	onBlur={this.update}
-                           	onKeyPress={this.onKeyPress}
-                           	>{this.props.title}</h1>
+                    	<form className="form_label">
+                        <input type="text" 
+                            className="labelFieldInput" 
+                            value={this.state.data} 
+                            onBlur={this.updateLabel} 
+                            onChange={this.onKeyPress} 
+                            maxLength="40" 
+                            size="40"/>
+                    </form>
                 </div>
             </div>
 		)

@@ -16,6 +16,7 @@ class UnitView extends Component {
             unit_progress: '',
             project_id: '',
             unit_id: '',
+            field_id: '',
             title: ''
     }
 
@@ -26,6 +27,8 @@ class UnitView extends Component {
     componentDidMount() {            
         var project_val = this.props.match.params.projectId 
         var unit_val = this.props.match.params.unitId
+        this.setState({project_id: project_val})
+        this.setState({unit_id: unit_val})
             
         uv_getfieldslist(project_val, unit_val)
         .then(result => this.convert(result.val())) 
@@ -44,9 +47,12 @@ class UnitView extends Component {
     convert(result){
         
         var fields_list = ''
+        var field_id = ""
         fields_list = uv_convertfieldslist(result)
         this.setState({unit_progress: result.percentageComplete}) 
-        this.setState({unit_fields: fields_list})      
+        this.setState({unit_fields: fields_list})    
+        field_id = fields_list[0].id
+        this.setState({field_id: field_id})  
     }
 
     //ACTION: Controls the update of the progress bar state
@@ -56,7 +62,6 @@ class UnitView extends Component {
        
         this.setState({unit_progress: progress})
     }
-    
 
     //ACTION:
     //Render: Back button (Left Top)
@@ -69,10 +74,10 @@ class UnitView extends Component {
     // progress count
     render() {
         return (
-            <div className="Page">
+            <div className="Page"> 
                 <BackButton />
                 <div className="ProjectList">
-                <UnitViewTitle title={this.state.title}/>
+                <UnitViewTitle title={this.state.title} project_id={this.state.project_id} unit_id={this.state.unit_id} field_id={this.state.field_id}/>
                     <UnitViewList unit_fields={this.state.unit_fields} action={this.reloadComponent} project_id={this.props.match.params.projectId} unit_id={this.props.match.params.unitId} unit_progress={this.state.unit_progress}/>
                 </div>                   
             </div>     

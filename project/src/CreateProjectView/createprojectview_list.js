@@ -23,7 +23,7 @@ class CreateProjectViewList extends Component{
     render(){
     	return(
             <div>
-            	{this.props.fields.map(field => <EditField action={this.reloadAfterDelete} projectId={this.props.projectId} unitId={this.props.unitId} label={field.label} type={field.type} selected={field.type} label={field.label} fieldId={field.id} key={field.id} {...field}/>)}
+            	{this.props.fields.map(field => <EditField action={this.reloadAfterDelete} projectId={this.props.projectId} unitId={this.props.unitId} label={field.label} type={field.type} selected={field.type} label={field.label} fieldId={field.id} {...field}/>)}
             </div>
         )
     }

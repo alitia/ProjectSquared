@@ -25,16 +25,8 @@ class EmailField extends Component {
     //gets the text from the selected email field
     //NOTE: if enter is pressed, focus is lost on the field
     //field supports a maximum of 36 characters   
-    onKeyPress = (event) =>{
-        const str = event.target.innerHTML
-        if (event.charCode === 13){
-            event.preventDefault()  
-            const element = event.target
-            element.blur()
-        }
-        else if(str.length > 30){
-                event.preventDefault()
-        }
+    handleChange = (event) =>{
+        this.setState({data: event.target.value})
     }
 
     //ACTION: calls updates to the db once focus is off the email 
@@ -44,18 +36,17 @@ class EmailField extends Component {
     //uv_savefieldchange: Save the changes to the email field
     update = (event) => {
 
+        const str = event.target.value
         const p_id = this.props.project_id
         const u_id = this.props.unit_id
         const f_id = this.state.id
-        const str = event.target.innerHTML
 
         if(str === ""){
-            event.target.innerHTML = "..."
+            this.setState({data: "..."})
         }
         else{
             this.setState({data: str})
         }
-        
         this.setState({data: this.state.data})
         uv_savefieldchange(p_id, u_id, f_id, str)
     }
@@ -72,11 +63,15 @@ class EmailField extends Component {
                     <div className="card">
                         <h1 className="cardh1normal">{this.state.label}</h1>
                         <div className="slash"></div>
-                        <h1 className="cardh1lightview"
-                            contentEditable = {true}
-                            onBlur={this.update}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.data}</h1>
+                        <form className="form_email">
+                            <input type="text" 
+                                className="emailFieldInput" 
+                                value={this.state.data} 
+                                onBlur={this.update} 
+                                onChange={this.handleChange} 
+                                maxLength="50" 
+                                size="40"/>
+                        </form>
                     </div>
                 </div> 
             </div>   

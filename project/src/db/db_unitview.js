@@ -24,7 +24,9 @@ export const uv_convertfieldslist = (res) => {
 //ABOUT: Updates the changes to the title field
 export const uv_savefieldchange = (p_id, u_id, f_id, data) => {
 
-    if(data === ""){
+    if(p_id === "" || u_id === "" || f_id === "" || data === ""){
+
+        console.log("unable to write data without directory path")
         return
     }
     var path = "projects/" + p_id + "/units/" + u_id + "/fields/" + f_id + "/" 

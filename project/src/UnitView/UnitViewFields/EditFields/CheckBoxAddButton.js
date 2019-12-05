@@ -30,7 +30,7 @@ class CheckBoxAddButton extends Component {
     findBoxId = (res) => {
         var p_id = this.props.project_id
         var u_id = this.props.unit_id
-        var f_id = this.props.field_id
+        var f_id = this.props.field_id 
         var list = []
 
         try{list = Object.keys(res.val())}

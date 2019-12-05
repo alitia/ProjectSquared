@@ -65,12 +65,12 @@ class MainProjectView extends Component {
     render() {
         return (
             <div className="Page">
-                <div className="leftMargin"></div>
+                <div className="leftMargin"></div> 
                 <div className="ProjectList" >
                     <MainProjectViewList projects={this.state.projects}/>
                     <div onClick={this.handleClick}>
                         <MainProjectViewNew projectId={this.state.newProjectId} unitId={this.state.newUnitId}/>
-                    </div>
+                    </div> 
                 </div>
             </div>
         );

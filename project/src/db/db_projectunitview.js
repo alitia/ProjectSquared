@@ -14,9 +14,11 @@ export const puv_convertunitslist = (res) => {
 
     var arr = []
     var count = 0
-    for (var item in res.units){
+    if(res !== null){
+        for (var item in res.units){
         arr[count] = res.units[item]
         count++
+        }
     }
     return arr
 }
@@ -62,7 +64,7 @@ export const puv_createnewunit = (project_id) => {
             console.log("The read failed: " + error)
         })
 
-    //return new_unit_id
+    return new_unit_id
 }
 
 //ACTION: update the id of the duplicated child to its new id and name
@@ -73,6 +75,7 @@ export const puv_createnewunit = (project_id) => {
 //resetUnitName: Set the fields of the new unit to be the clear fields created in the array
 export const updateId = (project_id, new_unit_id) => {
     var clearFields = []
+    var unit_val = new_unit_id
     // //update the id of the new unit
     // var path = "projects/" + project_id + "/units/" + new_unit_id + "/"
     // var ref = firebase.database().ref().child(path)
@@ -81,24 +84,29 @@ export const updateId = (project_id, new_unit_id) => {
     clearFields = wipeFields(project_id, new_unit_id)
     resetFields(clearFields, project_id, new_unit_id)
     resetUnitName(project_id, new_unit_id)
-    resetColour((project_id, new_unit_id))
+    resetColour(project_id, unit_val)
 }
 
 //ACTION: updates the db colour of the new unit to a new random colour
 export const resetColour = (project_id, new_unit_id) => {
 
-    var colourCode = randomizeColour
-
-    var path = "projects/" + project_id + "/units/" + new_unit_id + "/"
-    var ref = firebase.database().ref().child(path)
-    ref.child("colour").set(randomizeColour(), function(error){
+    var unit_val = new_unit_id
+    if(project_id == null || new_unit_id == null){
+        console.log("Unable to reset colour as project or unit id missing when creating a new unit")
+        return
+    }
+    else{
+        
+        var path = "projects/" + project_id + "/units/" + unit_val + "/"
+        var ref = firebase.database().ref().child(path)
+        ref.child("colour").set(randomizeColour(), function(error){
         if(error){
             console.log("Project Colour Change Declined: " + error)
         }
         else{
             console.log("Project Colour Change Accepted")
-        }
-    })
+        }})
+    }    
 }
 
 //ACTION: updates the db percentageComplete of the new unit to 0

@@ -10,3 +10,17 @@ Next steps:
 8) Create the login function
 9) Mount to web
 10) Establish limits, check browser compatibility, tests etc
+
+
+NOTES FROM CARLOS
+1) Use typescript - there is a create-react-app and pass in typescript argument which will set it up.
+		--- will also add pretty. Auto format on save
+2) 'Style components' - CSS
+3) Unsplash - CC images like Trellos background
+4) Seperate communication to the database from the main class. Middle man class gets the data, processes it, and then gives it to the view.
+5) https://github.com/storybooks/storybook - Testing individual components in isolation.
+6) Jest - Testing
+7) WallabyJS - Tests your code as you type
+8) Switch to Visual Studio Code
+9) Form IK: Validation - uses SUP
+10) Check the recommended way of connecting up components with the database

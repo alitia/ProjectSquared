@@ -15,7 +15,8 @@ class UnitViewList extends Component {
     constructor(){
         super()
         //this function has been bound so it can be actioned in an event call
-        this.reloadComponent = this.reloadComponent.bind(this)  
+        this.reloadComponent = this.reloadComponent.bind(this) 
+        this.toggleShowProgressBar = this.toggleShowProgressBar.bind(this) 
     }
     state = {                
         unit_fields: [],
@@ -123,6 +124,22 @@ class UnitViewList extends Component {
             console.log('Unable to return an appropriate component for the field type')
         }
     }
+
+    //if checkfields are present in the form, show the progress bar
+    toggleShowProgressBar = () => {
+        var element = this.props.unit_fields
+        var progressBar = []
+
+        for(var c = 0; c < 7; c++){
+            for(var el in element[c]){
+                var x = element[c]["type"]
+                if(x === "checkboxes"){
+                    progressBar.push(<UnitViewProgress data={this.state.progress} colour={this.props.colour}/>)
+                    return progressBar
+                }                
+            }
+        }
+    }
     
     //ACTION:
     //Render: Unit Fields List (Middle Top)
@@ -131,9 +148,9 @@ class UnitViewList extends Component {
         return(
             <div>
                 {this.props.unit_fields.map(this.assign.bind(this))}                
-                <UnitViewProgress data={this.state.progress} colour={this.props.colour}/>
+                {this.toggleShowProgressBar()}
             </div>
         )
     }
 }
-export default UnitViewList;
+export default UnitViewList; 

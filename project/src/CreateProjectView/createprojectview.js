@@ -110,11 +110,11 @@ class CreateProjectView extends Component {
                     <CreateProjectViewTitle title={this.state.title} projectId={this.state.projectId} unitId={this.state.unitId} titleId={this.state.titleId}/>
                     <CreateProjectViewList fields={this.state.fields} projectId={this.state.projectId} unitId={this.state.unitId} action={this.reloadAfterDelete}/>
                     <div onClick={this.handleClick}>
-                        <CreateProjectViewNew />
+                        <CreateProjectViewNew /> 
                     </div>
                 </div>            
             </div>     
         );
     }
 }
-export default CreateProjectView;
+export default CreateProjectView; 

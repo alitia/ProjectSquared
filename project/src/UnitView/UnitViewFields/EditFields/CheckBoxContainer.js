@@ -7,6 +7,10 @@ import {pcv_savecheckfieldlabelchange, pcv_deletecheckbox} from '../../../db/db_
 //(Right) The checkbox
 //PROPS: Receives email field id, label and data from LIST
 class CheckBoxContainer extends Component {
+    constructor(){
+        super()
+        this.update = this.update.bind(this)
+    }
     state = {
             id: '',
             type: 'checkbox_container',
@@ -20,7 +24,7 @@ class CheckBoxContainer extends Component {
 
     //ABOUT: Assigns the PROPS to the current STATE
     componentDidMount() {
-         this.setState({data: this.props.data})
+         this.setState({data: this.props.box_label})
          this.setState({project_id: this.props.project_id})
          this.setState({unit_d: this.props.unit_id})
          this.setState({field_id: this.props.field_id})
@@ -33,15 +37,7 @@ class CheckBoxContainer extends Component {
     //NOTE: if enter is pressed, focus is lost on the field
     //field supports a maximum of 60 characters   
     onKeyPress = (event) =>{
-        const str = event.target.innerHTML
-        if (event.charCode === 13){
-            event.preventDefault()  
-            const element = event.target
-            element.blur()
-        }
-        else if(str.length > 60){
-                event.preventDefault()
-        }
+        this.setState({data: event.target.value})
     }
 
     //ACTION: calls updates to the db once focus is off the email 
@@ -55,10 +51,10 @@ class CheckBoxContainer extends Component {
         const u_id = this.props.unit_id
         const f_id = this.state.field_id
         const b_id = this.state.box_id
-        const str = event.target.innerHTML
+        const str = event.target.value
 
         if(str === ""){
-            event.target.innerHTML = "..."
+            event.target.value = "..."
         }
         else{
             this.setState({data: str})
@@ -86,11 +82,15 @@ class CheckBoxContainer extends Component {
         return (
             <div className="CheckBoxContainer">
                 <div className="checkFieldContainer" key={this.state.id}>
-                    <h1 className="checkField_EditText"
-                        contentEditable = {true}
-                        onBlur={this.update}
-                        onKeyPress={this.onKeyPress}
-                        >{this.props.box_label}</h1>
+                    <form className="form_check">
+                        <input type="text" 
+                            className="checkFieldInput" 
+                            placeholder={this.state.data} 
+                            onBlur={this.update} 
+                            onChange={this.onKeyPress} 
+                            maxLength="70" 
+                            size="52"/>
+                    </form>
                     <div className="checkField_delete" onClick={this.deleteCheck}></div>
                     <div className="checkField_checked"></div>
 

@@ -26,6 +26,7 @@ class ProjectUnitView extends Component {
     componentDidMount() {
 
         var project_val = this.props.match.params.projectId
+        this.setState({projectId: project_val})
         puv_getunitslist(project_val)
         .then(result => this.convert(result.val()))   
     }
@@ -45,9 +46,16 @@ class ProjectUnitView extends Component {
             this.setState({units: units_list})
             this.setState({projectId: this.props.match.params.projectId})
         }
-        this.setState({title: result.projectName})  
+        if(result !== null){
+            this.setState({title: result.projectName})  
+        }
     }
 
+    reloadFields = () =>{
+        var project_val = this.state.projectId
+        puv_getunitslist(project_val)
+        .then(result => this.convert(result.val()))   
+    }
     //ACTIONS: 
     //get the current project id from the PROPS
     //preventDefault: prevents change to a new page???
@@ -58,7 +66,7 @@ class ProjectUnitView extends Component {
 
         var project_val = this.props.match.params.projectId
         evt.preventDefault()    
-        puv_createnewunit(project_val)
+        var unit_val = puv_createnewunit(project_val)
 
         puv_viewnewunit(project_val)
         .then(result => this.convert(result.val())) 
@@ -84,7 +92,7 @@ class ProjectUnitView extends Component {
                 <BackButton />
                 <div className="ProjectList">
                     <ProjectUnitViewTitle title={this.state.title}/>
-                    <ProjectUnitViewList units={this.state.units} projectId={this.state.projectId}/>
+                    <ProjectUnitViewList units={this.state.units} projectId={this.state.projectId} action={this.reloadFields}/>
                     <div onClick={this.handleClick}>
                         <ProjectUnitViewNew/>
                     </div>
@@ -93,4 +101,4 @@ class ProjectUnitView extends Component {
         );
     }
 }
-export default ProjectUnitView;
+export default ProjectUnitView

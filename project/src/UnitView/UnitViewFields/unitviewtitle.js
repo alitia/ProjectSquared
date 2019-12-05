@@ -12,27 +12,33 @@ class UnitViewTitle extends Component {
             type: 'title',
             label: '',            
             data: '',
+            p_id: '',
+            u_id: '',
+            f_id: ''
     }
 
     //ABOUT: Assigns the PROPS to the current STATE whenever they are updated
     componentWillReceiveProps() {
         this.setState({data: this.props.title})
+        this.setState({p_id: this.props.project_id})
+        this.setState({u_id: this.props.unit_id})
+        this.setState({f_id: this.props.field_id})
+    }
+
+    componentDidMount() {
+        this.setState({data: this.props.title})
+        this.setState({p_id: this.props.project_id})
+        this.setState({u_id: this.props.unit_id})
+        this.setState({f_id: this.props.field_id})
     }
 
     //ABOUT: handles the event of the user typing in the short field
     //gets the text from the selected short field
     //NOTE: if enter is pressed, focus is lost on the field
     //field supports a maximum of 36 characters
-    onKeyPress = (event) =>{
-        const str = event.target.innerHTML
-        if (event.charCode === 13){
-            event.preventDefault()  
-            const element = event.target
-            element.blur()
-        }
-        else if(str.length > 36){
-                event.preventDefault()
-        }
+    handleChange = (event) =>{
+
+        this.setState({data: event.target.value})
     }
 
     //ACTION: calls updates to the db once focus is off the title 
@@ -43,13 +49,13 @@ class UnitViewTitle extends Component {
     //uv_savetitlechange: Save the changes to the overall unit title
     update = (event) => {
         
-        const str = event.target.innerHTML
-        const p_id = this.props.project_id
-        const u_id = this.props.unit_id
-        const f_id = this.state.id
+        const str = event.target.value
+        const p_id = this.state.p_id
+        const u_id = this.state.u_id
+        const f_id = 0
 
         if(str === ""){
-            event.target.innerHTML = "..."
+            event.target.value = "..."
         }
         else{
             this.setState({data: str})
@@ -71,11 +77,15 @@ class UnitViewTitle extends Component {
                         <div className="cardLeftImgRed">
                             <div className="unitSymbol"></div>
                         </div>
-                            <h1 className="cardh1bold"
-                                contentEditable = {true}
-                                onBlur={this.update}
-                                onKeyPress={this.onKeyPress}
-                                >{this.state.data}</h1>
+                            <form className="form_title">
+                                <input type="text" 
+                                    className="titleFieldInput" 
+                                    value={this.state.data} 
+                                    onBlur={this.update} 
+                                    onChange={this.handleChange} 
+                                    maxLength="40" 
+                                    size="40"/>
+                            </form>
                     </div>
                 </div>
             </div>

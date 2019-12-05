@@ -448,8 +448,8 @@ body{
   line-height: 50px;
   font-weight: 700;
   font-size: 1.3em;
-  /*z-index: 4;
-  position: absolute;*/
+  z-index: 2;
+  /*position: absolute;*/
 
 }
 .cardh1normalprogwithcount{
@@ -461,7 +461,7 @@ body{
   margin-left: 85px; 
   font-size: 1.3em;
   text-overflow: ellipsis;
-  z-index: 4;
+  z-index: 2;
   position: absolute;
 }
 .cardh1normalprog{
@@ -473,7 +473,7 @@ body{
   margin-left: 20px; 
   font-size: 1.3em;
   text-overflow: ellipsis;
-  z-index: 4;
+  z-index: 2;
   position: absolute;
 }
 
@@ -665,10 +665,318 @@ div.dropdown-display {
 .deletebar{
   width: 90%;
   display: inline-block;
-  white-space: nowrap;
 }
 .test{
   float:left;
   display: block;
   min-width: 111%;
   }
+.form_short{
+  display: inline-block;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+}
+.shortFieldInput{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 60px;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.form_title{
+  display: inline-block;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+}
+.titleFieldInput{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 900;
+  line-height: 60px;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.form_phone{
+  display: inline-block;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+}
+.phoneFieldInput{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 60px;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.form_email{
+  display: inline-block;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+}
+.emailFieldInput{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 60px;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.form_label{
+  display: inline-block;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+}
+.labelFieldInput{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 900;
+  line-height: 60px;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.form_long{
+  display: inline-block;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  position: absolute;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+  overflow: hidden;
+}
+.longFieldInput{
+  font-family: 'Helvetica';
+  display: inline-block;
+  color: #74546B;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 40px;
+  margin-left: 20px; 
+  margin-right: 20px;
+  font-size: 1.3em;
+  width: 95%;
+  border: none;
+  overflow: auto;
+  resize: none;
+  min-height: 200px;
+}
+.checkFieldInput{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: inline-block;
+  margin-top: 0px;
+  font-weight: 400;
+  line-height: 50px;
+  font-size: 1em;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+.form_check{
+  display: inline-block;
+  margin-left: 20px; 
+  font-size: 1.3em;
+  overflow-x: hidden;
+  max-height: 60px;
+  text-overflow: ellipsis;
+  overflow-y: hidden; 
+}
+
+/*----------------OPTIONS BUTTON ----------------*/
+.option_wrapper{
+  width: 21px;
+  height: 45px;
+  float: right;
+  margin-top: 7.5px;
+  margin-bottom: 7.5px;
+  margin-right: -5px;
+}
+.uv_option_wrapper{
+  width: 21px;
+  height: 45px;
+  float: right;
+  margin-top: 7.5px;
+  margin-bottom: 7.5px;
+  margin-right: 10px;
+}
+.option_container_outer{
+  width:100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 0.5px solid grey;
+}
+.option_container_inner{
+  content:url('./images/menu.png');
+  height: 50%;
+  margin-top: 12px;
+  margin-left: 0px;
+}
+.options_modal_container_inner{
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.modal_cancel{
+  display: block;
+  background: #74546B;
+  color: white;
+  border: solid 2px #74546B;
+  border-radius: 5px;
+  font-family: 'Lato';
+  font-size: 1.0em;
+  font-weight: 400;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 30px;
+  font-family: 'Helvetica';
+  width: 230px;
+  margin: 10px;
+}
+.modal_delete{
+  display: block;
+  background: #74546B;
+  color: white;
+  border: solid 2px #74546B;
+  border-radius: 5px;
+  font-family: 'Lato';
+  font-size: 1.0em;
+  font-weight: 400;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 30px;
+  font-family: 'Helvetica';
+  width: 230px;
+  margin: 10px;
+}
+.modal_edit{
+  display: block;
+  background: #74546B;
+  color: white;
+  border: solid 2px #74546B;
+  border-radius: 5px;
+  font-family: 'Lato';
+  font-size: 1.0em;
+  font-weight: 400;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 30px;
+  font-family: 'Helvetica';
+  width: 230px;
+  margin: 10px;
+}
+.projectunitview_options_modal_text{
+  color: #74546B;
+  font-family: 'Helvetica';
+  display: block;
+  margin-top: 5px;
+  font-weight: 700;
+  margin-left: 15px; 
+  font-size: 1.0em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 175px;
+}
+.optionsModalError{
+  font-family: 'Helvetica';
+  display: block;
+  margin-top: 5px;
+  font-weight: 300;
+  margin-left: 15px; 
+  margin-right: 15px;
+  font-size: 0.9em;
+  color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*----------------OPTIONS POP UP ----------------*/
+.option_modal_overlay{
+  background: black;
+  opacity: 0.8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: block;
+}
+.option_modal_main{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.options_modal_wrapper{
+  background: white;
+  border-radius: 10px;
+  min-width: 200px;
+  max-width: 250px;
+}
+

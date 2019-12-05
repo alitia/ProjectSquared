@@ -94,7 +94,7 @@ class EditFieldDropDownBox extends Component {
         for (var i = 0; i < this.state.fields.length; i++) {
             var item = this.state.fields[i];
             items.push(
-                <div onClick={this.select.bind(null, item)}>
+                <div onClick={this.select.bind(null, item)} key={i}>
                             <span>{item.name}</span>
                         </div>
             );
@@ -117,7 +117,6 @@ class EditFieldDropDownBox extends Component {
                                     <div className={"dropdown-list"+ (this.state.listVisible ? "" : "-hidden")}>
                                             {this.dd_renderListItems()}                                
                                     </div>
-                               
                         </div> 
                     </div>
                 </div> 

@@ -150,7 +150,7 @@ export const pcv_createeditfield = (p_id, u_id, f_id) => {
         ref.child("id").set(f_id)
         ref.child("position").set(0)
         ref.child("type").set("Select the field type")
-        ref.child("label").set("Add the title of this field")
+        ref.child("label").set("")
 }
 //ACTION: delete a checkfield from a create project unit view
 export const pcv_deletecheckbox = (p_id, u_id, f_id, b_id) => {

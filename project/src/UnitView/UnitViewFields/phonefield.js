@@ -26,24 +26,9 @@ class PhoneField extends Component {
     //NOTE: if enter is pressed, focus is lost on the field
     //field supports a maximum of 17 characters
     //field only supports numbers, + and ( )
-    onKeyPress = (event) =>{
-        const str = event.target.innerHTML
-        if (event.charCode === 13){
-            event.preventDefault()  
-            const element = event.target
-            element.blur()
-        }
-        else if(!(event.key >= 0) && !(event.key <= 9)){
-            if(event.key === '+' || event.key==="(" || event.key===")"){
-
-            }
-            else{
-                event.preventDefault()
-            }            
-        }
-        else if(str.length > 17){
-                event.preventDefault()
-        }
+    handleChange = (event) =>{
+        const str = event.target.value
+        this.setState({data: str})  
     }
 
     //ACTION: calls updates to the db once focus is off the phone 
@@ -51,15 +36,15 @@ class PhoneField extends Component {
     //gets project id, unit id, and field id from STATE
     //if text in phone field is empty, make it '...'
     //uv_savefieldchange: Save the changes to the phone field
-    update = (e) => {
+    update = (event) => {
 
-        const str = e.target.innerHTML
+        const str = event.target.value
         const p_id = this.props.project_id
         const u_id = this.props.unit_id
         const f_id = this.state.id
 
         if(str === ""){
-            e.target.innerHTML = "..."
+            this.setState({data: "..."})
         }
         else{
             this.setState({data: str})
@@ -81,11 +66,15 @@ class PhoneField extends Component {
                     <div className="card">
                         <h1 className="cardh1normal">{this.state.label}</h1>
                         <div className="slash"></div>
-                        <h1 className="cardh1lightview"
-                            contentEditable = {true}
-                            onBlur={this.update}
-                            onKeyPress={this.onKeyPress}
-                            >{this.state.data}</h1>
+                        <form className="form_phone">
+                            <input type="tel" 
+                                className="phoneFieldInput" 
+                                value={this.state.data} 
+                                onBlur={this.update} 
+                                onChange={this.handleChange} 
+                                maxLength="30" 
+                                size="30"/>
+                        </form>
                     </div>
                 </div>   
             </div>   
